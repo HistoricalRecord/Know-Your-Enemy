@@ -20,51 +20,44 @@ body {
 
 body {
   background: #eeeeee;
-  color: #222222;
+  color: #222;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
-  line-height: 1.35;
+  line-height: 1.4;
 }
-
-/* =========================================================
-   OLD PORTAL FRAME
-   ========================================================= */
 
 .page {
   width: 96%;
   max-width: 1180px;
   margin: 8px auto 30px;
-  background: #ffffff;
-  border: 1px solid #999999;
+  background: #fff;
+  border: 1px solid #999;
 }
 
 /* =========================================================
-   TOP HEADER
+   HEADER
    ========================================================= */
 
 .header {
-  background: #ffffff;
+  background: #fff;
   border-bottom: 4px solid #4b0082;
   padding: 8px 10px 5px;
 }
 
 .header-top {
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
+  align-items: flex-end;
   gap: 15px;
 }
 
 .logo {
-  position: relative;
-  display: inline-block;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 40px;
   line-height: 1;
   font-weight: bold;
-  color: #4b0082;
   letter-spacing: -2px;
-  text-transform: lowercase;
+  white-space: nowrap;
 }
 
 .logo .know {
@@ -72,28 +65,17 @@ body {
 }
 
 .logo .enemy {
-  color: #d40000;
-}
-
-.logo-tag {
-  display: block;
-  margin-top: 3px;
-  color: #666666;
-  font-size: 10px;
-  font-weight: normal;
-  letter-spacing: 0;
+  color: #c40000;
 }
 
 .header-links {
   text-align: right;
-  white-space: nowrap;
-  color: #555555;
+  color: #666;
   font-size: 10px;
 }
 
 .header-links a {
   color: #174ea6;
-  text-decoration: underline;
 }
 
 /* =========================================================
@@ -108,10 +90,10 @@ body {
 }
 
 .nav a {
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
-  font-weight: bold;
   font-size: 11px;
+  font-weight: bold;
   padding: 3px 9px;
   border-right: 1px solid #668dcc;
 }
@@ -126,25 +108,23 @@ body {
    ========================================================= */
 
 .search-area {
-  background: #dddddd;
-  border-bottom: 1px solid #999999;
+  background: #ddd;
+  border-bottom: 1px solid #999;
   padding: 8px 10px;
 }
 
 .search-label {
-  display: inline-block;
-  color: #333333;
   font-weight: bold;
-  margin-right: 6px;
+  margin-right: 5px;
 }
 
 .search-input {
   width: 55%;
   max-width: 500px;
   height: 25px;
-  border: 1px solid #777777;
+  border: 1px solid #777;
+  background: #fff;
   padding: 3px 6px;
-  background: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
 }
@@ -152,27 +132,23 @@ body {
 .search-button {
   height: 25px;
   margin-left: 3px;
-  border: 1px solid #555555;
+  padding: 2px 12px;
+  border: 1px solid #555;
   background: #f5f5f5;
-  color: #111111;
+  color: #111;
   font-size: 11px;
   font-weight: bold;
   cursor: pointer;
-  padding: 2px 12px;
 }
 
 .search-button:hover {
   background: #ffffcc;
 }
 
-/* =========================================================
-   SEARCH RESULT NOTICE
-   ========================================================= */
-
 .search-results {
   display: none;
   margin: 8px 10px 0;
-  border: 1px solid #999999;
+  border: 1px solid #999;
   background: #ffffcc;
   padding: 8px;
 }
@@ -185,7 +161,7 @@ body {
   color: #4b0082;
   font-weight: bold;
   font-size: 13px;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .search-results a {
@@ -204,23 +180,25 @@ body {
   padding: 8px;
 }
 
-/* =========================================================
-   LEFT COLUMN
-   ========================================================= */
-
-.sidebar {
+.sidebar,
+.content,
+.right-column {
   min-width: 0;
 }
 
+/* =========================================================
+   BOXES
+   ========================================================= */
+
 .box {
-  border: 1px solid #aaaaaa;
-  background: #ffffff;
+  background: #fff;
+  border: 1px solid #aaa;
   margin-bottom: 9px;
 }
 
 .box-title {
   background: #4b0082;
-  color: #ffffff;
+  color: #fff;
   padding: 4px 6px;
   font-size: 11px;
   font-weight: bold;
@@ -236,7 +214,7 @@ body {
 
 .box-title.gold {
   background: #c58b00;
-  color: #111111;
+  color: #111;
 }
 
 .box-content {
@@ -251,37 +229,27 @@ body {
 }
 
 .box-content a:hover {
-  color: #d40000;
-}
-
-.tiny {
-  font-size: 10px;
-  color: #666666;
+  color: #c40000;
 }
 
 /* =========================================================
-   CENTER COLUMN
+   HERO
    ========================================================= */
 
-.content {
-  min-width: 0;
-}
-
 .hero {
-  border: 1px solid #999999;
-  background: #ffffff;
+  border: 1px solid #999;
+  background: #fff;
   margin-bottom: 9px;
 }
 
 .hero-title {
   background: linear-gradient(
     to right,
-    #4b0082 0%,
-    #174ea6 45%,
-    #d40000 100%
+    #4b0082,
+    #174ea6 48%,
+    #c40000
   );
-
-  color: #ffffff;
+  color: #fff;
   padding: 7px 9px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 19px;
@@ -300,27 +268,23 @@ body {
   border: 1px solid #c6a900;
   background: #ffffcc;
   padding: 7px;
-  margin: 8px 0;
+  margin: 9px 0;
   font-size: 11px;
 }
 
-.notice strong {
-  color: #8a0000;
-}
-
 /* =========================================================
-   OLD WEB DIRECTORY SECTIONS
+   SECTIONS
    ========================================================= */
 
 .section {
-  border: 1px solid #aaaaaa;
+  background: #fff;
+  border: 1px solid #aaa;
   margin-bottom: 9px;
-  background: #ffffff;
 }
 
 .section-title {
-  background: #eeeeee;
-  border-bottom: 1px solid #aaaaaa;
+  background: #eee;
+  border-bottom: 1px solid #aaa;
   padding: 4px 7px;
   color: #174ea6;
   font-size: 13px;
@@ -328,7 +292,7 @@ body {
 }
 
 .section-title span {
-  color: #777777;
+  color: #777;
   font-size: 10px;
   font-weight: normal;
 }
@@ -345,9 +309,13 @@ body {
   color: #174ea6;
 }
 
+/* =========================================================
+   DENSE LINK DIRECTORY
+   ========================================================= */
+
 .link-list {
   columns: 2;
-  column-gap: 20px;
+  column-gap: 22px;
 }
 
 .link-list div {
@@ -362,28 +330,27 @@ body {
 }
 
 .link-description {
-  color: #555555;
+  color: #555;
   font-size: 10px;
 }
 
 /* =========================================================
-   RAMBLING ARCHIVE
+   HISTORICAL LOG
    ========================================================= */
 
 .log {
-  border-top: 1px dotted #999999;
-  margin-top: 8px;
+  border-top: 1px dotted #999;
   padding-top: 8px;
 }
 
 .log-entry {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .log-entry h3 {
   margin: 0 0 5px;
-  font-size: 13px;
   color: #4b0082;
+  font-size: 13px;
 }
 
 .log-entry p {
@@ -393,13 +360,12 @@ body {
 .log-entry blockquote {
   margin: 7px 15px;
   padding: 5px 9px;
-  border-left: 3px solid #d40000;
+  border-left: 3px solid #c40000;
   background: #f5f5f5;
-  color: #444444;
 }
 
 .margin-note {
-  color: #777777;
+  color: #777;
   font-family: "Times New Roman", serif;
   font-style: italic;
   font-size: 11px;
@@ -414,23 +380,13 @@ body {
   color: #174ea6;
 }
 
-.fake-old-link {
-  color: #174ea6;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 /* =========================================================
    RIGHT COLUMN
    ========================================================= */
 
-.right-column {
-  min-width: 0;
-}
-
 .news-item {
   padding: 5px 0;
-  border-bottom: 1px dotted #aaaaaa;
+  border-bottom: 1px dotted #aaa;
 }
 
 .news-item:last-child {
@@ -443,12 +399,12 @@ body {
 }
 
 .news-date {
-  color: #888888;
+  color: #888;
   font-size: 9px;
 }
 
 /* =========================================================
-   STRANGE PANEL
+   SYMBOL PANEL
    ========================================================= */
 
 .strange {
@@ -456,16 +412,11 @@ body {
   background: #fffef1;
 }
 
-.strange .box-content {
-  font-size: 11px;
-}
-
 .symbol-row {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   padding: 8px 2px;
-  border-bottom: 1px dotted #aaaaaa;
+  border-bottom: 1px dotted #aaa;
 }
 
 .symbol {
@@ -475,28 +426,14 @@ body {
 }
 
 /* =========================================================
-   ARCHIVE IMAGE
-   ========================================================= */
-
-.archive-image {
-  width: 100%;
-  height: 115px;
-  object-fit: cover;
-  display: block;
-  border: 1px solid #888888;
-  margin-bottom: 7px;
-  background: #eeeeee;
-}
-
-/* =========================================================
    FOOTER
    ========================================================= */
 
 .footer {
   border-top: 4px solid #174ea6;
-  background: #eeeeee;
+  background: #eee;
   padding: 12px;
-  color: #666666;
+  color: #666;
   font-size: 10px;
   text-align: center;
 }
@@ -506,7 +443,7 @@ body {
 }
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE
    ========================================================= */
 
 @media (max-width: 850px) {
@@ -517,10 +454,6 @@ body {
 
   .right-column {
     grid-column: 1 / -1;
-  }
-
-  .header-top {
-    align-items: flex-start;
   }
 
   .header-links {
@@ -554,7 +487,6 @@ body {
   .content,
   .right-column {
     width: 100%;
-    margin-bottom: 9px;
   }
 
   .search-input {
@@ -574,1357 +506,1491 @@ body {
 
 <div class="page">
 
-  <!-- =======================================================
-       HEADER
-       ======================================================= -->
+<header class="header">
 
-  <header class="header">
+  <div class="header-top">
 
-    <div class="header-top">
-
-      <div>
-
-        <div class="logo">
-          <span class="know">know your</span>
-          <span class="enemy"> enemy</span>
-        </div>
-
-        <span class="logo-tag">
-          the unofficial index of things you were not supposed to notice
-        </span>
-
-      </div>
-
-      <div class="header-links">
-        [ <a href="#">Help</a> ] &nbsp;
-        [ <a href="#">About</a> ] &nbsp;
-        [ <a href="#">Archives</a> ]<br>
-        Wednesday September 22 2026
-      </div>
-
+    <div class="logo">
+      <span class="know">know your</span>
+      <span class="enemy"> enemy</span>
     </div>
 
-  </header>
-
-
-  <!-- =======================================================
-       NAV
-       ======================================================= -->
-
-  <nav class="nav">
-
-    <a href="#home">Home</a>
-    <a href="#world">World</a>
-    <a href="#government">Government</a>
-    <a href="#war">War</a>
-    <a href="#crime">Crime</a>
-    <a href="#conspiracy">Conspiracy</a>
-    <a href="#documents">Documents</a>
-    <a href="#oddities">Oddities</a>
-
-  </nav>
-
-
-  <!-- =======================================================
-       SEARCH
-       ======================================================= -->
-
-  <div class="search-area">
-
-    <span class="search-label">
-      Search:
-    </span>
-
-    <input
-      type="text"
-      class="search-input"
-      id="searchInput"
-      placeholder="search the archive..."
-      autocomplete="off"
-      spellcheck="false"
-    >
-
-    <button
-      class="search-button"
-      id="searchButton"
-      type="button"
-    >
-      SEARCH
-    </button>
+    <div class="header-links">
+      [ <a href="#documents">Documents</a> ]
+      [ <a href="#names">Names</a> ]
+      [ <a href="#dates">Dates</a> ]<br>
+      September 22 2026
+    </div>
 
   </div>
 
+</header>
 
-  <div
-    class="search-results"
-    id="searchResults"
+
+<nav class="nav">
+
+  <a href="#israel">Israel</a>
+  <a href="#wars">Wars</a>
+  <a href="#gaza">Gaza</a>
+  <a href="#jerusalem">Jerusalem</a>
+  <a href="#government">Government</a>
+  <a href="#intelligence">Intelligence</a>
+  <a href="#religion">Religion</a>
+  <a href="#documents">Documents</a>
+
+</nav>
+
+
+<div class="search-area">
+
+  <span class="search-label">Search:</span>
+
+  <input
+    type="text"
+    id="searchInput"
+    class="search-input"
+    autocomplete="off"
+    spellcheck="false"
+    placeholder="Israel Jewish history conspiracy..."
   >
 
-    <div class="search-results-title">
-      SEARCH RESULT
+  <button
+    type="button"
+    id="searchButton"
+    class="search-button"
+  >
+    SEARCH
+  </button>
+
+</div>
+
+
+<div id="searchResults" class="search-results">
+
+  <div class="search-results-title">
+    SEARCH
+  </div>
+
+  <div>
+    <strong>Query:</strong>
+    <span id="queryDisplay"></span>
+  </div>
+
+  <br>
+
+  <a
+    href="https://www.youtube.com/results?search_query=Israel+Jewish+conspiracy+theories+history"
+    target="_blank"
+    rel="noopener"
+  >
+    Search YouTube for Israel / Jewish conspiracy material
+  </a>
+
+  <br><br>
+
+  <a
+    href="https://www.adl.org/resources/report/antisemitic-environment-how-social-and-media-exposures-predict-antisemitic-beliefs"
+    target="_blank"
+    rel="noopener"
+  >
+    Documentation concerning antisemitic conspiracy beliefs
+  </a>
+
+</div>
+
+
+<main class="main">
+
+
+<!-- =======================================================
+     LEFT
+     ======================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="box">
+
+  <div class="box-title blue">
+    ISRAEL
+  </div>
+
+  <div class="box-content">
+
+    <a href="#1948">1948</a>
+    <a href="#1956">1956</a>
+    <a href="#1967">1967</a>
+    <a href="#1973">1973</a>
+    <a href="#1982">1982</a>
+    <a href="#1993">1993</a>
+    <a href="#2001">2001</a>
+    <a href="#gaza">Gaza</a>
+    <a href="#lebanon">Lebanon</a>
+    <a href="#iran">Iran</a>
+
+  </div>
+
+</div>
+
+
+<div class="box">
+
+  <div class="box-title red">
+    NAMES
+  </div>
+
+  <div class="box-content">
+
+    <a href="#names">Ben-Gurion</a>
+    <a href="#names">Golda Meir</a>
+    <a href="#names">Moshe Dayan</a>
+    <a href="#names">Menachem Begin</a>
+    <a href="#names">Yitzhak Rabin</a>
+    <a href="#names">Ariel Sharon</a>
+    <a href="#names">Benjamin Netanyahu</a>
+    <a href="#names">Henry Kissinger</a>
+
+  </div>
+
+</div>
+
+
+<div class="box">
+
+  <div class="box-title gold">
+    DATES
+  </div>
+
+  <div class="box-content">
+
+    <a href="#1948">May 1948</a>
+    <a href="#1956">October 1956</a>
+    <a href="#1967">June 1967</a>
+    <a href="#1973">October 1973</a>
+    <a href="#1982">June 1982</a>
+    <a href="#1993">September 1993</a>
+    <a href="#2001">September 2001</a>
+
+  </div>
+
+</div>
+
+
+<div class="box strange">
+
+  <div class="box-title">
+    SYMBOLS
+  </div>
+
+  <div class="symbol-row">
+
+    <span class="symbol">✡</span>
+    <span class="symbol">◈</span>
+    <span class="symbol">△</span>
+
+  </div>
+
+  <div class="box-content">
+
+    <p>
+      Magen David
+    </p>
+
+    <p>
+      Jerusalem
+    </p>
+
+    <p>
+      Temple
+    </p>
+
+    <p>
+      Covenant
+    </p>
+
+    <p>
+      Exile
+    </p>
+
+    <p>
+      Return
+    </p>
+
+  </div>
+
+</div>
+
+
+</aside>
+
+
+<!-- =======================================================
+     CENTER
+     ======================================================= -->
+
+<section class="content">
+
+
+<section class="hero" id="israel">
+
+  <div class="hero-title">
+    KNOW YOUR ENEMY
+  </div>
+
+  <div class="hero-body">
+
+    <p>
+      <strong>
+        ISRAEL // JEWISH HISTORY // WAR // POWER // MEMORY
+      </strong>
+    </p>
+
+    <p>
+      1948
+      1967
+      1973
+      1982
+      1991
+      1993
+      2001
+      2006
+      2014
+      2021
+      2023
+      2024
+    </p>
+
+    <p>
+      Names repeat
+      borders move
+      governments change
+      documents remain
+    </p>
+
+    <div class="notice">
+
+      The record contains statements from governments
+      military organizations
+      courts
+      journalists
+      historians
+      witnesses
+      intelligence agencies
+      and political organizations.
+
+      A claim remains a claim until the evidence establishes more.
+
     </div>
 
-    <div>
-      This archive's conspiracy section contains historical material
-      about conspiracy theories involving Israel and Jews. The material
-      is presented as documented conspiracy narratives and source material,
-      not as proof that the claims are true.
+    <p>
+      Follow the dates.
+      Follow the names.
+      Follow the money.
+      Follow the weapons.
+      Follow the votes.
+      Follow the documents.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     1948
+     ======================================================= -->
+
+<section class="section" id="1948">
+
+  <div class="section-title">
+    1948
+    <span>declaration / war / displacement</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Israel declared independence on May 14 1948.
+      Fighting followed between Israel and neighboring Arab states.
+    </p>
+
+    <p>
+      The war produced major population displacement.
+      Palestinians refer to the mass displacement as the Nakba.
+      Israeli historical memory places the war within the struggle
+      for Jewish national independence and survival.
+    </p>
+
+    <p>
+      The armistice agreements of 1949 established the lines that
+      became known as the Green Line.
+    </p>
+
+    <p class="margin-note">
+      One declaration.
+      Two national memories.
+      One war.
+      A map that never stopped moving.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     1956
+     ======================================================= -->
+
+<section class="section" id="1956">
+
+  <div class="section-title">
+    1956
+    <span>Suez Crisis</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Israel invaded Egypt in October 1956 in coordination with
+      Britain and France during the Suez Crisis.
+    </p>
+
+    <p>
+      The crisis followed Egyptian President Gamal Abdel Nasser's
+      nationalization of the Suez Canal.
+    </p>
+
+    <p>
+      Pressure from the United States and Soviet Union contributed
+      to the withdrawal of the invading forces.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     1967
+     ======================================================= -->
+
+<section class="section" id="1967">
+
+  <div class="section-title">
+    1967
+    <span>six days</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      In June 1967 Israel fought Egypt Jordan and Syria.
+    </p>
+
+    <p>
+      Israel captured the Sinai Peninsula
+      Gaza Strip
+      West Bank
+      East Jerusalem
+      and Golan Heights.
+    </p>
+
+    <p>
+      The war transformed the political geography of the region.
+      Questions surrounding occupation
+      settlements
+      borders
+      Palestinian statehood
+      Jerusalem
+      and security remain connected to the consequences of 1967.
+    </p>
+
+    <p class="margin-note">
+      Six days.
+      Decades afterward.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     1973
+     ======================================================= -->
+
+<section class="section" id="1973">
+
+  <div class="section-title">
+    1973
+    <span>Yom Kippur War</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Egypt and Syria attacked Israeli positions on October 6 1973.
+    </p>
+
+    <p>
+      The date coincided with Yom Kippur
+      the holiest day in the Jewish calendar.
+      It also occurred during Ramadan.
+    </p>
+
+    <p>
+      The United States provided military support to Israel.
+      The Soviet Union supported Arab states.
+    </p>
+
+    <p>
+      The conflict contributed to later diplomatic negotiations
+      between Egypt and Israel.
+    </p>
+
+    <p class="red-note">
+      YOM KIPPUR
+    </p>
+
+    <p>
+      fasting
+      prayer
+      war
+      mobilization
+      diplomacy
+      oil
+      Washington
+      Moscow
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     1982
+     ======================================================= -->
+
+<section class="section" id="1982">
+
+  <div class="section-title">
+    1982
+    <span>Lebanon</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Israel invaded Lebanon in June 1982.
+      The operation was initially presented as an effort to stop
+      attacks by the Palestine Liberation Organization.
+    </p>
+
+    <p>
+      Israeli forces reached Beirut.
+      The PLO leadership eventually left Lebanon.
+    </p>
+
+    <p>
+      The Sabra and Shatila massacre occurred in September 1982
+      in camps in Beirut.
+      Lebanese Christian Phalangist forces carried out the killings.
+      An Israeli commission later found Israeli personnel responsible
+      for failing to prevent the massacre and concluded that senior
+      Israeli officials bore indirect responsibility.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     GAZA
+     ======================================================= -->
+
+<section class="section" id="gaza">
+
+  <div class="section-title">
+    GAZA
+    <span>occupation / withdrawal / blockade / war</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Israel captured Gaza in 1967.
+    </p>
+
+    <p>
+      Israel removed its settlements and permanent ground forces
+      from Gaza in 2005.
+    </p>
+
+    <p>
+      Hamas won Palestinian legislative elections in 2006
+      and took control of Gaza in 2007 after armed conflict
+      with Fatah.
+    </p>
+
+    <p>
+      Israel and Egypt subsequently imposed restrictions on
+      movement into and out of Gaza.
+    </p>
+
+    <p>
+      Gaza has experienced repeated major armed conflicts
+      involving Israel and Hamas.
+    </p>
+
+    <p>
+      The October 7 2023 Hamas-led attack on Israel killed
+      approximately 1,200 people according to Israeli authorities
+      and resulted in the taking of hostages.
+    </p>
+
+    <p>
+      Israel subsequently launched a large military campaign
+      in Gaza.
+    </p>
+
+    <p>
+      The war produced extensive Palestinian civilian casualties
+      displacement and destruction and generated international
+      legal proceedings and allegations concerning the conduct
+      of the conflict.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     JERUSALEM
+     ======================================================= -->
+
+<section class="section" id="jerusalem">
+
+  <div class="section-title">
+    JERUSALEM
+    <span>city / temple / mosque / state / memory</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Jerusalem is sacred to Judaism Christianity and Islam.
+    </p>
+
+    <p>
+      The ancient Jewish Temples stood on the Temple Mount.
+      The Western Wall remains one of the most important Jewish
+      places of prayer.
+    </p>
+
+    <p>
+      The site is also associated with the Dome of the Rock
+      and Al-Aqsa Mosque.
+    </p>
+
+    <p>
+      Modern sovereignty and access arrangements surrounding
+      Jerusalem remain among the most contested questions
+      in the Israeli-Palestinian conflict.
+    </p>
+
+    <p class="margin-note">
+      Temple
+      Wall
+      Dome
+      Mosque
+      State
+      Border
+      Memory
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     JEWISH RELIGION
+     ======================================================= -->
+
+<section class="section" id="religion">
+
+  <div class="section-title">
+    JEWISH TEXTS & TRADITIONS
+    <span>Torah / Temple / exile / return</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Jewish religious history contains traditions concerning
+      covenant
+      exile
+      return
+      Jerusalem
+      sacrifice
+      repentance
+      and messianic expectation.
+    </p>
+
+    <p>
+      Yom Kippur is the Day of Atonement.
+      Leviticus 16 describes an ancient ritual involving two goats.
+      One was sacrificed while another was sent into the wilderness
+      after the community's sins were symbolically placed upon it.
+    </p>
+
+    <p>
+      The English word scapegoat developed from this tradition.
+    </p>
+
+    <p>
+      These traditions belong to Jewish religious history.
+      They do not establish modern political claims.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     GOVERNMENT
+     ======================================================= -->
+
+<section class="section" id="government">
+
+  <div class="section-title">
+    GOVERNMENT
+    <span>Washington / Jerusalem</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      The United States and Israel have maintained a close
+      diplomatic and military relationship for decades.
+    </p>
+
+    <p>
+      U.S. assistance to Israel has included military financing
+      weapons cooperation
+      missile defense
+      intelligence relationships
+      diplomatic support
+      and joint strategic programs.
+    </p>
+
+    <p>
+      The existence of extensive cooperation is documented.
+      Claims that such cooperation constitutes secret control
+      require separate evidence.
+    </p>
+
+    <p>
+      <a
+        href="https://www.congress.gov/"
+        target="_blank"
+        rel="noopener"
+      >
+        Congressional records
+      </a>
+    </p>
+
+    <p>
+      <a
+        href="https://2021-2025.state.gov/u-s-relations-with-israel/"
+        target="_blank"
+        rel="noopener"
+      >
+        U.S. State Department records
+      </a>
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     INTELLIGENCE
+     ======================================================= -->
+
+<section class="section" id="intelligence">
+
+  <div class="section-title">
+    INTELLIGENCE
+    <span>Mossad / CIA / Shin Bet / documents</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Israel's intelligence community includes Mossad
+      responsible primarily for intelligence and operations abroad
+      Shin Bet responsible for internal security
+      and the IDF's Military Intelligence Directorate.
+    </p>
+
+    <p>
+      Intelligence services have conducted covert operations
+      throughout modern Israeli history.
+    </p>
+
+    <p>
+      Intelligence failures have also occurred.
+    </p>
+
+    <p>
+      The existence of a covert operation establishes that
+      a covert operation occurred.
+      It does not establish every subsequent claim attached to it.
+    </p>
+
+    <p class="red-note">
+      DOCUMENT
+      DATE
+      OPERATION
+      SOURCE
+      CLAIM
+      EVIDENCE
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     NAMES
+     ======================================================= -->
+
+<section class="section" id="names">
+
+  <div class="section-title">
+    NAMES
+    <span>people connected to the record</span>
+  </div>
+
+  <div class="section-body">
+
+    <div class="link-list">
+
+      <div>
+        <a href="#">David Ben-Gurion</a>
+        <div class="link-description">
+          first prime minister of Israel
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Golda Meir</a>
+        <div class="link-description">
+          prime minister during the 1973 war
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Moshe Dayan</a>
+        <div class="link-description">
+          defense minister during the 1973 war
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Menachem Begin</a>
+        <div class="link-description">
+          prime minister and peace negotiator
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Yitzhak Rabin</a>
+        <div class="link-description">
+          prime minister and former chief of staff
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Ariel Sharon</a>
+        <div class="link-description">
+          military commander and prime minister
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Benjamin Netanyahu</a>
+        <div class="link-description">
+          Israeli prime minister
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Henry Kissinger</a>
+        <div class="link-description">
+          U.S. secretary of state during the 1973 war
+        </div>
+      </div>
+
     </div>
 
-    <br>
+  </div>
 
-    <a
-      href="https://www.adl.org/resources/report/antisemitic-environment-how-social-and-media-exposures-predict-antisemitic-beliefs"
-      target="_blank"
-      rel="noopener"
-    >
-      View documented research concerning antisemitic conspiracy beliefs
+</section>
+
+
+<!-- =======================================================
+     CONSPIRACY
+     ======================================================= -->
+
+<section class="section" id="conspiracy">
+
+  <div class="section-title">
+    THEORIES
+    <span>claims / evidence / contradiction</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Some conspiracy claims concerning Israel and Jews allege
+      secret control of governments
+      banking
+      media
+      wars
+      intelligence agencies
+      or international institutions.
+    </p>
+
+    <p>
+      Similar claims have appeared for centuries in different forms.
+      Some derive from older antisemitic myths such as the fabricated
+      Protocols of the Elders of Zion.
+    </p>
+
+    <p>
+      Other claims concern specific Israeli governments
+      intelligence operations
+      military decisions
+      lobbying organizations
+      or documented political relationships.
+    </p>
+
+    <p>
+      Those categories should not be treated as interchangeable.
+      A specific documented action by an Israeli institution
+      is evidence about that institution.
+      It is not evidence that Jews as a group secretly control events.
+    </p>
+
+    <blockquote>
+      A coincidence is not a connection.
+      A connection is not a conspiracy.
+      A conspiracy requires evidence of an agreement or coordinated action.
+    </blockquote>
+
+    <p>
+      <a
+        href="https://www.adl.org/resources/report/antisemitic-environment-how-social-and-media-exposures-predict-antisemitic-beliefs"
+        target="_blank"
+        rel="noopener"
+      >
+        Research concerning antisemitic conspiracy beliefs
+      </a>
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     DOCUMENTS
+     ======================================================= -->
+
+<section class="section" id="documents">
+
+  <div class="section-title">
+    DOCUMENTS
+    <span>original sources</span>
+  </div>
+
+  <div class="section-body">
+
+    <div class="link-list">
+
+      <div>
+        <a
+          href="https://www.archives.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. National Archives
+        </a>
+
+        <div class="link-description">
+          government records
+        </div>
+      </div>
+
+      <div>
+        <a
+          href="https://www.congress.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          Congress.gov
+        </a>
+
+        <div class="link-description">
+          legislation and congressional records
+        </div>
+      </div>
+
+      <div>
+        <a
+          href="https://www.icj-cij.org/"
+          target="_blank"
+          rel="noopener"
+        >
+          International Court of Justice
+        </a>
+
+        <div class="link-description">
+          international legal proceedings
+        </div>
+      </div>
+
+      <div>
+        <a
+          href="https://www.justice.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Department of Justice
+        </a>
+
+        <div class="link-description">
+          federal cases and prosecutions
+        </div>
+      </div>
+
+    </div>
+
+    <blockquote>
+      Read the original document before reading what somebody says
+      the document means.
+    </blockquote>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     LIVING LOG
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="section-title">
+    NOTES
+    <span>names / dates / fragments</span>
+  </div>
+
+  <div class="section-body">
+
+    <div class="log">
+
+
+      <article class="log-entry">
+
+        <h3>
+          01 // THE RELATIONSHIP
+        </h3>
+
+        <p>
+          Jerusalem
+          Washington
+          intelligence
+          military assistance
+          diplomacy
+          elections
+          lobbying
+          weapons
+          money
+          votes
+          sanctions
+          treaties
+        </p>
+
+        <p>
+          Nothing about a relationship makes every event within it
+          part of one plan.
+        </p>
+
+        <p class="margin-note">
+          Find the agreement.
+          Find the date.
+          Find the people who signed it.
+        </p>
+
+      </article>
+
+
+      <article class="log-entry">
+
+        <h3>
+          02 // THE WAR
+        </h3>
+
+        <p>
+          1948
+          1956
+          1967
+          1973
+          1982
+          2006
+          2008
+          2014
+          2021
+          2023
+        </p>
+
+        <p>
+          Different wars.
+          Different governments.
+          Different causes.
+          Different participants.
+        </p>
+
+        <p>
+          The temptation is to compress them into one story.
+          The record is usually less convenient.
+        </p>
+
+      </article>
+
+
+      <article class="log-entry">
+
+        <h3>
+          03 // YOM KIPPUR
+        </h3>
+
+        <p>
+          A day of fasting.
+          A day of prayer.
+          A day of atonement.
+        </p>
+
+        <p>
+          October 6 1973.
+          Egypt attacks.
+          Syria attacks.
+          Israel mobilizes.
+        </p>
+
+        <p class="margin-note">
+          The calendar becomes part of the historical record.
+        </p>
+
+      </article>
+
+
+      <article class="log-entry">
+
+        <h3>
+          04 // JERUSALEM
+        </h3>
+
+        <p>
+          Temple.
+          Wall.
+          Mount.
+          Dome.
+          Mosque.
+          Kingdom.
+          Exile.
+          Return.
+          Mandate.
+          War.
+          State.
+        </p>
+
+        <p>
+          Thousands of years compressed into one city.
+        </p>
+
+      </article>
+
+
+      <article class="log-entry">
+
+        <h3>
+          05 // THE MISSING PAGE
+        </h3>
+
+        <p>
+          A missing page is a missing page.
+        </p>
+
+        <p>
+          It is not automatically proof of censorship.
+        </p>
+
+        <p>
+          But it is still missing.
+        </p>
+
+        <p class="red-note">
+          FIND THE ORIGINAL.
+        </p>
+
+      </article>
+
+
+      <article class="log-entry">
+
+        <h3>
+          06 // THE NAME
+        </h3>
+
+        <p>
+          Israel is a state.
+          Israelis are not a single political opinion.
+          Jews are a worldwide religious and cultural population.
+        </p>
+
+        <p>
+          Governments can be criticized.
+          Military operations can be investigated.
+          Political organizations can be examined.
+          Historical claims can be challenged.
+        </p>
+
+        <p>
+          None of those facts require attributing the actions of
+          particular institutions to Jews as a whole.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     FINAL FILE
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="section-title">
+    FINAL ENTRY
+    <span>no conclusion</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Israel.
+    </p>
+
+    <p>
+      Jerusalem.
+    </p>
+
+    <p>
+      Gaza.
+    </p>
+
+    <p>
+      Washington.
+    </p>
+
+    <p>
+      Sinai.
+    </p>
+
+    <p>
+      Lebanon.
+    </p>
+
+    <p>
+      Iran.
+    </p>
+
+    <p>
+      Mossad.
+    </p>
+
+    <p>
+      Yom Kippur.
+    </p>
+
+    <p>
+      1948.
+      1967.
+      1973.
+      1982.
+      2001.
+      2023.
+    </p>
+
+    <p class="margin-note">
+      The dates are real.
+      The documents are real.
+      The unanswered questions are where the work begins.
+    </p>
+
+  </div>
+
+</section>
+
+
+</section>
+
+
+<!-- =======================================================
+     RIGHT
+     ======================================================= -->
+
+<aside class="right-column">
+
+
+<div class="box">
+
+  <div class="box-title red">
+    RECENT FILES
+  </div>
+
+  <div class="box-content">
+
+    <div class="news-item">
+
+      <div class="news-date">
+        09/22/2026
+      </div>
+
+      <a href="#conspiracy">
+        Conspiracy Claims
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        09/22/2026
+      </div>
+
+      <a href="#documents">
+        Government Records
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        09/21/2026
+      </div>
+
+      <a href="#1973">
+        Yom Kippur War
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        09/20/2026
+      </div>
+
+      <a href="#gaza">
+        Gaza
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="box">
+
+  <div class="box-title blue">
+    QUICK READ
+  </div>
+
+  <div class="box-content">
+
+    <a href="#1948">
+      1948
     </a>
 
-    <br><br>
+    <a href="#1967">
+      1967
+    </a>
 
-    <a
-      href="https://www.youtube.com/results?search_query=Israel+Jewish+conspiracy+theories+history"
-      target="_blank"
-      rel="noopener"
-    >
-      Search videos about the history of Israel/Jewish conspiracy theories
+    <a href="#1973">
+      1973
+    </a>
+
+    <a href="#1982">
+      1982
+    </a>
+
+    <a href="#gaza">
+      Gaza
+    </a>
+
+    <a href="#jerusalem">
+      Jerusalem
+    </a>
+
+    <a href="#intelligence">
+      Intelligence
     </a>
 
   </div>
 
+</div>
 
-  <!-- =======================================================
-       MAIN
-       ======================================================= -->
 
-  <main class="main">
+<div class="box strange">
 
+  <div class="box-title">
+    FRAGMENTS
+  </div>
 
-    <!-- =====================================================
-         LEFT SIDEBAR
-         ===================================================== -->
+  <div class="box-content">
 
-    <aside class="sidebar">
+    <p>
+      1948
+    </p>
 
+    <p>
+      1967
+    </p>
 
-      <div class="box">
+    <p>
+      Yom Kippur
+    </p>
 
-        <div class="box-title blue">
-          CHANNELS
-        </div>
+    <p>
+      Jerusalem
+    </p>
 
-        <div class="box-content">
+    <p>
+      Temple Mount
+    </p>
 
-          <a href="#world">World</a>
-          <a href="#government">Government</a>
-          <a href="#war">Wars & Conflicts</a>
-          <a href="#crime">Crime Files</a>
-          <a href="#documents">Documents</a>
-          <a href="#conspiracy">Conspiracy</a>
-          <a href="#oddities">Oddities</a>
-          <a href="#religion">Religion</a>
-          <a href="#media">Media</a>
+    <p>
+      Gaza
+    </p>
 
-        </div>
+    <p>
+      Lebanon
+    </p>
 
-      </div>
+    <p>
+      Washington
+    </p>
 
+    <p>
+      Mossad
+    </p>
 
-      <div class="box">
+    <p>
+      Sinai
+    </p>
 
-        <div class="box-title red">
-          QUICK FILES
-        </div>
+    <p>
+      Golan
+    </p>
 
-        <div class="box-content">
+    <p>
+      Iran
+    </p>
 
-          <a href="#1948">1948</a>
-          <a href="#1967">1967</a>
-          <a href="#1973">1973</a>
-          <a href="#1982">1982</a>
-          <a href="#2001">2001</a>
-          <a href="#gaza">Gaza</a>
-          <a href="#iran">Iran</a>
-          <a href="#lebanon">Lebanon</a>
+  </div>
 
-        </div>
+</div>
 
-      </div>
 
+<div class="box">
 
-      <div class="box">
+  <div class="box-title gold">
+    ONE QUESTION
+  </div>
 
-        <div class="box-title gold">
-          ARCHIVE TOOLS
-        </div>
+  <div class="box-content">
 
-        <div class="box-content">
+    <p>
+      What happened?
+    </p>
 
-          <a href="#documents">Primary Sources</a>
-          <a href="#documents">Court Records</a>
-          <a href="#documents">Government Records</a>
-          <a href="#documents">Declassified Material</a>
-          <a href="#documents">Old News</a>
-          <a href="#documents">Wayback Files</a>
+    <p>
+      Who said it happened?
+    </p>
 
-          <br>
+    <p>
+      When did they say it?
+    </p>
 
-          <div class="tiny">
-            Save the original source whenever possible.
-          </div>
+    <p>
+      What document proves it?
+    </p>
 
-        </div>
+  </div>
 
-      </div>
+</div>
 
 
-      <div class="box strange">
+</aside>
 
-        <div class="box-title">
-          STRANGE THINGS
-        </div>
 
-        <div class="symbol-row">
+</main>
 
-          <span class="symbol">?</span>
-          <span class="symbol">+</span>
-          <span class="symbol">△</span>
-          <span class="symbol">∞</span>
 
-        </div>
+<footer class="footer">
 
-        <div class="box-content">
+  <div>
+    KNOW YOUR ENEMY
+  </div>
+
+  <br>
+
+  <div>
+    <a href="#israel">Israel</a>
+    |
+    <a href="#wars">Wars</a>
+    |
+    <a href="#gaza">Gaza</a>
+    |
+    <a href="#jerusalem">Jerusalem</a>
+    |
+    <a href="#documents">Documents</a>
+  </div>
+
+</footer>
 
-          <div>
-            Some symbols have historical meanings.
-          </div>
-
-          <br>
-
-          <div>
-            Some don't.
-          </div>
-
-          <br>
-
-          <div>
-            Do not assume that seeing two things
-            together means they are connected.
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </aside>
-
-
-    <!-- =====================================================
-         CENTER
-         ===================================================== -->
-
-    <section class="content" id="home">
-
-
-      <section class="hero">
-
-        <div class="hero-title">
-          KNOW YOUR ENEMY // FRONT PAGE
-        </div>
-
-        <div class="hero-body">
-
-          <p>
-            <strong>
-              Welcome to the archive.
-            </strong>
-          </p>
-
-          <p>
-            This is a deliberately strange historical index
-            assembled in the style of an old internet portal
-            part reference library
-            part personal research notebook
-            part collection of unanswered questions.
-          </p>
-
-          <div class="notice">
-
-            <strong>
-              IMPORTANT:
-            </strong>
-
-            This site may discuss governments
-            intelligence agencies
-            wars
-            organized crime
-            religion
-            political movements
-            and conspiracy theories.
-
-            A documented event is not automatically evidence
-            for a conspiracy theory and a conspiracy theory
-            is not automatically a documented event.
-
-          </div>
-
-          <p>
-            Read the source
-            then read the argument
-            then decide where the evidence ends.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           WORLD
-           =================================================== -->
-
-      <section class="section" id="world">
-
-        <div class="section-title">
-          WORLD NEWS & HISTORY
-          <span>international events / conflicts / diplomacy</span>
-        </div>
-
-        <div class="section-body">
-
-          <div class="link-list">
-
-            <div>
-              <a href="#1948">
-                Israel 1948
-              </a>
-
-              <div class="link-description">
-                independence and the first Arab-Israeli war
-              </div>
-            </div>
-
-            <div>
-              <a href="#1967">
-                Six-Day War
-              </a>
-
-              <div class="link-description">
-                Israel Egypt Jordan Syria June 1967
-              </div>
-            </div>
-
-            <div>
-              <a href="#1973">
-                Yom Kippur War
-              </a>
-
-              <div class="link-description">
-                October 1973 conflict
-              </div>
-            </div>
-
-            <div>
-              <a href="#gaza">
-                Gaza
-              </a>
-
-              <div class="link-description">
-                decades of conflict and political dispute
-              </div>
-            </div>
-
-            <div>
-              <a href="#lebanon">
-                Lebanon
-              </a>
-
-              <div class="link-description">
-                regional military history
-              </div>
-            </div>
-
-            <div>
-              <a href="#iran">
-                Iran
-              </a>
-
-              <div class="link-description">
-                nuclear policy regional security and diplomacy
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           GOVERNMENT
-           =================================================== -->
-
-      <section class="section" id="government">
-
-        <div class="section-title">
-          GOVERNMENT & POWER
-          <span>alliances / influence / institutions</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            The United States and Israel have maintained a close
-            political and security relationship for decades.
-            The relationship includes diplomatic cooperation
-            military assistance intelligence cooperation
-            technology and missile-defense programs.
-          </p>
-
-          <p>
-            The existence of extensive cooperation is documented.
-            Questions concerning influence
-            lobbying
-            policy
-            classified activity
-            and political decision making require separate evidence.
-          </p>
-
-          <div class="link-list">
-
-            <div>
-              <a
-                href="https://2021-2025.state.gov/u-s-relations-with-israel/"
-                target="_blank"
-                rel="noopener"
-              >
-                U.S. Department of State
-              </a>
-
-              <div class="link-description">
-                official background on U.S.-Israel relations
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="https://www.congress.gov/"
-                target="_blank"
-                rel="noopener"
-              >
-                Congress.gov
-              </a>
-
-              <div class="link-description">
-                legislation and congressional records
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           1948
-           =================================================== -->
-
-      <section class="section" id="1948">
-
-        <div class="section-title">
-          FILE 1948
-          <span>the beginning of the modern archive</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            The State of Israel declared independence in May 1948.
-            Fighting involving the new state and neighboring Arab states
-            followed.
-          </p>
-
-          <p>
-            The resulting war produced enormous population displacement
-            and became foundational to competing Israeli and Palestinian
-            historical narratives.
-          </p>
-
-          <p class="margin-note">
-            Same history
-            different memories
-            different archives
-            different names.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           1967
-           =================================================== -->
-
-      <section class="section" id="1967">
-
-        <div class="section-title">
-          FILE 1967
-          <span>six days that changed the map</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            In June 1967 Israel fought Egypt
-            Jordan
-            and Syria in a war lasting six days.
-          </p>
-
-          <p>
-            Israel captured the Sinai Peninsula
-            Gaza Strip
-            West Bank
-            East Jerusalem
-            and Golan Heights.
-          </p>
-
-          <p>
-            The consequences of the war remain central to disputes
-            concerning borders
-            occupation
-            settlements
-            security
-            Palestinian statehood
-            and international law.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           1973
-           =================================================== -->
-
-      <section class="section" id="1973">
-
-        <div class="section-title">
-          FILE 1973
-          <span>Yom Kippur / Ramadan / October War</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            On October 6 1973
-            Egypt and Syria launched attacks against Israeli forces.
-            The date coincided with Yom Kippur
-            the Jewish Day of Atonement
-            and occurred during Ramadan.
-          </p>
-
-          <p>
-            The United States supplied Israel during the conflict
-            while the Soviet Union supported Arab states.
-            The war eventually produced diplomatic negotiations
-            that contributed to later disengagement agreements.
-          </p>
-
-          <p>
-            The coincidence of religious dates is historically notable.
-            It is not by itself evidence of a hidden religious conspiracy.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           RELIGION
-           =================================================== -->
-
-      <section class="section" id="religion">
-
-        <div class="section-title">
-          RELIGION & SYMBOLS
-          <span>tradition / mythology / historical context</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            Yom Kippur is the Jewish Day of Atonement.
-            It is associated with fasting
-            prayer
-            repentance
-            and atonement.
-          </p>
-
-          <p>
-            Leviticus 16 describes an ancient ritual involving two goats.
-            One was associated with sacrifice while another was sent
-            into the wilderness after the community's sins were symbolically
-            placed upon it.
-          </p>
-
-          <p>
-            The English expression
-            <em>scapegoat</em>
-            developed from this tradition.
-          </p>
-
-          <div class="notice">
-
-            <strong>
-              ARCHIVE DISTINCTION:
-            </strong>
-
-            An ancient religious symbol can be historically interesting
-            without providing evidence for a modern political claim.
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           GAZA
-           =================================================== -->
-
-      <section class="section" id="gaza">
-
-        <div class="section-title">
-          GAZA FILE
-          <span>war / humanitarian records / international law</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            Gaza has generated an enormous documentary record
-            including government statements
-            military statements
-            journalism
-            humanitarian reports
-            photographs
-            satellite imagery
-            court proceedings
-            witness testimony
-            and competing casualty estimates.
-          </p>
-
-          <p>
-            Israel states that its military campaign is directed against
-            Hamas and is undertaken in self-defense.
-            Palestinian officials and international organizations have
-            made extensive allegations concerning Israeli conduct.
-          </p>
-
-          <p>
-            The International Court of Justice has issued proceedings
-            concerning Israel and the Occupied Palestinian Territory.
-          </p>
-
-          <p>
-            Court proceedings
-            allegations
-            provisional measures
-            advisory opinions
-            and final judgments should not be treated as interchangeable.
-          </p>
-
-          <p>
-            <a
-              href="https://www.icj-cij.org/"
-              target="_blank"
-              rel="noopener"
-            >
-              International Court of Justice
-            </a>
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           CRIME
-           =================================================== -->
-
-      <section class="section" id="crime">
-
-        <div class="section-title">
-          CRIME FILES
-          <span>organized crime / trafficking / money</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            Organized crime is international by nature.
-            Criminal organizations may operate across several countries
-            without representing the governments or populations of those
-            countries.
-          </p>
-
-          <p>
-            U.S. federal prosecutors have prosecuted individuals connected
-            to organized-crime networks associated with Israel.
-            Those cases involve allegations and criminal conduct by
-            specific defendants.
-          </p>
-
-          <p>
-            A criminal case involving an Israeli individual or network
-            does not establish that the Israeli government or Jewish people
-            as a whole participated in the conduct.
-          </p>
-
-          <p>
-            <a
-              href="https://www.justice.gov/"
-              target="_blank"
-              rel="noopener"
-            >
-              U.S. Department of Justice
-            </a>
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           CONSPIRACY
-           =================================================== -->
-
-      <section class="section" id="conspiracy">
-
-        <div class="section-title">
-          CONSPIRACY FILE
-          <span>theories / allegations / myths / documented narratives</span>
-        </div>
-
-        <div class="section-body">
-
-          <p>
-            This is the section where the archive becomes dangerous
-            because conspiracy theories can begin with real documents
-            real wars
-            real intelligence operations
-            real criminal cases
-            real political influence
-            or real historical discrimination
-            and then make claims that extend far beyond the available
-            evidence.
-          </p>
-
-          <p>
-            There is a long history of antisemitic conspiracy narratives
-            claiming that Jews secretly control governments
-            banks
-            media
-            wars
-            or world events.
-            Similar narratives have repeatedly appeared in different
-            countries and historical periods.
-          </p>
-
-          <p>
-            Other conspiracy narratives specifically accuse Israel
-            of secretly controlling or manipulating unrelated governments
-            or international events.
-          </p>
-
-          <div class="notice">
-
-            <strong>
-              THEORY FILE:
-            </strong>
-
-            These claims are archived because they are historically
-            significant conspiracy narratives.
-
-            Their presence here does not mean the archive accepts them
-            as factual.
-
-          </div>
-
-          <p>
-            <a
-              href="https://www.adl.org/resources/report/antisemitic-environment-how-social-and-media-exposures-predict-antisemitic-beliefs"
-              target="_blank"
-              rel="noopener"
-            >
-              Research on antisemitic conspiracy beliefs
-            </a>
-          </p>
-
-          <p>
-            <a
-              href="https://www.youtube.com/results?search_query=Israel+Jewish+conspiracy+theories+history"
-              target="_blank"
-              rel="noopener"
-            >
-              Video search: Israel / Jewish conspiracy theories
-            </a>
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           DOCUMENTS
-           =================================================== -->
-
-      <section class="section" id="documents">
-
-        <div class="section-title">
-          DOCUMENT ROOM
-          <span>start here before believing anything</span>
-        </div>
-
-        <div class="section-body">
-
-          <div class="link-list">
-
-            <div>
-              <a
-                href="https://www.archives.gov/"
-                target="_blank"
-                rel="noopener"
-              >
-                U.S. National Archives
-              </a>
-
-              <div class="link-description">
-                American government records
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="https://www.congress.gov/"
-                target="_blank"
-                rel="noopener"
-              >
-                Congress.gov
-              </a>
-
-              <div class="link-description">
-                legislation and congressional documents
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="https://www.icj-cij.org/"
-                target="_blank"
-                rel="noopener"
-              >
-                International Court of Justice
-              </a>
-
-              <div class="link-description">
-                international legal records
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="https://www.justice.gov/"
-                target="_blank"
-                rel="noopener"
-              >
-                Department of Justice
-              </a>
-
-              <div class="link-description">
-                federal criminal cases
-              </div>
-            </div>
-
-          </div>
-
-          <blockquote>
-            Find the original document before trusting the screenshot.
-          </blockquote>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           RAMBLING LIVING LOG
-           =================================================== -->
-
-      <section class="section">
-
-        <div class="section-title">
-          THE LIVING LOG
-          <span>unstructured notes / questions / fragments</span>
-        </div>
-
-        <div class="section-body">
-
-          <div class="log">
-
-            <article class="log-entry">
-
-              <h3>
-                01 // THE QUESTION
-              </h3>
-
-              <p>
-                Governments cooperate
-                governments compete
-                intelligence agencies cooperate
-                intelligence agencies compete
-                corporations lobby
-                politicians listen
-                politicians ignore
-                militaries plan
-                newspapers report
-                people interpret
-                and somewhere inside all of that
-                someone eventually says
-                conspiracy
-              </p>
-
-              <p>
-                But what exactly does that word mean
-                a secret agreement
-                a criminal conspiracy
-                an intelligence operation
-                political coordination
-                ordinary diplomacy
-                or simply an explanation that feels satisfying
-              </p>
-
-              <p class="margin-note">
-                write this down
-                influence is not automatically control
-              </p>
-
-            </article>
-
-
-            <article class="log-entry">
-
-              <h3>
-                02 // THE MAP
-              </h3>
-
-              <p>
-                Israel
-                Palestine
-                Egypt
-                Jordan
-                Syria
-                Lebanon
-                Iran
-                Iraq
-                Saudi Arabia
-                United States
-                Russia
-                Britain
-                France
-              </p>
-
-              <p>
-                Every border has a history
-                every military alliance has a history
-                every intelligence relationship has a history
-                every treaty has a history
-                every refugee population has a history
-                every war produces another archive
-              </p>
-
-            </article>
-
-
-            <article class="log-entry">
-
-              <h3>
-                03 // THE STRANGE PART
-              </h3>
-
-              <p>
-                Sometimes the strangest thing about a conspiracy theory
-                is not the theory
-                it is the real event that caused someone to create it.
-              </p>
-
-              <blockquote>
-                Start with what can be proven.
-                Then mark the boundary where speculation begins.
-              </blockquote>
-
-            </article>
-
-
-            <article class="log-entry">
-
-              <h3>
-                04 // DO NOT DELETE THIS
-              </h3>
-
-              <p>
-                If this website eventually becomes too complicated
-                start over from the documents
-                not from the conclusion.
-              </p>
-
-              <p class="red-note">
-                DO NOT BUILD THE THEORY FIRST.
-              </p>
-
-              <p class="blue-note">
-                BUILD THE ARCHIVE FIRST.
-              </p>
-
-            </article>
-
-
-            <article class="log-entry">
-
-              <h3>
-                05 // SOMETHING IS MISSING
-              </h3>
-
-              <p>
-                There is always something missing.
-                A page
-                a footnote
-                a photograph
-                a transcript
-                a witness
-                a date
-                a document
-                a second version
-                a correction
-                an explanation.
-              </p>
-
-              <p>
-                The missing thing is not automatically evidence
-                that someone is hiding something.
-                Sometimes the archive simply isn't complete.
-              </p>
-
-              <p class="margin-note">
-                [FILE 019 STILL UNLOCATED]
-              </p>
-
-            </article>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           ODDITIES
-           =================================================== -->
-
-      <section class="section" id="oddities">
-
-        <div class="section-title">
-          ODDITIES & UNANSWERED QUESTIONS
-          <span>keep looking</span>
-        </div>
-
-        <div class="section-body">
-
-          <div class="link-list">
-
-            <div>
-              <a href="#">
-                Disappearing Documents
-              </a>
-
-              <div class="link-description">
-                missing archives and broken links
-              </div>
-            </div>
-
-            <div>
-              <a href="#">
-                Redacted Pages
-              </a>
-
-              <div class="link-description">
-                government documents and censorship
-              </div>
-            </div>
-
-            <div>
-              <a href="#">
-                Strange Coincidences
-              </a>
-
-              <div class="link-description">
-                coincidences that deserve investigation
-              </div>
-            </div>
-
-            <div>
-              <a href="#">
-                Historical Hoaxes
-              </a>
-
-              <div class="link-description">
-                forged documents and fabricated stories
-              </div>
-            </div>
-
-            <div>
-              <a href="#">
-                Intelligence Mysteries
-              </a>
-
-              <div class="link-description">
-                declassified operations and unresolved questions
-              </div>
-            </div>
-
-            <div>
-              <a href="#">
-                Theories That Failed
-              </a>
-
-              <div class="link-description">
-                predictions and claims that did not survive the evidence
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-    </section>
-
-
-    <!-- =====================================================
-         RIGHT COLUMN
-         ===================================================== -->
-
-    <aside class="right-column">
-
-
-      <div class="box">
-
-        <div class="box-title red">
-          LATEST FILES
-        </div>
-
-        <div class="box-content">
-
-          <div class="news-item">
-
-            <div class="news-date">
-              09/22/2026
-            </div>
-
-            <a href="#conspiracy">
-              Conspiracy Archive Updated
-            </a>
-
-          </div>
-
-          <div class="news-item">
-
-            <div class="news-date">
-              09/22/2026
-            </div>
-
-            <a href="#documents">
-              Document Room Opened
-            </a>
-
-          </div>
-
-          <div class="news-item">
-
-            <div class="news-date">
-              09/21/2026
-            </div>
-
-            <a href="#1973">
-              1973 File Expanded
-            </a>
-
-          </div>
-
-          <div class="news-item">
-
-            <div class="news-date">
-              09/20/2026
-            </div>
-
-            <a href="#crime">
-              International Crime File
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="box">
-
-        <div class="box-title blue">
-          DID YOU KNOW?
-        </div>
-
-        <div class="box-content">
-
-          <p>
-            The 1973 war began on Yom Kippur.
-          </p>
-
-          <p>
-            The word scapegoat has roots in
-            the biblical ritual described in
-            Leviticus 16.
-          </p>
-
-          <p>
-            Historical documents often contain
-            multiple competing interpretations.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="box">
-
-        <div class="box-title gold">
-          BOOKMARK THIS
-        </div>
-
-        <div class="box-content">
-
-          <a href="#documents">
-            Document Room
-          </a>
-
-          <a href="#conspiracy">
-            Conspiracy File
-          </a>
-
-          <a href="#crime">
-            Crime Files
-          </a>
-
-          <a href="#religion">
-            Religion & Symbols
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="box strange">
-
-        <div class="box-title">
-          YOU ARE HERE
-        </div>
-
-        <div class="box-content">
-
-          <div class="symbol-row">
-
-            <span class="symbol">◈</span>
-            <span class="symbol">?</span>
-            <span class="symbol">◈</span>
-
-          </div>
-
-          <p>
-            You found the front page.
-          </p>
-
-          <p>
-            That does not mean you found
-            the answer.
-          </p>
-
-          <p>
-            Keep searching.
-          </p>
-
-        </div>
-
-      </div>
-
-
-    </aside>
-
-
-  </main>
-
-
-  <!-- =======================================================
-       FOOTER
-       ======================================================= -->
-
-  <footer class="footer">
-
-    <div>
-      KNOW YOUR ENEMY
-    </div>
-
-    <div>
-      An experimental historical archive
-      presented in an early-web portal style.
-    </div>
-
-    <br>
-
-    <div>
-      Sources and external materials should be evaluated
-      according to their original context.
-    </div>
-
-    <br>
-
-    <div>
-      <a href="#home">Home</a>
-      |
-      <a href="#documents">Documents</a>
-      |
-      <a href="#conspiracy">Conspiracy</a>
-      |
-      <a href="#oddities">Oddities</a>
-    </div>
-
-  </footer>
 
 </div>
 
@@ -1932,11 +1998,7 @@ body {
 <script>
 
 /* =========================================================
-   SEARCH BEHAVIOR
-
-   The search intentionally routes to material specifically
-   concerning Israel/Jewish conspiracy narratives rather
-   than pretending those narratives are established facts.
+   SEARCH
    ========================================================= */
 
 const searchInput =
@@ -1948,6 +2010,9 @@ const searchButton =
 const searchResults =
   document.getElementById("searchResults");
 
+const queryDisplay =
+  document.getElementById("queryDisplay");
+
 
 function performSearch() {
 
@@ -1958,7 +2023,12 @@ function performSearch() {
     return;
   }
 
-  searchResults.classList.add("visible");
+  queryDisplay.textContent =
+    query;
+
+  searchResults.classList.add(
+    "visible"
+  );
 
   searchResults.scrollIntoView({
     behavior: "smooth",
@@ -1987,15 +2057,12 @@ searchInput.addEventListener(
 
 
 /* =========================================================
-   OLD WEB SECRET
-
-   Typing "node04" anywhere on the page opens a hidden
-   archive note.
+   HIDDEN KEYWORD
    ========================================================= */
 
-let secretBuffer = "";
+let keyBuffer = "";
 
-const secretCode =
+const hiddenKeyword =
   "node04";
 
 
@@ -2015,71 +2082,83 @@ document.addEventListener(
       return;
     }
 
-    secretBuffer +=
+    keyBuffer +=
       event.key.toLowerCase();
 
     if (
-      secretBuffer.length >
-      secretCode.length
+      keyBuffer.length >
+      hiddenKeyword.length
     ) {
-      secretBuffer =
-        secretBuffer.slice(
-          -secretCode.length
+
+      keyBuffer =
+        keyBuffer.slice(
+          -hiddenKeyword.length
         );
+
     }
 
     if (
-      secretBuffer === secretCode
+      keyBuffer === hiddenKeyword
     ) {
 
-      const notice =
+      const panel =
         document.createElement("div");
 
-      notice.style.position = "fixed";
-      notice.style.left = "50%";
-      notice.style.top = "50%";
-      notice.style.transform = "translate(-50%, -50%)";
-      notice.style.width = "min(500px, 90vw)";
-      notice.style.background = "#ffffcc";
-      notice.style.border = "2px solid #4b0082";
-      notice.style.padding = "15px";
-      notice.style.zIndex = "10000";
-      notice.style.fontFamily =
+      panel.style.position = "fixed";
+      panel.style.left = "50%";
+      panel.style.top = "50%";
+      panel.style.transform =
+        "translate(-50%, -50%)";
+      panel.style.width =
+        "min(500px, 90vw)";
+      panel.style.background =
+        "#ffffcc";
+      panel.style.border =
+        "2px solid #4b0082";
+      panel.style.padding =
+        "15px";
+      panel.style.zIndex =
+        "10000";
+      panel.style.fontFamily =
         "Arial, Helvetica, sans-serif";
-      notice.style.fontSize = "12px";
-      notice.style.color = "#222";
+      panel.style.fontSize =
+        "12px";
+      panel.style.color =
+        "#222";
 
-      notice.innerHTML =
-        "<strong>ARCHIVE NODE 04</strong>" +
+      panel.innerHTML =
+        "<strong>04</strong>" +
         "<br><br>" +
-        "You found the hidden index." +
-        "<br><br>" +
-        "FILE STATUS: OPEN" +
+        "1948" +
         "<br>" +
-        "SOURCE STATUS: UNKNOWN" +
+        "1967" +
         "<br>" +
-        "CONCLUSION: NONE" +
+        "1973" +
+        "<br>" +
+        "1982" +
         "<br><br>" +
-        "<a href='#' id='closeSecret'>close file</a>";
+        "THE DATES REMAIN." +
+        "<br><br>" +
+        "<a href='#' id='closePanel'>close</a>";
 
       document.body.appendChild(
-        notice
+        panel
       );
 
       document
-        .getElementById("closeSecret")
+        .getElementById("closePanel")
         .addEventListener(
           "click",
           function(event) {
 
             event.preventDefault();
 
-            notice.remove();
+            panel.remove();
 
           }
         );
 
-      secretBuffer = "";
+      keyBuffer = "";
 
     }
 
