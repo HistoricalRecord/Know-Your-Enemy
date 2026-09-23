@@ -1,320 +1,596 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NODE_04</title>
+  <title>KNOW YOUR ENEMY</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      margin: 0;
       background: #000;
       color: #4cff78;
       font-family: "Courier New", Courier, monospace;
-      overflow: hidden;
-      cursor: default;
+      font-size: 14px;
+      line-height: 1.72;
+      overflow-x: hidden;
     }
 
-    /* Subtle CRT scanlines */
+    a {
+      color: #63ff87;
+    }
+
+    a:hover {
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       OLD TERMINAL / CRT EFFECT
+       ========================================================= */
+
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 10;
+      z-index: 999;
 
       background:
         repeating-linear-gradient(
           to bottom,
-          rgba(255, 255, 255, 0.018) 0px,
-          rgba(255, 255, 255, 0.018) 1px,
+          rgba(255,255,255,.018) 0px,
+          rgba(255,255,255,.018) 1px,
           transparent 1px,
           transparent 4px
         );
 
-      opacity: 0.35;
+      opacity: .35;
     }
 
-    /* Very subtle green screen glow */
     body::after {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 9;
+      z-index: 998;
 
       box-shadow:
-        inset 0 0 100px rgba(0, 255, 80, 0.025);
+        inset 0 0 120px rgba(0,255,80,.035);
 
-      opacity: 0.8;
+      animation: screenPulse 7s infinite;
     }
 
-    .terminal {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding: 28px;
+    @keyframes screenPulse {
 
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
+      0% {
+        opacity: .65;
+      }
 
-    .terminal-content {
-      width: 100%;
-      max-width: 760px;
-
-      font-size: 14px;
-      line-height: 1.7;
-      letter-spacing: 0.03em;
-    }
-
-    .line {
-      min-height: 24px;
-      white-space: pre-wrap;
-    }
-
-    .dim {
-      color: #285f38;
-    }
-
-    .faint {
-      color: #183a24;
-    }
-
-    .warning {
-      color: #6cff8d;
-    }
-
-    .cursor {
-      display: inline-block;
-
-      width: 8px;
-      height: 16px;
-
-      margin-left: 3px;
-
-      vertical-align: -3px;
-
-      background: #4cff78;
-
-      animation: blink 1s steps(1) infinite;
-    }
-
-    @keyframes blink {
-      0%,
       50% {
-        opacity: 1;
+        opacity: .85;
       }
 
-      51%,
       100% {
-        opacity: 0;
+        opacity: .65;
       }
+
     }
-
-    /* Hidden keyboard input used for the secret command */
-    .hidden-input {
-      position: fixed;
-
-      left: -9999px;
-      top: -9999px;
-
-      opacity: 0;
-    }
-
-    /* Secret area */
-    .secret {
-      display: none;
-      margin-top: 32px;
-      color: #4cff78;
-    }
-
-    .secret.visible {
-      display: block;
-    }
-
-    .secret a {
-      color: #4cff78;
-
-      text-decoration: none;
-
-      border-bottom: 1px solid #285f38;
-
-      transition:
-        color 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .secret a:hover {
-      color: #a7ffba;
-      border-color: #4cff78;
-    }
-
-    /*
-      FBI DATABASE SEARCH
-    */
-
-    .database {
-      display: none;
-
-      margin-top: 45px;
-
-      max-width: 620px;
-    }
-
-    .database.visible {
-      display: block;
-    }
-
-    .database-title {
-      margin-bottom: 18px;
-    }
-
-    .database-input-row {
-      display: flex;
-
-      align-items: center;
-
-      gap: 10px;
-    }
-
-    .database-prompt {
-      white-space: nowrap;
-    }
-
-    #personSearch {
-      flex: 1;
-
-      min-width: 0;
-
-      background: transparent;
-
-      border: none;
-      border-bottom: 1px solid #285f38;
-
-      outline: none;
-
-      color: #4cff78;
-
-      font-family: "Courier New", Courier, monospace;
-
-      font-size: 14px;
-
-      padding: 5px 4px;
-    }
-
-    #personSearch:focus {
-      border-bottom-color: #4cff78;
-    }
-
-    #personSearch::placeholder {
-      color: #183a24;
-    }
-
-    .search-button {
-      background: transparent;
-
-      border: 1px solid #285f38;
-
-      color: #4cff78;
-
-      font-family: "Courier New", Courier, monospace;
-
-      font-size: 13px;
-
-      padding: 7px 12px;
-
-      cursor: pointer;
-
-      transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .search-button:hover {
-      background: #4cff78;
-      color: #000;
-      border-color: #4cff78;
-    }
-
-    .search-status {
-      margin-top: 22px;
-
-      min-height: 72px;
-
-      color: #285f38;
-    }
-
-    .search-status .active {
-      color: #4cff78;
-    }
-
-    /*
-      Subtle random screen noise
-    */
 
     .noise {
       position: fixed;
-
       inset: 0;
-
       pointer-events: none;
-
-      z-index: 8;
-
-      opacity: 0.025;
+      z-index: 997;
+      opacity: .025;
 
       background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
     }
 
-    @media (max-width: 600px) {
+    /* =========================================================
+       PAGE
+       ========================================================= */
 
-      .terminal {
-        padding: 20px;
+    .page {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 22px 100px;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .top-bar {
+      border-top: 1px solid #1b4728;
+      border-bottom: 1px solid #1b4728;
+      padding: 7px 0;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      color: #285f38;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .logo-area {
+      margin-top: 16px;
+      border-bottom: 3px solid #4cff78;
+      padding-bottom: 10px;
+    }
+
+    .logo {
+      display: inline-block;
+      position: relative;
+
+      color: #4cff78;
+      font-family: Georgia, serif;
+      font-size: clamp(34px, 7vw, 72px);
+      font-weight: normal;
+      letter-spacing: -.06em;
+      text-transform: uppercase;
+
+      animation: logoFlicker 9s infinite;
+    }
+
+    .logo::after {
+      content: "KNOW YOUR ENEMY";
+      position: absolute;
+      left: 2px;
+      top: 0;
+
+      color: #183a24;
+      z-index: -1;
+
+      animation: logoShift 4s infinite;
+    }
+
+    @keyframes logoFlicker {
+
+      0%, 90%, 92%, 94%, 100% {
+        opacity: 1;
       }
 
-      .terminal-content {
-        font-size: 12px;
-        line-height: 1.65;
+      91% {
+        opacity: .35;
       }
 
-      .cursor {
-        width: 7px;
-        height: 14px;
+      93% {
+        opacity: .7;
       }
 
-      .database-input-row {
-        align-items: stretch;
+    }
+
+    @keyframes logoShift {
+
+      0%, 75% {
+        transform: translate(0,0);
+      }
+
+      76% {
+        transform: translate(3px,-1px);
+      }
+
+      77% {
+        transform: translate(-2px,1px);
+      }
+
+      78%,100% {
+        transform: translate(0,0);
+      }
+
+    }
+
+    .tagline {
+      color: #285f38;
+      font-size: 11px;
+      margin-top: 7px;
+      letter-spacing: .12em;
+    }
+
+    /* =========================================================
+       SEARCH
+       ========================================================= */
+
+    .search-area {
+      margin: 18px 0 28px;
+
+      border: 1px solid #183a24;
+      padding: 12px;
+
+      background: rgba(0,30,10,.22);
+    }
+
+    .search-label {
+      color: #285f38;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    #siteSearch {
+      flex: 1;
+
+      background: #000;
+      border: 1px solid #285f38;
+      color: #4cff78;
+
+      padding: 9px;
+
+      outline: none;
+
+      font-family: "Courier New", monospace;
+      font-size: 13px;
+    }
+
+    #siteSearch:focus {
+      border-color: #4cff78;
+      box-shadow: 0 0 8px rgba(76,255,120,.15);
+    }
+
+    #siteSearch::placeholder {
+      color: #183a24;
+    }
+
+    .search-button {
+      background: #000;
+      border: 1px solid #285f38;
+      color: #4cff78;
+
+      padding: 8px 15px;
+
+      font-family: "Courier New", monospace;
+      cursor: pointer;
+    }
+
+    .search-button:hover {
+      background: #4cff78;
+      color: #000;
+    }
+
+    /* =========================================================
+       INTRO
+       ========================================================= */
+
+    .terminal-intro {
+      border-left: 3px solid #4cff78;
+      padding: 8px 18px;
+      margin-bottom: 38px;
+    }
+
+    .terminal-intro p {
+      margin: 7px 0;
+    }
+
+    .small {
+      color: #285f38;
+      font-size: 11px;
+    }
+
+    .warning {
+      color: #9affad;
+    }
+
+    .redacted {
+      color: #183a24;
+      letter-spacing: .2em;
+    }
+
+    /* =========================================================
+       LIVING LOG
+       ========================================================= */
+
+    .living-log {
+      width: 100%;
+    }
+
+    .log-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+
+      border-top: 1px solid #285f38;
+      border-bottom: 1px solid #285f38;
+
+      padding: 9px 0;
+      margin-bottom: 25px;
+
+      color: #285f38;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .log-header span:nth-child(2) {
+      text-align: center;
+    }
+
+    .log-header span:nth-child(3) {
+      text-align: right;
+    }
+
+    .log-entry {
+      position: relative;
+
+      margin: 0 0 46px;
+      padding-left: 19px;
+
+      border-left: 1px solid #183a24;
+    }
+
+    .log-entry::before {
+      content: ">";
+      position: absolute;
+      left: -7px;
+      top: 0;
+
+      background: #000;
+      color: #4cff78;
+      padding: 0 3px;
+    }
+
+    .log-date {
+      margin-bottom: 10px;
+
+      color: #6cff8d;
+      font-size: 11px;
+      letter-spacing: .08em;
+    }
+
+    .log-entry p {
+      margin: 10px 0;
+      max-width: 1050px;
+    }
+
+    .log-entry p + p {
+      margin-top: 17px;
+    }
+
+    .log-entry blockquote {
+      margin: 22px 0;
+      padding: 12px 18px;
+
+      border-left: 2px solid #4cff78;
+
+      color: #a7ffba;
+      background: rgba(0,255,80,.025);
+
+      font-size: 13px;
+    }
+
+    .side-note {
+      color: #285f38;
+      font-size: 11px;
+      letter-spacing: .03em;
+    }
+
+    .source-note {
+      color: #285f38;
+      font-size: 10px;
+      border-top: 1px dotted #183a24;
+      padding-top: 10px;
+    }
+
+    .warning-box {
+      margin: 20px 0;
+      padding: 13px 16px;
+
+      border: 1px solid #285f38;
+
+      color: #6cff8d;
+      background: rgba(0,255,80,.018);
+    }
+
+    .warning-box strong {
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: .08em;
+    }
+
+    .document-box {
+      margin: 22px 0;
+
+      border: 1px solid #285f38;
+
+      background: #020702;
+    }
+
+    .document-header {
+      border-bottom: 1px solid #285f38;
+      padding: 7px 10px;
+
+      color: #285f38;
+      font-size: 10px;
+      letter-spacing: .08em;
+    }
+
+    .document-body {
+      padding: 13px;
+
+      color: #4cff78;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .conspiracy {
+      border-left-color: #285f38;
+    }
+
+    .conspiracy::before {
+      color: #285f38;
+    }
+
+    .redacted-entry {
+      opacity: .75;
+    }
+
+    .redacted-block {
+      color: #183a24;
+      letter-spacing: .25em;
+      user-select: none;
+    }
+
+    .emphasis {
+      color: #a7ffba;
+      letter-spacing: .12em;
+    }
+
+    /* =========================================================
+       SEARCH HIGHLIGHT
+       ========================================================= */
+
+    .highlight {
+      background: #4cff78;
+      color: #000;
+    }
+
+    .no-results {
+      display: none;
+
+      margin: 20px 0;
+      padding: 15px;
+
+      border: 1px solid #285f38;
+
+      color: #6cff8d;
+    }
+
+    /* =========================================================
+       SECRET ARCHIVE
+       ========================================================= */
+
+    .hidden-file {
+      display: none;
+    }
+
+    .hidden-file.visible {
+      display: block;
+    }
+
+    .secret-terminal {
+      margin-top: 65px;
+
+      border-top: 1px solid #183a24;
+      padding-top: 20px;
+
+      color: #285f38;
+      font-size: 11px;
+    }
+
+    .secret-terminal strong {
+      color: #4cff78;
+    }
+
+    .cursor {
+      display: inline-block;
+
+      width: 7px;
+      height: 13px;
+
+      margin-left: 3px;
+
+      background: #4cff78;
+
+      vertical-align: -2px;
+
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+
+      0%, 50% {
+        opacity: 1;
+      }
+
+      51%, 100% {
+        opacity: 0;
+      }
+
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      margin-top: 80px;
+
+      border-top: 1px solid #285f38;
+      padding-top: 15px;
+
+      color: #183a24;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    footer a {
+      color: #285f38;
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 700px) {
+
+      body {
+        font-size: 13px;
+      }
+
+      .page {
+        padding: 12px 15px 70px;
+      }
+
+      .top-bar {
         flex-direction: column;
+        gap: 4px;
       }
 
-      .database-prompt {
-        white-space: normal;
+      .logo {
+        font-size: 39px;
       }
 
-      #personSearch {
-        width: 100%;
+      .search-row {
+        flex-direction: column;
       }
 
       .search-button {
         align-self: flex-start;
       }
+
+      .log-header {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .log-header span:nth-child(2),
+      .log-header span:nth-child(3) {
+        text-align: left;
+      }
+
+      .log-entry {
+        padding-left: 14px;
+      }
+
     }
+
   </style>
 </head>
 
@@ -322,364 +598,1428 @@
 
   <div class="noise"></div>
 
-  <main class="terminal">
+  <div class="page">
 
-    <div class="terminal-content">
+    <!-- =======================================================
+         HEADER
+         ======================================================= -->
 
-      <!-- INITIAL TERMINAL -->
+    <header>
 
-      <div class="line" id="line1"></div>
-      <div class="line" id="line2"></div>
-      <div class="line" id="line3"></div>
-      <div class="line" id="line4"></div>
-      <div class="line" id="line5"></div>
-      <div class="line" id="line6"></div>
+      <div class="top-bar">
+        <span>ARCHIVE NODE: 04</span>
+        <span>PUBLIC ACCESS</span>
+        <span>LAST INDEX: UNKNOWN</span>
+      </div>
 
+      <div class="logo-area">
 
-      <!-- SECRET CONTINUE AREA -->
-
-      <div class="secret" id="secret">
-
-        <div class="line">
-          > ACCESS LEVEL: UNKNOWN
+        <div class="logo">
+          KNOW YOUR ENEMY
         </div>
 
-        <div class="line">
-          > RECORD INDEX: <span class="dim">[REDACTED]</span>
-        </div>
-
-        <br>
-
-        <div class="line">
-          > THERE IS SOMETHING HERE.
-        </div>
-
-        <div class="line">
-          > YOU JUST HAVE TO FIND IT.
-        </div>
-
-        <br>
-
-        <div class="line">
-          > <a href="#" id="enterDatabase">[SEARCH DATABASE]</a>
+        <div class="tagline">
+          AN UNFINISHED INDEX OF POWER WAR MEMORY CRIME AND CONSPIRACY
         </div>
 
       </div>
 
+    </header>
 
-      <!-- FBI DATABASE SEARCH -->
 
-      <div class="database" id="database">
+    <!-- =======================================================
+         SEARCH
+         ======================================================= -->
 
-        <div class="database-title">
-          > EXTERNAL DATABASE QUERY
+    <section class="search-area">
+
+      <div class="search-label">
+        &gt; SEARCH THIS ARCHIVE
+      </div>
+
+      <div class="search-row">
+
+        <input
+          type="text"
+          id="siteSearch"
+          placeholder="enter a word or phrase..."
+          autocomplete="off"
+          spellcheck="false"
+        >
+
+        <button
+          type="button"
+          class="search-button"
+          id="searchButton"
+        >
+          [ SEARCH ]
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         INTRO
+         ======================================================= -->
+
+    <section class="terminal-intro">
+
+      <p>
+        &gt; CONNECTION ESTABLISHED
+      </p>
+
+      <p>
+        &gt; THIS IS NOT A NORMAL WEBSITE
+      </p>
+
+      <p>
+        &gt; THIS IS A LIVING FILE
+      </p>
+
+      <p>
+        &gt; EVERYTHING BELOW WAS LEFT HERE FOR A REASON
+      </p>
+
+      <p class="small">
+        some entries are historical records some are legal records
+        some are allegations some are theories some are questions
+        and some fragments may belong to the fictional investigation
+      </p>
+
+      <p class="warning">
+        DOCUMENTS FIRST
+        INTERPRETATION SECOND
+      </p>
+
+    </section>
+
+
+    <!-- =======================================================
+         LIVING LOG
+         ======================================================= -->
+
+    <main class="living-log" id="archive">
+
+
+      <div class="log-header">
+        <span>KNOW YOUR ENEMY / LIVING ARCHIVE</span>
+        <span>FILE STATUS: OPEN</span>
+        <span>ENTRIES: 0019+</span>
+      </div>
+
+
+      <!-- =====================================================
+           ENTRY 001
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [01/04/2001]
         </div>
 
-        <div class="line dim">
-          > SOURCE: FEDERAL BUREAU OF INVESTIGATION
+        <p>
+          Israel is not a single subject and neither is the United States
+          neither is the intelligence world neither is the military world
+          neither is the word conspiracy
+          there are governments
+          intelligence agencies
+          militaries
+          corporations
+          lobbying organizations
+          criminal organizations
+          political movements
+          religious traditions
+          newspapers
+          informants
+          witnesses
+          people who were wrong
+          people who lied
+          people who believed what they were told
+          and people who knew exactly what they were doing
+        </p>
+
+        <p class="side-note">
+          SIDE NOTE: DO NOT TURN A DOCUMENT INTO A THEORY JUST BECAUSE
+          THE DOCUMENT LOOKS STRANGE
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 002
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [U.S. / ISRAEL / SECURITY]
         </div>
 
-        <br>
+        <p>
+          The relationship between the United States and Israel is not secret
+          the cooperation is documented
+          military assistance is documented
+          joint exercises are documented
+          weapons development is documented
+          missile defense cooperation is documented
+          intelligence cooperation has been publicly described
+          the United States signed a ten year memorandum of understanding
+          providing thirty eight billion dollars in military assistance
+          for fiscal years 2019 through 2028
+        </p>
 
-        <div class="database-input-row">
+        <p>
+          The relationship has developed over decades
+          and includes diplomatic
+          military
+          intelligence
+          technological
+          and strategic dimensions
+        </p>
 
-          <span class="database-prompt">
-            > ENTER NAME:
+        <p class="side-note">
+          NOTE TO SELF: SECRET DOES NOT MEAN CONSPIRACY
+          A GOVERNMENT CAN COOPERATE OPENLY
+          THE QUESTION IS WHAT HAPPENS INSIDE THE PARTS THAT ARE NOT PUBLIC
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 003
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [DOCUMENT 2016 / MOU]
+        </div>
+
+        <p>
+          Thirty three billion dollars in foreign military financing
+          five billion dollars committed to missile defense
+          ten years
+          congressional involvement
+          defense contractors
+          weapons systems
+          strategic planning
+          regional threats
+          Iran
+          intelligence
+          counterterrorism
+          military exercises
+          research
+          development
+          this is not a theory
+          this is the documented relationship
+        </p>
+
+        <div class="document-box">
+
+          <div class="document-header">
+            ARCHIVE CARD / UNITED STATES AND ISRAEL / 2016
+          </div>
+
+          <div class="document-body">
+            FY2019–FY2028<br>
+            FOREIGN MILITARY FINANCING — $33,000,000,000<br>
+            MISSILE DEFENSE — $5,000,000,000<br>
+            TOTAL SECURITY ASSISTANCE — $38,000,000,000
+          </div>
+
+        </div>
+
+        <blockquote>
+          The security relationship is a documented government-to-government
+          relationship and can be studied without assuming a secret explanation
+        </blockquote>
+
+        <p class="source-note">
+          SOURCE:
+          <a
+            href="https://2021-2025.state.gov/u-s-relations-with-israel/"
+            target="_blank"
+            rel="noopener"
+          >
+            UNITED STATES DEPARTMENT OF STATE
+          </a>
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 004
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [WAR FILE]
+        </div>
+
+        <p>
+          1948
+          1956
+          1967
+          1973
+          1982
+          2006
+          Gaza
+          Lebanon
+          Syria
+          Iran
+          Sinai
+          West Bank
+          East Jerusalem
+          every war creates another archive
+          every archive creates another argument
+          every argument creates another version of history
+        </p>
+
+        <p>
+          The historical record surrounding these conflicts contains
+          military operations
+          diplomatic negotiations
+          intelligence failures
+          territorial disputes
+          civilian casualties
+          refugee movements
+          competing claims of self defense
+          competing claims of occupation
+          and continuing disputes over international law
+        </p>
+
+        <p class="side-note">
+          SAME EVENT
+          DIFFERENT DOCUMENT
+          DIFFERENT LANGUAGE
+          DIFFERENT MEMORY
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 005
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [1973 / YOM KIPPUR WAR]
+        </div>
+
+        <p>
+          October 1973
+          Egyptian and Syrian forces launched attacks against Israel
+          the attack coincided with Yom Kippur
+          the Jewish Day of Atonement
+          and with the Islamic month of Ramadan
+          the war became one of the defining military conflicts
+          of the Cold War era in the Middle East
+        </p>
+
+        <p>
+          The United States subsequently conducted a major resupply effort
+          for Israel
+          while the Soviet Union supported Arab states
+          and the conflict eventually contributed to intense diplomatic
+          activity and the later disengagement agreements
+        </p>
+
+        <p class="side-note">
+          QUESTION
+          HOW MUCH OF HISTORY IS DETERMINED BY THE EVENT
+          AND HOW MUCH BY THE NAME GIVEN TO THE EVENT
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 006
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [YOM KIPPUR]
+        </div>
+
+        <p>
+          Yom Kippur means Day of Atonement
+          it is one of the most important holy days in Judaism
+          traditionally associated with fasting
+          prayer
+          repentance
+          confession
+          and atonement
+        </p>
+
+        <p>
+          the ancient ritual described in Leviticus 16 includes two goats
+          one associated with sacrifice
+          and another associated with the ritual sending away
+          of the community's sins into the wilderness
+        </p>
+
+        <p>
+          the English word scapegoat eventually became a general expression
+          for a person or group blamed for a problem
+          especially when responsibility is unfairly assigned
+        </p>
+
+        <div class="warning-box">
+
+          <strong>
+            ARCHIVE WARNING
+          </strong>
+
+          The existence of an ancient religious ritual involving symbolic
+          transfer of wrongdoing does not establish a connection to modern
+          political conspiracies
+
+        </div>
+
+        <p class="side-note">
+          DO NOT CONFUSE SYMBOL WITH EVIDENCE
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 007
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [INTERNATIONAL LAW]
+        </div>
+
+        <p>
+          In July 2024 the International Court of Justice issued an advisory
+          opinion concerning Israel's policies and practices in the Occupied
+          Palestinian Territory including East Jerusalem
+        </p>
+
+        <p>
+          the Court addressed questions involving
+          occupation
+          settlements
+          annexation
+          self determination
+          and the legality of Israel's continued presence in the territory
+        </p>
+
+        <p>
+          this belongs in the archive as a legal record
+          not as proof of a conspiracy
+          court findings
+          allegations
+          provisional measures
+          advisory opinions
+          and final judgments
+          must all be identified according to what they actually are
+        </p>
+
+        <div class="warning-box">
+
+          <strong>
+            CLASSIFICATION
+          </strong>
+
+          LEGAL RECORD<br>
+          NOT AUTOMATICALLY A CONSPIRACY THEORY
+
+        </div>
+
+        <p class="source-note">
+          SOURCE:
+          <a
+            href="https://www.icj-cij.org/node/204176"
+            target="_blank"
+            rel="noopener"
+          >
+            INTERNATIONAL COURT OF JUSTICE
+          </a>
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 008
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [GAZA / ARCHIVE]
+        </div>
+
+        <p>
+          Gaza has generated an enormous documentary record
+          military statements
+          satellite imagery
+          photographs
+          casualty reports
+          humanitarian reports
+          court proceedings
+          witness testimony
+          intelligence assessments
+          journalism
+          government statements
+          and competing narratives
+        </p>
+
+        <p>
+          Israel has stated that its military operations are directed against
+          Hamas and that its actions are undertaken in self defense
+          Palestinian officials and other international actors have made
+          extensive allegations concerning Israeli conduct
+        </p>
+
+        <p>
+          the important part is the distinction
+          a government's statement is a statement
+          an allegation is an allegation
+          a court finding is a court finding
+          and evidence has to be examined according to what it actually shows
+        </p>
+
+        <p class="side-note">
+          SAVE THE ORIGINAL
+          DO NOT SAVE ONLY THE SCREENSHOT
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 009
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [CRIME FILE]
+        </div>
+
+        <p>
+          there are documented criminal cases involving individuals
+          connected to organized crime networks operating internationally
+          one United States federal case involved Moshe Matsri
+          who prosecutors described as connected to the Abergil organized
+          crime family based in Israel and operating internationally
+        </p>
+
+        <p>
+          the case involved drug trafficking
+          money laundering
+          extortion
+          international movement of money
+          and financial transactions
+        </p>
+
+        <p>
+          this proves the existence of a criminal case
+          it does not prove that Israel as a country
+          Israeli society
+          Jewish people
+          or any religious tradition participated in those crimes
+        </p>
+
+        <div class="document-box">
+
+          <div class="document-header">
+            CASE FILE
+          </div>
+
+          <div class="document-body">
+            DRUG TRAFFICKING<br>
+            MONEY LAUNDERING<br>
+            EXTORTION<br>
+            INTERNATIONAL CRIMINAL NETWORK
+          </div>
+
+        </div>
+
+        <p class="source-note">
+          SOURCE:
+          <a
+            href="https://www.justice.gov/usao-cdca/pr/israeli-organized-crime-figure-sentenced-32-years-federal-prison-drug-trafficking-money"
+            target="_blank"
+            rel="noopener"
+          >
+            UNITED STATES DEPARTMENT OF JUSTICE
+          </a>
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 010
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [INTERNATIONAL CRIME NETWORKS]
+        </div>
+
+        <p>
+          international organized crime crosses borders
+          drugs cross borders
+          money crosses borders
+          shell companies cross borders
+          information crosses borders
+          people cross borders
+          intelligence crosses borders
+          political influence crosses borders
+        </p>
+
+        <p>
+          a criminal organization can operate in several countries
+          without representing any of those countries
+          a government can have citizens who commit crimes
+          without the government being responsible for those crimes
+          and a documented relationship between two people does not
+          automatically establish a larger relationship between their
+          governments
+        </p>
+
+        <p class="side-note">
+          INDIVIDUAL
+          ORGANIZATION
+          GOVERNMENT
+          STATE
+          POPULATION
+          RELIGION
+          THESE ARE NOT THE SAME THING
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 011
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [CONGRESS / FOREIGN POLICY]
+        </div>
+
+        <p>
+          Israel has been a major subject of American congressional debate
+          for decades
+          Congress participates in foreign aid appropriations
+          arms policy
+          sanctions
+          diplomatic policy
+          and legislation concerning the Middle East
+        </p>
+
+        <p>
+          political organizations also lobby Congress concerning Israel
+          and Middle East policy
+          lobbying is legal political activity
+          the existence of lobbying does not establish that lawmakers
+          are secretly controlled by the organizations involved
+        </p>
+
+        <p>
+          the actual historical question is more complicated
+          how do organized political interests influence policy
+          how do donors influence political institutions
+          how do constituents influence representatives
+          how do security concerns influence legislators
+          how does public opinion influence all of them
+        </p>
+
+        <blockquote>
+          influence is not automatically control
+        </blockquote>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 012
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [THE WORD COLlUSION]
+        </div>
+
+        <p>
+          collusion
+          cooperation
+          coordination
+          alliance
+          influence
+          lobbying
+          intelligence sharing
+          military assistance
+          strategic partnership
+          covert action
+          secret agreement
+        </p>
+
+        <p>
+          these words are not interchangeable
+        </p>
+
+        <p>
+          if two governments publicly cooperate
+          that is cooperation
+          if officials secretly coordinate something
+          that is another question
+          if somebody alleges a secret agreement
+          the allegation needs evidence
+          if the evidence is classified
+          the public record may not be enough to establish what happened
+        </p>
+
+        <p class="side-note">
+          THE ARCHIVE DOES NOT GET TO INVENT THE MISSING DOCUMENT
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 013
+           ===================================================== -->
+
+      <article class="log-entry conspiracy">
+
+        <div class="log-date">
+          [CONSPIRACY FILE / OPEN]
+        </div>
+
+        <p>
+          there are enormous numbers of conspiracy theories involving Israel
+          Jews
+          intelligence agencies
+          governments
+          banks
+          media organizations
+          wars
+          assassinations
+          terrorism
+          elections
+          and financial institutions
+        </p>
+
+        <p>
+          some theories begin with real events
+          some begin with real documents
+          some begin with unexplained events
+          some begin with forged documents
+          some begin with prejudice
+          some begin with coincidence
+          some begin with an actual criminal investigation
+        </p>
+
+        <p>
+          the existence of a conspiracy theory is itself historical information
+          but the existence of the theory does not establish the truth of
+          the theory
+        </p>
+
+        <div class="warning-box">
+
+          <strong>
+            ARCHIVE RULE
+          </strong>
+
+          A THEORY GOES IN THE THEORY FILE<br>
+          A DOCUMENT GOES IN THE DOCUMENT FILE<br>
+          A COURT FINDING GOES IN THE COURT FILE<br>
+          THEY DO NOT BECOME THE SAME THING JUST BECAUSE THEY ARE ON THIS PAGE
+
+        </div>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 014
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [THE DOCUMENTS]
+        </div>
+
+        <p>
+          FIND THE ORIGINAL
+          FIND THE DATE
+          FIND WHO CREATED IT
+          FIND WHO RECEIVED IT
+          FIND THE ARCHIVE NUMBER
+          FIND THE COURT CASE
+          FIND THE TRANSCRIPT
+          FIND THE FOOTNOTE
+          FIND THE PART THAT WAS REDACTED
+          FIND OUT WHY IT WAS REDACTED
+          FIND THE OTHER COPY
+          FIND THE VERSION BEFORE THE EDIT
+          FIND THE VERSION AFTER THE EDIT
+          THEN DECIDE WHAT YOU ACTUALLY KNOW
+        </p>
+
+        <p class="side-note">
+          SOURCE MATERIAL SHOULD ALWAYS BE EASIER TO FIND THAN THE THEORY
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 015
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [THE ARCHIVE KEEPS GROWING]
+        </div>
+
+        <p>
+          governments influence governments
+          corporations influence governments
+          lobbyists influence legislation
+          intelligence agencies exchange information
+          military alliances create obligations
+          wars create political constituencies
+          newspapers influence public perception
+          religious traditions influence political identity
+          historical trauma influences foreign policy
+          and sometimes several of these things happen simultaneously
+        </p>
+
+        <p>
+          this is where the archive becomes difficult
+          because the existence of many real relationships
+          does not necessarily mean that there is one person
+          one government
+          one organization
+          or one hidden room where everything is controlled
+        </p>
+
+        <blockquote>
+          THE QUESTION IS NOT WHETHER INFLUENCE EXISTS<br>
+          THE QUESTION IS HOW FAR IT EXTENDS
+        </blockquote>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 016
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [UNSORTED]
+        </div>
+
+        <p>
+          why does one government call something security
+          another government calls it occupation
+          one newspaper calls something terrorism
+          another calls it resistance
+          one intelligence report says confirmed
+          another says probable
+          another says unknown
+          one person says conspiracy
+          another says coincidence
+          someone else says classified
+        </p>
+
+        <p>
+          somewhere there is probably a document
+          sitting in a box
+          that explains one small part of it
+          but not the whole thing
+        </p>
+
+        <p class="side-note">
+          THIS PAGE IS NOT THE ANSWER
+          THIS PAGE IS THE BOX
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 017
+           ===================================================== -->
+
+      <article class="log-entry redacted-entry">
+
+        <div class="log-date">
+          [KYE-0017]
+        </div>
+
+        <p class="redacted-block">
+          ████████████████████████████████████████████████████
+          ████████████████████████████████████████████████████
+          ████████████████████████████████████████████████████
+        </p>
+
+        <p>
+          FILE LOCATION:
+          <span class="redacted">
+            ██████████████
           </span>
+        </p>
 
-          <input
-            type="text"
-            id="personSearch"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="off"
-            spellcheck="false"
-            placeholder=""
-          >
+        <p>
+          PHOTOGRAPH:
+          <span class="redacted">
+            REMOVED
+          </span>
+        </p>
 
-          <button
-            class="search-button"
-            id="searchButton"
-            type="button"
-          >
-            [ SEARCH ]
-          </button>
+        <p>
+          WITNESS:
+          <span class="redacted">
+            UNAVAILABLE
+          </span>
+        </p>
+
+        <p class="side-note">
+          [SOURCE COPY REQUESTED]
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 018
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [EDITOR'S NOTE]
+        </div>
+
+        <p>
+          This page is deliberately difficult to read
+          that is intentional
+          the archive is not supposed to feel like a polished encyclopedia
+          it is supposed to feel like someone kept finding things
+          and kept putting them here
+          sometimes at 3 17 AM
+          sometimes without punctuation
+          sometimes without context
+          sometimes with too much context
+          sometimes with a source
+          sometimes with a warning
+        </p>
+
+        <p>
+          there will be contradictions
+          there will be corrections
+          there will be dead links
+          there will be missing photographs
+          there will be arguments in the margins
+          there will be things that turn out to be false
+          and there will be things that turn out to be much stranger
+          than the original theory suggested
+        </p>
+
+        <p class="side-note">
+          IF THIS PAGE LOOKS LIKE A MESS
+          IT IS BECAUSE HISTORY IS A MESS
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           ENTRY 019
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [KYE-0019 / FINAL REVISION]
+        </div>
+
+        <div class="document-box">
+
+          <div class="document-header">
+            FILE STATUS: INCOMPLETE
+          </div>
+
+          <div class="document-body">
+
+            I thought the answer was Israel<br><br>
+
+            then I thought the answer was Washington<br><br>
+
+            then I thought the answer was intelligence<br><br>
+
+            then I thought the answer was money<br><br>
+
+            then I realized those were all different pieces
+            of the same question<br><br>
+
+            I don't know who controls anything anymore<br><br>
+
+            but I know the relationships are real<br><br>
+
+            I know the documents exist<br><br>
+
+            I know the wars happened<br><br>
+
+            I know governments cooperate<br><br>
+
+            I know governments lie<br><br>
+
+            I know governments tell the truth<br><br>
+
+            and I know that somewhere between those two things
+            is the part nobody has documented yet<br><br>
+
+            <span class="emphasis">
+              FIND FILE 19
+            </span>
+
+          </div>
 
         </div>
 
-        <div
-          class="search-status"
-          id="searchStatus"
-        ></div>
+      </article>
 
+
+      <!-- =====================================================
+           FINAL ENTRY
+           ===================================================== -->
+
+      <article class="log-entry">
+
+        <div class="log-date">
+          [LAST UPDATED / UNKNOWN]
+        </div>
+
+        <p>
+          the file remains open
+          new material will be added here
+          nothing on this page should be treated as a substitute
+          for the original documents
+          some entries are documented history
+          some are legal records
+          some are allegations
+          some are historical conspiracy theories
+          some are unresolved questions
+          and some material belongs entirely to the fictional investigation
+        </p>
+
+        <p>
+          the archive was supposed to answer questions
+          instead it created more
+        </p>
+
+        <p>
+          maybe that was the point
+        </p>
+
+        <p class="side-note">
+          IF YOU FOUND THIS PAGE THROUGH THE SEARCH BOX
+          YOU WERE SUPPOSED TO FIND IT
+        </p>
+
+      </article>
+
+
+      <!-- =====================================================
+           HIDDEN FILE
+           ===================================================== -->
+
+      <section
+        class="hidden-file"
+        id="hiddenFile"
+      >
+
+        <div class="secret-terminal">
+
+          <strong>
+            &gt; HIDDEN FILE DETECTED
+          </strong>
+
+          <br><br>
+
+          &gt; FILE NAME: UNKNOWN<br>
+          &gt; CREATOR: UNKNOWN<br>
+          &gt; DATE: UNKNOWN<br>
+          &gt; STATUS: PARTIALLY RECOVERED<br><br>
+
+          &gt; YOU WERE NOT SUPPOSED TO SEE THIS<br><br>
+
+          &gt; <span id="secretText"></span>
+          <span class="cursor"></span>
+
+        </div>
+
+      </section>
+
+
+      <div
+        class="no-results"
+        id="noResults"
+      >
+        &gt; NO MATCHING RECORDS FOUND
       </div>
 
-    </div>
 
-  </main>
+    </main>
 
 
-  <!-- Hidden command input -->
+    <!-- =======================================================
+         FOOTER
+         ======================================================= -->
 
-  <input
-    type="text"
-    id="hiddenInput"
-    class="hidden-input"
-    autocomplete="off"
-    autocorrect="off"
-    autocapitalize="off"
-    spellcheck="false"
-  >
+    <footer>
 
+      <div>
+        KNOW YOUR ENEMY
+      </div>
+
+      <div>
+        ARCHIVE NODE 04
+      </div>
+
+      <div>
+        THIS SITE CONTAINS HISTORICAL MATERIAL
+        LEGAL RECORDS
+        DOCUMENTED EVENTS
+        ALLEGATIONS
+        CONSPIRACY THEORIES
+        AND FICTIONAL ARG ELEMENTS
+      </div>
+
+      <br>
+
+      <div>
+        Primary-source starting points:
+      </div>
+
+      <div>
+        <a
+          href="https://2021-2025.state.gov/u-s-relations-with-israel/"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. DEPARTMENT OF STATE
+        </a>
+      </div>
+
+      <div>
+        <a
+          href="https://www.icj-cij.org/node/204176"
+          target="_blank"
+          rel="noopener"
+        >
+          INTERNATIONAL COURT OF JUSTICE
+        </a>
+      </div>
+
+      <div>
+        <a
+          href="https://www.justice.gov/usao-cdca/pr/israeli-organized-crime-figure-sentenced-32-years-federal-prison-drug-trafficking-money"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. DEPARTMENT OF JUSTICE
+        </a>
+      </div>
+
+    </footer>
+
+  </div>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
 
   <script>
 
     /*
-      INITIAL TERMINAL SEQUENCE
+      ===========================================================
+      SEARCH
+      ===========================================================
     */
 
-    const lines = [
-      "> INITIALIZING...",
-      "> CONNECTION ESTABLISHED.",
-      "> NODE: 04",
-      "> STATUS: UNKNOWN",
-      "",
-      "> _"
-    ];
-
-    const elements = [
-      document.getElementById("line1"),
-      document.getElementById("line2"),
-      document.getElementById("line3"),
-      document.getElementById("line4"),
-      document.getElementById("line5"),
-      document.getElementById("line6")
-    ];
-
-    const input = document.getElementById("hiddenInput");
-
-    const secret = document.getElementById("secret");
-
-    const database = document.getElementById("database");
-
-    const enterDatabase =
-      document.getElementById("enterDatabase");
-
-    const personSearch =
-      document.getElementById("personSearch");
+    const searchInput =
+      document.getElementById("siteSearch");
 
     const searchButton =
       document.getElementById("searchButton");
 
-    const searchStatus =
-      document.getElementById("searchStatus");
+    const logEntries =
+      Array.from(
+        document.querySelectorAll(".log-entry")
+      );
+
+    const noResults =
+      document.getElementById("noResults");
 
 
-    let currentLine = 0;
+    function clearHighlights() {
 
-    let currentCharacter = 0;
+      logEntries.forEach(entry => {
 
+        entry.innerHTML =
+          entry.innerHTML.replace(
+            /<span class="highlight">([\s\S]*?)<\/span>/gi,
+            "$1"
+          );
 
-    /*
-      TYPE INITIAL MESSAGE
-    */
+      });
 
-    function typeLine() {
-
-      if (currentLine >= lines.length) {
-
-        enableInput();
-
-        return;
-      }
-
-      const text = lines[currentLine];
-
-      if (currentCharacter < text.length) {
-
-        elements[currentLine].textContent +=
-          text[currentCharacter];
-
-        currentCharacter++;
-
-        setTimeout(typeLine, 25);
-
-      } else {
-
-        currentLine++;
-
-        currentCharacter = 0;
-
-        setTimeout(typeLine, 350);
-      }
     }
 
 
-    /*
-      ENABLE SECRET COMMAND
-    */
+    function searchArchive() {
 
-    function enableInput() {
-
-      elements[5].innerHTML =
-        "> <span class='cursor'></span>";
-
-      input.focus();
-    }
-
-
-    /*
-      KEEP TERMINAL FOCUSED
-    */
-
-    document.addEventListener("click", () => {
-
-      input.focus();
-
-    });
-
-
-    /*
-      SECRET COMMAND
-      TYPE: continue
-    */
-
-    input.addEventListener("input", () => {
-
-      const command =
-        input.value
+      const query =
+        searchInput.value
           .trim()
           .toLowerCase();
 
+      clearHighlights();
 
-      if (command === "continue") {
+      if (!query) {
 
-        secret.classList.add("visible");
+        logEntries.forEach(entry => {
+          entry.style.display = "";
+        });
 
-        elements[5].innerHTML =
-          "> ACCESS GRANTED <span class='cursor'></span>";
-
-        input.value = "";
-      }
-
-    });
-
-
-    /*
-      OPEN DATABASE
-    */
-
-    enterDatabase.addEventListener("click", (event) => {
-
-      event.preventDefault();
-
-      database.classList.add("visible");
-
-      personSearch.focus();
-
-    });
-
-
-    /*
-      FBI DATABASE SEARCH
-    */
-
-    function searchFBI() {
-
-      const name =
-        personSearch.value.trim();
-
-
-      if (!name) {
-
-        searchStatus.innerHTML =
-          "> ERROR: QUERY EMPTY.";
-
-        searchStatus.className =
-          "search-status active";
+        noResults.style.display = "none";
 
         return;
       }
 
 
-      /*
-        Disable controls while the
-        terminal sequence plays.
-      */
-
-      personSearch.disabled = true;
-
-      searchButton.disabled = true;
+      let found = false;
 
 
-      searchStatus.className =
-        "search-status";
+      logEntries.forEach(entry => {
+
+        const text =
+          entry.textContent.toLowerCase();
+
+        if (text.includes(query)) {
+
+          entry.style.display = "";
+
+          found = true;
+
+          const walker =
+            document.createTreeWalker(
+              entry,
+              NodeFilter.SHOW_TEXT
+            );
+
+          const nodes = [];
+
+          while (walker.nextNode()) {
+            nodes.push(walker.currentNode);
+          }
+
+          nodes.forEach(node => {
+
+            if (
+              node.parentElement &&
+              (
+                node.parentElement.tagName === "SCRIPT" ||
+                node.parentElement.tagName === "STYLE"
+              )
+            ) {
+              return;
+            }
+
+            const value =
+              node.nodeValue;
+
+            const index =
+              value.toLowerCase().indexOf(query);
+
+            if (index === -1) {
+              return;
+            }
+
+            const before =
+              value.substring(0, index);
+
+            const match =
+              value.substring(
+                index,
+                index + query.length
+              );
+
+            const after =
+              value.substring(
+                index + query.length
+              );
+
+            const fragment =
+              document.createDocumentFragment();
+
+            if (before) {
+              fragment.appendChild(
+                document.createTextNode(before)
+              );
+            }
+
+            const highlight =
+              document.createElement("span");
+
+            highlight.className =
+              "highlight";
+
+            highlight.textContent =
+              match;
+
+            fragment.appendChild(
+              highlight
+            );
+
+            if (after) {
+              fragment.appendChild(
+                document.createTextNode(after)
+              );
+            }
+
+            node.parentNode.replaceChild(
+              fragment,
+              node
+            );
+
+          });
+
+        } else {
+
+          entry.style.display = "none";
+
+        }
+
+      });
 
 
-      searchStatus.innerHTML =
-        "> QUERY RECEIVED.";
-
-
-      setTimeout(() => {
-
-        searchStatus.innerHTML =
-          "> SEARCHING EXTERNAL DATABASE...";
-
-      }, 900);
-
-
-      setTimeout(() => {
-
-        searchStatus.innerHTML =
-          "> CONNECTING TO FBI DATABASE...";
-
-      }, 1800);
-
-
-      setTimeout(() => {
-
-        searchStatus.innerHTML =
-          "> REDIRECTING...";
-
-      }, 2700);
-
-
-      /*
-        Redirect to the FBI's
-        public missing-persons page.
-      */
-
-      setTimeout(() => {
-
-        window.location.href =
-          "https://www.fbi.gov/wanted/kidnap";
-
-      }, 3600);
+      noResults.style.display =
+        found ? "none" : "block";
 
     }
 
 
-    /*
-      SEARCH BUTTON
-    */
-
     searchButton.addEventListener(
       "click",
-      searchFBI
+      searchArchive
+    );
+
+
+    searchInput.addEventListener(
+      "keydown",
+      event => {
+
+        if (event.key === "Enter") {
+          searchArchive();
+        }
+
+      }
     );
 
 
     /*
-      ENTER KEY
+      ===========================================================
+      SECRET KEYBOARD SEQUENCE
+      Type:
+      
+      continue
+      
+      anywhere on the page
+      ===========================================================
     */
 
-    personSearch.addEventListener(
+    let secretInput = "";
+
+    const secretSequence =
+      "continue";
+
+    const hiddenFile =
+      document.getElementById("hiddenFile");
+
+    const secretText =
+      document.getElementById("secretText");
+
+
+    document.addEventListener(
       "keydown",
-      (event) => {
+      event => {
 
-        if (event.key === "Enter") {
+        if (
+          event.target === searchInput
+        ) {
+          return;
+        }
 
-          searchFBI();
+        if (
+          event.key.length !== 1
+        ) {
+          return;
+        }
+
+        secretInput +=
+          event.key.toLowerCase();
+
+        if (
+          secretInput.length >
+          secretSequence.length
+        ) {
+          secretInput =
+            secretInput.slice(
+              -secretSequence.length
+            );
+        }
+
+        if (
+          secretInput === secretSequence
+        ) {
+
+          hiddenFile.classList.add(
+            "visible"
+          );
+
+          typeSecret();
+
+          hiddenFile.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+          secretInput = "";
 
         }
 
@@ -688,14 +2028,41 @@
 
 
     /*
-      START
+      ===========================================================
+      HIDDEN FILE TYPEWRITER
+      ===========================================================
     */
 
-    typeLine();
+    const secretMessage =
+      "there is another index beneath this one";
+
+    let secretPosition = 0;
+
+
+    function typeSecret() {
+
+      if (
+        secretPosition >=
+        secretMessage.length
+      ) {
+        return;
+      }
+
+      secretText.textContent +=
+        secretMessage[
+          secretPosition
+        ];
+
+      secretPosition++;
+
+      setTimeout(
+        typeSecret,
+        65
+      );
+
+    }
 
   </script>
 
 </body>
 </html>
-```
-
