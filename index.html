@@ -7,29 +7,35 @@
 <title>Know Your Enemy</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: #eeeeee;
-  color: #222;
+  margin: 0;
+  background: #e9e9e9;
+  color: #202020;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.45;
+}
+
+a {
+  color: #003399;
+}
+
+a:hover {
+  color: #cc0000;
 }
 
 .page {
-  width: 96%;
-  max-width: 1180px;
-  margin: 8px auto 30px;
+  width: 97%;
+  max-width: 1220px;
+  margin: 8px auto 25px;
   background: #fff;
   border: 1px solid #999;
 }
@@ -40,77 +46,74 @@ body {
 
 .header {
   background: #fff;
+  padding: 7px 10px 6px;
   border-bottom: 4px solid #4b0082;
-  padding: 8px 10px 5px;
 }
 
-.header-top {
+.header-row {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  gap: 15px;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .logo {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 40px;
-  line-height: 1;
+  font-size: 39px;
   font-weight: bold;
   letter-spacing: -2px;
+  line-height: .95;
   white-space: nowrap;
 }
 
-.logo .know {
+.logo-blue {
   color: #174ea6;
 }
 
-.logo .enemy {
-  color: #c40000;
+.logo-red {
+  color: #b00000;
 }
 
-.header-links {
-  text-align: right;
+.header-info {
   color: #666;
   font-size: 10px;
-}
-
-.header-links a {
-  color: #174ea6;
+  line-height: 1.5;
+  text-align: right;
 }
 
 /* =========================================================
-   NAVIGATION
+   NAV
    ========================================================= */
 
 .nav {
   background: #174ea6;
-  border-top: 1px solid #092f6e;
-  border-bottom: 1px solid #092f6e;
+  border-top: 1px solid #0b3270;
+  border-bottom: 1px solid #0b3270;
   padding: 4px 7px;
 }
 
 .nav a {
   color: #fff;
   text-decoration: none;
-  font-size: 11px;
   font-weight: bold;
-  padding: 3px 9px;
-  border-right: 1px solid #668dcc;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-right: 1px solid #7190c5;
 }
 
 .nav a:hover {
-  background: #315fba;
-  text-decoration: underline;
+  background: #315fb0;
+  color: #fff;
 }
 
 /* =========================================================
    SEARCH
    ========================================================= */
 
-.search-area {
+.search-bar {
   background: #ddd;
   border-bottom: 1px solid #999;
-  padding: 8px 10px;
+  padding: 7px 10px;
 }
 
 .search-label {
@@ -120,21 +123,22 @@ body {
 
 .search-input {
   width: 55%;
-  max-width: 500px;
+  max-width: 560px;
   height: 25px;
+  padding: 3px 6px;
   border: 1px solid #777;
   background: #fff;
-  padding: 3px 6px;
+  color: #111;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
 }
 
 .search-button {
   height: 25px;
-  margin-left: 3px;
   padding: 2px 12px;
+  margin-left: 3px;
   border: 1px solid #555;
-  background: #f5f5f5;
+  background: #f4f4f4;
   color: #111;
   font-size: 11px;
   font-weight: bold;
@@ -147,35 +151,23 @@ body {
 
 .search-results {
   display: none;
-  margin: 8px 10px 0;
+  margin: 7px 10px 0;
+  padding: 8px;
   border: 1px solid #999;
   background: #ffffcc;
-  padding: 8px;
 }
 
 .search-results.visible {
   display: block;
 }
 
-.search-results-title {
-  color: #4b0082;
-  font-weight: bold;
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-.search-results a {
-  color: #174ea6;
-  font-weight: bold;
-}
-
 /* =========================================================
-   MAIN GRID
+   LAYOUT
    ========================================================= */
 
 .main {
   display: grid;
-  grid-template-columns: 185px minmax(0, 1fr) 205px;
+  grid-template-columns: 180px minmax(0, 1fr) 205px;
   gap: 8px;
   padding: 8px;
 }
@@ -187,19 +179,19 @@ body {
 }
 
 /* =========================================================
-   BOXES
+   GENERAL BOXES
    ========================================================= */
 
 .box {
-  background: #fff;
-  border: 1px solid #aaa;
   margin-bottom: 9px;
+  border: 1px solid #aaa;
+  background: #fff;
 }
 
 .box-title {
+  padding: 4px 6px;
   background: #4b0082;
   color: #fff;
-  padding: 4px 6px;
   font-size: 11px;
   font-weight: bold;
 }
@@ -209,11 +201,11 @@ body {
 }
 
 .box-title.red {
-  background: #b00000;
+  background: #ae0000;
 }
 
 .box-title.gold {
-  background: #c58b00;
+  background: #c18b00;
   color: #111;
 }
 
@@ -223,13 +215,8 @@ body {
 
 .box-content a {
   display: block;
-  color: #174ea6;
-  text-decoration: underline;
   padding: 2px 0;
-}
-
-.box-content a:hover {
-  color: #c40000;
+  font-size: 11px;
 }
 
 /* =========================================================
@@ -237,22 +224,22 @@ body {
    ========================================================= */
 
 .hero {
-  border: 1px solid #999;
-  background: #fff;
   margin-bottom: 9px;
+  border: 1px solid #999;
 }
 
 .hero-title {
-  background: linear-gradient(
-    to right,
-    #4b0082,
-    #174ea6 48%,
-    #c40000
-  );
-  color: #fff;
   padding: 7px 9px;
+  background:
+    linear-gradient(
+      to right,
+      #4b0082,
+      #174ea6 50%,
+      #b00000
+    );
+  color: #fff;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -261,15 +248,16 @@ body {
 }
 
 .hero-body p {
-  margin: 5px 0 10px;
+  margin: 4px 0 10px;
 }
 
-.notice {
-  border: 1px solid #c6a900;
-  background: #ffffcc;
-  padding: 7px;
-  margin: 9px 0;
-  font-size: 11px;
+.date-strip {
+  border-top: 1px dotted #888;
+  border-bottom: 1px dotted #888;
+  padding: 6px 0;
+  color: #4b0082;
+  font-weight: bold;
+  word-spacing: 8px;
 }
 
 /* =========================================================
@@ -277,17 +265,17 @@ body {
    ========================================================= */
 
 .section {
-  background: #fff;
-  border: 1px solid #aaa;
   margin-bottom: 9px;
+  border: 1px solid #aaa;
+  background: #fff;
 }
 
 .section-title {
+  padding: 5px 7px;
   background: #eee;
   border-bottom: 1px solid #aaa;
-  padding: 4px 7px;
   color: #174ea6;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -298,77 +286,119 @@ body {
 }
 
 .section-body {
-  padding: 8px;
+  padding: 9px;
 }
 
 .section-body p {
-  margin: 4px 0 10px;
+  margin: 5px 0 11px;
 }
 
-.section-body a {
-  color: #174ea6;
+.section-body blockquote {
+  margin: 9px 15px;
+  padding: 6px 10px;
+  border-left: 3px solid #b00000;
+  background: #f4f4f4;
+  font-family: "Times New Roman", serif;
 }
 
 /* =========================================================
-   DENSE LINK DIRECTORY
+   RECORD HEADER
    ========================================================= */
 
-.link-list {
-  columns: 2;
-  column-gap: 22px;
+.record {
+  margin: 0 0 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px dotted #999;
 }
 
-.link-list div {
-  break-inside: avoid;
-  padding: 2px 0;
+.record:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
 }
 
-.link-list a {
-  color: #174ea6;
-  text-decoration: underline;
+.record-date {
+  color: #b00000;
+  font-size: 10px;
   font-weight: bold;
 }
 
-.link-description {
-  color: #555;
+.record-title {
+  margin: 2px 0 6px;
+  color: #4b0082;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+}
+
+.record p {
+  margin: 5px 0 9px;
+}
+
+/* =========================================================
+   FACT TABLES
+   ========================================================= */
+
+.fact-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 9px 0;
+  font-size: 11px;
+}
+
+.fact-table th {
+  padding: 5px;
+  border: 1px solid #999;
+  background: #eee;
+  text-align: left;
+}
+
+.fact-table td {
+  padding: 5px;
+  border: 1px solid #bbb;
+  vertical-align: top;
+}
+
+.fact-table td:first-child {
+  width: 24%;
+  color: #4b0082;
+  font-weight: bold;
+}
+
+/* =========================================================
+   SOURCE LISTS
+   ========================================================= */
+
+.sources {
+  margin-top: 12px;
+  padding: 6px 8px;
+  background: #f5f5f5;
+  border-top: 2px solid #174ea6;
+}
+
+.sources-title {
+  margin-bottom: 4px;
+  color: #174ea6;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sources a {
+  display: block;
+  margin: 2px 0;
   font-size: 10px;
 }
 
 /* =========================================================
-   HISTORICAL LOG
+   SIDE NOTES
    ========================================================= */
 
-.log {
-  border-top: 1px dotted #999;
-  padding-top: 8px;
-}
-
-.log-entry {
-  margin-bottom: 20px;
-}
-
-.log-entry h3 {
-  margin: 0 0 5px;
-  color: #4b0082;
-  font-size: 13px;
-}
-
-.log-entry p {
-  margin: 4px 0 9px;
-}
-
-.log-entry blockquote {
-  margin: 7px 15px;
-  padding: 5px 9px;
-  border-left: 3px solid #c40000;
-  background: #f5f5f5;
-}
-
-.margin-note {
-  color: #777;
+.side-note {
+  margin: 9px 0;
+  padding: 7px;
+  border: 1px solid #c4aa00;
+  background: #ffffcc;
   font-family: "Times New Roman", serif;
-  font-style: italic;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .red-note {
@@ -378,6 +408,35 @@ body {
 
 .blue-note {
   color: #174ea6;
+  font-weight: bold;
+}
+
+.dim {
+  color: #777;
+}
+
+/* =========================================================
+   DENSE INDEX
+   ========================================================= */
+
+.index-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 20px;
+}
+
+.index-item {
+  padding: 3px 0;
+  border-bottom: 1px dotted #ccc;
+}
+
+.index-item a {
+  font-weight: bold;
+}
+
+.index-description {
+  color: #666;
+  font-size: 10px;
 }
 
 /* =========================================================
@@ -390,12 +449,7 @@ body {
 }
 
 .news-item:last-child {
-  border-bottom: none;
-}
-
-.news-item a {
-  color: #174ea6;
-  font-weight: bold;
+  border-bottom: 0;
 }
 
 .news-date {
@@ -403,26 +457,25 @@ body {
   font-size: 9px;
 }
 
-/* =========================================================
-   SYMBOL PANEL
-   ========================================================= */
-
-.strange {
-  font-family: "Times New Roman", serif;
-  background: #fffef1;
+.news-item a {
+  font-weight: bold;
 }
+
+/* =========================================================
+   SYMBOLS
+   ========================================================= */
 
 .symbol-row {
   display: flex;
   justify-content: space-around;
-  padding: 8px 2px;
+  padding: 8px 3px;
   border-bottom: 1px dotted #aaa;
+  font-family: "Times New Roman", serif;
 }
 
 .symbol {
   color: #4b0082;
-  font-size: 19px;
-  font-weight: bold;
+  font-size: 20px;
 }
 
 /* =========================================================
@@ -430,9 +483,9 @@ body {
    ========================================================= */
 
 .footer {
+  padding: 12px;
   border-top: 4px solid #174ea6;
   background: #eee;
-  padding: 12px;
   color: #666;
   font-size: 10px;
   text-align: center;
@@ -443,10 +496,10 @@ body {
 }
 
 /* =========================================================
-   RESPONSIVE
+   MOBILE
    ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
   .main {
     grid-template-columns: 155px minmax(0, 1fr);
@@ -456,17 +509,9 @@ body {
     grid-column: 1 / -1;
   }
 
-  .header-links {
-    display: none;
-  }
-
 }
 
 @media (max-width: 600px) {
-
-  body {
-    font-size: 12px;
-  }
 
   .page {
     width: 100%;
@@ -475,30 +520,36 @@ body {
     border-right: 0;
   }
 
+  .header-row {
+    display: block;
+  }
+
+  .header-info {
+    display: none;
+  }
+
   .logo {
-    font-size: 32px;
+    font-size: 31px;
   }
 
   .main {
     display: block;
   }
 
-  .sidebar,
-  .content,
-  .right-column {
-    width: 100%;
-  }
-
   .search-input {
     width: 65%;
   }
 
-  .link-list {
-    columns: 1;
+  .index-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
 }
-
 </style>
 </head>
 
@@ -506,20 +557,22 @@ body {
 
 <div class="page">
 
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
+
 <header class="header">
 
-  <div class="header-top">
+  <div class="header-row">
 
     <div class="logo">
-      <span class="know">know your</span>
-      <span class="enemy"> enemy</span>
+      <span class="logo-blue">know your</span>
+      <span class="logo-red"> enemy</span>
     </div>
 
-    <div class="header-links">
-      [ <a href="#documents">Documents</a> ]
-      [ <a href="#names">Names</a> ]
-      [ <a href="#dates">Dates</a> ]<br>
-      September 22 2026
+    <div class="header-info">
+      FILE INDEX 04<br>
+      SEPTEMBER 22 2026
     </div>
 
   </div>
@@ -527,37 +580,50 @@ body {
 </header>
 
 
+<!-- =======================================================
+     NAVIGATION
+     ======================================================= -->
+
 <nav class="nav">
 
-  <a href="#israel">Israel</a>
-  <a href="#wars">Wars</a>
-  <a href="#gaza">Gaza</a>
-  <a href="#jerusalem">Jerusalem</a>
-  <a href="#government">Government</a>
-  <a href="#intelligence">Intelligence</a>
-  <a href="#religion">Religion</a>
-  <a href="#documents">Documents</a>
+  <a href="#1948">1948</a>
+  <a href="#1956">1956</a>
+  <a href="#1967">1967</a>
+  <a href="#1973">1973</a>
+  <a href="#1982">1982</a>
+  <a href="#gaza">GAZA</a>
+  <a href="#jerusalem">JERUSALEM</a>
+  <a href="#washington">WASHINGTON</a>
+  <a href="#intelligence">INTELLIGENCE</a>
+  <a href="#religion">RELIGION</a>
+  <a href="#documents">DOCUMENTS</a>
 
 </nav>
 
 
-<div class="search-area">
+<!-- =======================================================
+     SEARCH
+     ======================================================= -->
 
-  <span class="search-label">Search:</span>
+<div class="search-bar">
+
+  <span class="search-label">
+    Search:
+  </span>
 
   <input
-    type="text"
     id="searchInput"
     class="search-input"
+    type="text"
     autocomplete="off"
     spellcheck="false"
-    placeholder="Israel Jewish history conspiracy..."
+    placeholder="search names dates events..."
   >
 
   <button
-    type="button"
     id="searchButton"
     class="search-button"
+    type="button"
   >
     SEARCH
   </button>
@@ -565,45 +631,37 @@ body {
 </div>
 
 
-<div id="searchResults" class="search-results">
+<div
+  id="searchResults"
+  class="search-results"
+>
 
-  <div class="search-results-title">
-    SEARCH
-  </div>
+  <strong>SEARCH:</strong>
 
-  <div>
-    <strong>Query:</strong>
-    <span id="queryDisplay"></span>
-  </div>
-
-  <br>
-
-  <a
-    href="https://www.youtube.com/results?search_query=Israel+Jewish+conspiracy+theories+history"
-    target="_blank"
-    rel="noopener"
-  >
-    Search YouTube for Israel / Jewish conspiracy material
-  </a>
+  <span id="queryDisplay"></span>
 
   <br><br>
 
   <a
-    href="https://www.adl.org/resources/report/antisemitic-environment-how-social-and-media-exposures-predict-antisemitic-beliefs"
+    href="https://www.youtube.com/results?search_query=Israel+history+war+intelligence"
     target="_blank"
     rel="noopener"
   >
-    Documentation concerning antisemitic conspiracy beliefs
+    Search historical video records
   </a>
 
 </div>
 
 
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
 <main class="main">
 
 
 <!-- =======================================================
-     LEFT
+     LEFT COLUMN
      ======================================================= -->
 
 <aside class="sidebar">
@@ -612,21 +670,28 @@ body {
 <div class="box">
 
   <div class="box-title blue">
-    ISRAEL
+    FILES
   </div>
 
   <div class="box-content">
 
-    <a href="#1948">1948</a>
-    <a href="#1956">1956</a>
-    <a href="#1967">1967</a>
-    <a href="#1973">1973</a>
-    <a href="#1982">1982</a>
-    <a href="#1993">1993</a>
-    <a href="#2001">2001</a>
-    <a href="#gaza">Gaza</a>
-    <a href="#lebanon">Lebanon</a>
-    <a href="#iran">Iran</a>
+    <a href="#1948">1948 — Independence</a>
+
+    <a href="#1956">1956 — Suez</a>
+
+    <a href="#1967">1967 — Six Day War</a>
+
+    <a href="#1973">1973 — Yom Kippur</a>
+
+    <a href="#1982">1982 — Lebanon</a>
+
+    <a href="#1993">1993 — Oslo</a>
+
+    <a href="#2005">2005 — Gaza Withdrawal</a>
+
+    <a href="#2007">2007 — Gaza Blockade</a>
+
+    <a href="#gaza">2023 — Gaza War</a>
 
   </div>
 
@@ -636,19 +701,26 @@ body {
 <div class="box">
 
   <div class="box-title red">
-    NAMES
+    PLACES
   </div>
 
   <div class="box-content">
 
-    <a href="#names">Ben-Gurion</a>
-    <a href="#names">Golda Meir</a>
-    <a href="#names">Moshe Dayan</a>
-    <a href="#names">Menachem Begin</a>
-    <a href="#names">Yitzhak Rabin</a>
-    <a href="#names">Ariel Sharon</a>
-    <a href="#names">Benjamin Netanyahu</a>
-    <a href="#names">Henry Kissinger</a>
+    <a href="#jerusalem">Jerusalem</a>
+
+    <a href="#gaza">Gaza</a>
+
+    <a href="#sinai">Sinai</a>
+
+    <a href="#westbank">West Bank</a>
+
+    <a href="#lebanon">Lebanon</a>
+
+    <a href="#golan">Golan Heights</a>
+
+    <a href="#iran">Iran</a>
+
+    <a href="#suez">Suez Canal</a>
 
   </div>
 
@@ -658,25 +730,37 @@ body {
 <div class="box">
 
   <div class="box-title gold">
-    DATES
+    NAMES
   </div>
 
   <div class="box-content">
 
-    <a href="#1948">May 1948</a>
-    <a href="#1956">October 1956</a>
-    <a href="#1967">June 1967</a>
-    <a href="#1973">October 1973</a>
-    <a href="#1982">June 1982</a>
-    <a href="#1993">September 1993</a>
-    <a href="#2001">September 2001</a>
+    <a href="#names">David Ben-Gurion</a>
+
+    <a href="#names">Golda Meir</a>
+
+    <a href="#names">Moshe Dayan</a>
+
+    <a href="#names">Menachem Begin</a>
+
+    <a href="#names">Yitzhak Rabin</a>
+
+    <a href="#names">Ariel Sharon</a>
+
+    <a href="#names">Benjamin Netanyahu</a>
+
+    <a href="#names">Henry Kissinger</a>
+
+    <a href="#names">Gamal Abdel Nasser</a>
+
+    <a href="#names">Anwar Sadat</a>
 
   </div>
 
 </div>
 
 
-<div class="box strange">
+<div class="box">
 
   <div class="box-title">
     SYMBOLS
@@ -687,34 +771,31 @@ body {
     <span class="symbol">✡</span>
     <span class="symbol">◈</span>
     <span class="symbol">△</span>
+    <span class="symbol">◌</span>
 
   </div>
 
   <div class="box-content">
 
-    <p>
-      Magen David
-    </p>
+    <div class="index-item">
+      <a href="#religion">Yom Kippur</a>
+    </div>
 
-    <p>
-      Jerusalem
-    </p>
+    <div class="index-item">
+      <a href="#religion">Scapegoat</a>
+    </div>
 
-    <p>
-      Temple
-    </p>
+    <div class="index-item">
+      <a href="#jerusalem">Temple Mount</a>
+    </div>
 
-    <p>
-      Covenant
-    </p>
+    <div class="index-item">
+      <a href="#jerusalem">Western Wall</a>
+    </div>
 
-    <p>
-      Exile
-    </p>
-
-    <p>
-      Return
-    </p>
+    <div class="index-item">
+      <a href="#religion">Covenant</a>
+    </div>
 
   </div>
 
@@ -725,70 +806,58 @@ body {
 
 
 <!-- =======================================================
-     CENTER
+     CENTER COLUMN
      ======================================================= -->
 
 <section class="content">
 
 
-<section class="hero" id="israel">
+<!-- =======================================================
+     TOP
+     ======================================================= -->
+
+<section class="hero">
 
   <div class="hero-title">
-    KNOW YOUR ENEMY
+    KNOW YOUR ENEMY // FILE INDEX
   </div>
 
   <div class="hero-body">
 
-    <p>
-      <strong>
-        ISRAEL // JEWISH HISTORY // WAR // POWER // MEMORY
-      </strong>
-    </p>
-
-    <p>
-      1948
-      1967
-      1973
-      1982
-      1991
-      1993
-      2001
-      2006
-      2014
-      2021
-      2023
-      2024
-    </p>
-
-    <p>
-      Names repeat
-      borders move
-      governments change
-      documents remain
-    </p>
-
-    <div class="notice">
-
-      The record contains statements from governments
-      military organizations
-      courts
-      journalists
-      historians
-      witnesses
-      intelligence agencies
-      and political organizations.
-
-      A claim remains a claim until the evidence establishes more.
-
+    <div class="date-strip">
+      1948 / 1956 / 1967 / 1973 / 1982 /
+      1993 / 2005 / 2007 / 2023
     </div>
 
     <p>
-      Follow the dates.
-      Follow the names.
-      Follow the money.
-      Follow the weapons.
-      Follow the votes.
-      Follow the documents.
+      Israel was established in 1948 after the United Nations
+      General Assembly had adopted a partition proposal for
+      Mandatory Palestine.
+    </p>
+
+    <p>
+      The state that emerged from the war expanded beyond the
+      territory assigned to the proposed Jewish state under
+      Resolution 181.
+    </p>
+
+    <p>
+      The wars that followed changed borders
+      populations
+      alliances
+      military doctrines
+      diplomatic relationships
+      and the meaning of territory throughout the region.
+    </p>
+
+    <p>
+      The record below follows those changes through governments
+      military operations
+      diplomatic agreements
+      intelligence activity
+      political organizations
+      religious history
+      and primary documents.
     </p>
 
   </div>
@@ -797,41 +866,145 @@ body {
 
 
 <!-- =======================================================
-     1948
+     1947–1949
      ======================================================= -->
 
-<section class="section" id="1948">
+<section
+  class="section"
+  id="1948"
+>
 
   <div class="section-title">
-    1948
-    <span>declaration / war / displacement</span>
+    1947–1949
+    <span>partition / independence / war / displacement</span>
   </div>
 
   <div class="section-body">
 
-    <p>
-      Israel declared independence on May 14 1948.
-      Fighting followed between Israel and neighboring Arab states.
-    </p>
+    <article class="record">
 
-    <p>
-      The war produced major population displacement.
-      Palestinians refer to the mass displacement as the Nakba.
-      Israeli historical memory places the war within the struggle
-      for Jewish national independence and survival.
-    </p>
+      <div class="record-date">
+        NOVEMBER 29 1947
+      </div>
 
-    <p>
-      The armistice agreements of 1949 established the lines that
-      became known as the Green Line.
-    </p>
+      <h2 class="record-title">
+        Resolution 181
+      </h2>
 
-    <p class="margin-note">
-      One declaration.
-      Two national memories.
-      One war.
-      A map that never stopped moving.
-    </p>
+      <p>
+        The United Nations General Assembly adopted Resolution
+        181 recommending partition of Mandatory Palestine into
+        an Arab state and a Jewish state, with Jerusalem under
+        a special international regime.
+      </p>
+
+      <p>
+        The proposal was accepted by the Jewish Agency and
+        rejected by Arab leaders and the Arab states.
+      </p>
+
+      <p>
+        Civil conflict followed between Jewish and Arab communities.
+        The British Mandate ended in May 1948.
+      </p>
+
+      <p>
+        On May 14 1948 David Ben-Gurion declared the establishment
+        of the State of Israel.
+      </p>
+
+      <p>
+        Egypt, Transjordan, Syria, Lebanon and Iraq subsequently
+        entered the war.
+      </p>
+
+      <p>
+        By the time armistice agreements were reached in 1949,
+        Israel controlled substantially more territory than the
+        Jewish state proposed by Resolution 181.
+      </p>
+
+      <p>
+        The West Bank came under Jordanian control and Gaza came
+        under Egyptian administration.
+      </p>
+
+      <p>
+        Hundreds of thousands of Palestinians became refugees.
+        The causes and circumstances of individual departures
+        varied and remain heavily contested in historical scholarship.
+      </p>
+
+      <div class="side-note">
+        181 → 1948 → declaration → war → armistice → refugees
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Sources
+        </div>
+
+        <a
+          href="https://www.un.org/unispal/data-collection/general-assembly/"
+          target="_blank"
+          rel="noopener"
+        >
+          United Nations — General Assembly / Question of Palestine
+        </a>
+
+        <a
+          href="https://www.un.org/unispal/history2/"
+          target="_blank"
+          rel="noopener"
+        >
+          United Nations — History of the Question of Palestine
+        </a>
+
+        <a
+          href="https://history.state.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Department of State — Office of the Historian
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <article class="record">
+
+      <div class="record-date">
+        1949
+      </div>
+
+      <h2 class="record-title">
+        The Armistice Lines
+      </h2>
+
+      <p>
+        Israel signed armistice agreements with Egypt Lebanon
+        Jordan and Syria during 1949.
+      </p>
+
+      <p>
+        These agreements established ceasefire lines rather than
+        permanent international borders.
+      </p>
+
+      <p>
+        The line separating Israel from the West Bank became known
+        as the Green Line.
+      </p>
+
+      <p>
+        Jerusalem remained divided between Israeli-controlled
+        West Jerusalem and Jordanian-controlled East Jerusalem.
+      </p>
+
+    </article>
 
   </div>
 
@@ -842,29 +1015,102 @@ body {
      1956
      ======================================================= -->
 
-<section class="section" id="1956">
+<section
+  class="section"
+  id="1956"
+>
 
   <div class="section-title">
     1956
-    <span>Suez Crisis</span>
+    <span>Suez / Sinai / Britain / France / Israel / Egypt</span>
   </div>
 
   <div class="section-body">
 
-    <p>
-      Israel invaded Egypt in October 1956 in coordination with
-      Britain and France during the Suez Crisis.
-    </p>
+    <article class="record">
 
-    <p>
-      The crisis followed Egyptian President Gamal Abdel Nasser's
-      nationalization of the Suez Canal.
-    </p>
+      <div class="record-date">
+        JULY — NOVEMBER 1956
+      </div>
 
-    <p>
-      Pressure from the United States and Soviet Union contributed
-      to the withdrawal of the invading forces.
-    </p>
+      <h2 class="record-title">
+        The Suez Crisis
+      </h2>
+
+      <p>
+        Egyptian President Gamal Abdel Nasser nationalized the
+        Suez Canal Company on July 26 1956.
+      </p>
+
+      <p>
+        Britain and France opposed the nationalization.
+        Israel regarded Nasser's Egypt as a security threat and
+        had been engaged in cross-border conflict with Egypt.
+      </p>
+
+      <p>
+        British French and Israeli officials secretly negotiated
+        at Sèvres near Paris.
+      </p>
+
+      <p>
+        The plan called for Israel to invade Sinai.
+        Britain and France would then issue an ultimatum to Israel
+        and Egypt and intervene militarily around the canal.
+      </p>
+
+      <p>
+        Israel invaded Sinai on October 29.
+        Britain and France subsequently attacked Egypt.
+      </p>
+
+      <p>
+        The Eisenhower administration opposed the operation and
+        pressured Britain and France to accept a ceasefire.
+      </p>
+
+      <p>
+        The United States therefore found itself opposing the
+        actions of two European allies and Israel during the crisis.
+      </p>
+
+      <div class="side-note">
+        SECRET AGREEMENT — SÈVRES — OCTOBER 24 1956
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Primary and government sources
+        </div>
+
+        <a
+          href="https://history.state.gov/milestones/1953-1960/suez"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Department of State — The Suez Crisis 1956
+        </a>
+
+        <a
+          href="https://history.state.gov/historicaldocuments/frus1955-57v16/d373"
+          target="_blank"
+          rel="noopener"
+        >
+          Foreign Relations of the United States — Sèvres agreement
+        </a>
+
+        <a
+          href="https://history.state.gov/historicaldocuments/frus1955-57v16/d476"
+          target="_blank"
+          rel="noopener"
+        >
+          Foreign Relations of the United States — Eden statement
+        </a>
+
+      </div>
+
+    </article>
 
   </div>
 
@@ -875,41 +1121,149 @@ body {
      1967
      ======================================================= -->
 
-<section class="section" id="1967">
+<section
+  class="section"
+  id="1967"
+>
 
   <div class="section-title">
     1967
-    <span>six days</span>
+    <span>Egypt / Jordan / Syria / Sinai / West Bank / Gaza / Golan</span>
   </div>
 
   <div class="section-body">
 
-    <p>
-      In June 1967 Israel fought Egypt Jordan and Syria.
-    </p>
+    <article class="record">
 
-    <p>
-      Israel captured the Sinai Peninsula
-      Gaza Strip
-      West Bank
-      East Jerusalem
-      and Golan Heights.
-    </p>
+      <div class="record-date">
+        JUNE 5 — 10 1967
+      </div>
 
-    <p>
-      The war transformed the political geography of the region.
-      Questions surrounding occupation
-      settlements
-      borders
-      Palestinian statehood
-      Jerusalem
-      and security remain connected to the consequences of 1967.
-    </p>
+      <h2 class="record-title">
+        Six Days
+      </h2>
 
-    <p class="margin-note">
-      Six days.
-      Decades afterward.
-    </p>
+      <p>
+        Tensions between Israel and Arab states escalated during
+        May and early June 1967.
+      </p>
+
+      <p>
+        Egypt moved forces into Sinai and demanded the withdrawal
+        of United Nations peacekeepers.
+      </p>
+
+      <p>
+        Egypt also closed the Straits of Tiran to Israeli shipping.
+      </p>
+
+      <p>
+        Israel launched a large-scale air attack against Egypt
+        on June 5.
+      </p>
+
+      <p>
+        Jordan and Syria subsequently entered the fighting.
+      </p>
+
+      <p>
+        Israel captured the Sinai Peninsula and Gaza Strip from
+        Egypt, the West Bank and East Jerusalem from Jordan,
+        and the Golan Heights from Syria.
+      </p>
+
+      <p>
+        The war transformed the geography of the region.
+      </p>
+
+      <p>
+        The occupation of the territories captured in 1967 became
+        the central issue of subsequent Israeli-Palestinian
+        diplomacy.
+      </p>
+
+      <div class="side-note">
+        SIX DAYS CHANGED THE MAP
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Sources
+        </div>
+
+        <a
+          href="https://history.state.gov/historicaldocuments/frus1964-68v19/summary"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Department of State — 1967 Arab-Israeli Crisis and War
+        </a>
+
+        <a
+          href="https://history.state.gov/historicaldocuments/frus1964-68v19"
+          target="_blank"
+          rel="noopener"
+        >
+          Foreign Relations of the United States — 542 historical documents
+        </a>
+
+        <a
+          href="https://www.un.org/unispal/history/"
+          target="_blank"
+          rel="noopener"
+        >
+          United Nations — History of the Question of Palestine
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <article class="record">
+
+      <div class="record-date">
+        NOVEMBER 22 1967
+      </div>
+
+      <h2 class="record-title">
+        Resolution 242
+      </h2>
+
+      <p>
+        The United Nations Security Council adopted Resolution
+        242 following the war.
+      </p>
+
+      <p>
+        The resolution established principles for a settlement
+        involving withdrawal of Israeli forces from territories
+        occupied in the conflict and recognition of every state's
+        right to live in peace within secure and recognized boundaries.
+      </p>
+
+      <p>
+        The wording became central to subsequent diplomacy.
+      </p>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Source
+        </div>
+
+        <a
+          href="https://www.un.org/unispal/history/"
+          target="_blank"
+          rel="noopener"
+        >
+          United Nations — History of the Question of Palestine
+        </a>
+
+      </div>
+
+    </article>
 
   </div>
 
@@ -920,49 +1274,105 @@ body {
      1973
      ======================================================= -->
 
-<section class="section" id="1973">
+<section
+  class="section"
+  id="1973"
+>
 
   <div class="section-title">
     1973
-    <span>Yom Kippur War</span>
+    <span>Yom Kippur / Ramadan / Egypt / Syria / United States / USSR</span>
   </div>
 
   <div class="section-body">
 
-    <p>
-      Egypt and Syria attacked Israeli positions on October 6 1973.
-    </p>
+    <article class="record">
 
-    <p>
-      The date coincided with Yom Kippur
-      the holiest day in the Jewish calendar.
-      It also occurred during Ramadan.
-    </p>
+      <div class="record-date">
+        OCTOBER 6 1973
+      </div>
 
-    <p>
-      The United States provided military support to Israel.
-      The Soviet Union supported Arab states.
-    </p>
+      <h2 class="record-title">
+        Yom Kippur
+      </h2>
 
-    <p>
-      The conflict contributed to later diplomatic negotiations
-      between Egypt and Israel.
-    </p>
+      <p>
+        Egypt and Syria launched a coordinated attack against
+        Israeli forces on October 6 1973.
+      </p>
 
-    <p class="red-note">
-      YOM KIPPUR
-    </p>
+      <p>
+        The attack coincided with Yom Kippur, the Jewish Day of
+        Atonement, and occurred during Ramadan.
+      </p>
 
-    <p>
-      fasting
-      prayer
-      war
-      mobilization
-      diplomacy
-      oil
-      Washington
-      Moscow
-    </p>
+      <p>
+        Egypt crossed the Suez Canal into the Sinai Peninsula.
+        Syrian forces attacked across the Golan Heights.
+      </p>
+
+      <p>
+        Israel initially suffered major battlefield setbacks.
+      </p>
+
+      <p>
+        The United States subsequently launched a major airlift
+        of military equipment to Israel.
+      </p>
+
+      <p>
+        The Soviet Union supplied Egypt and Syria.
+      </p>
+
+      <p>
+        The war ended after a United Nations ceasefire resolution
+        and subsequent negotiations.
+      </p>
+
+      <p>
+        The conflict contributed to the diplomatic process that
+        eventually produced the Egypt-Israel peace treaty.
+      </p>
+
+      <div class="side-note">
+        OCTOBER 6
+        <br>
+        YOM KIPPUR
+        <br>
+        RAMADAN
+        <br>
+        SURPRISE ATTACK
+        <br>
+        AIRLIFT
+        <br>
+        CEASEFIRE
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Sources
+        </div>
+
+        <a
+          href="https://history.state.gov/milestones/1969-1976/arab-israeli-war-1973"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Department of State — 1973 Arab-Israeli War
+        </a>
+
+        <a
+          href="https://history.state.gov/historicaldocuments/frus1969-76v36/d209"
+          target="_blank"
+          rel="noopener"
+        >
+          Foreign Relations of the United States — October 6 1973
+        </a>
+
+      </div>
+
+    </article>
 
   </div>
 
@@ -973,34 +1383,298 @@ body {
      1982
      ======================================================= -->
 
-<section class="section" id="1982">
+<section
+  class="section"
+  id="1982"
+>
 
   <div class="section-title">
     1982
-    <span>Lebanon</span>
+    <span>Lebanon / Beirut / PLO / Sabra and Shatila</span>
   </div>
 
   <div class="section-body">
 
-    <p>
-      Israel invaded Lebanon in June 1982.
-      The operation was initially presented as an effort to stop
-      attacks by the Palestine Liberation Organization.
-    </p>
+    <article class="record">
 
-    <p>
-      Israeli forces reached Beirut.
-      The PLO leadership eventually left Lebanon.
-    </p>
+      <div class="record-date">
+        JUNE 1982
+      </div>
 
-    <p>
-      The Sabra and Shatila massacre occurred in September 1982
-      in camps in Beirut.
-      Lebanese Christian Phalangist forces carried out the killings.
-      An Israeli commission later found Israeli personnel responsible
-      for failing to prevent the massacre and concluded that senior
-      Israeli officials bore indirect responsibility.
-    </p>
+      <h2 class="record-title">
+        Lebanon
+      </h2>
+
+      <p>
+        Israel invaded Lebanon in June 1982 following escalating
+        violence along the Israel-Lebanon border and an attempted
+        assassination of Israel's ambassador in London.
+      </p>
+
+      <p>
+        The stated Israeli objective was to push PLO forces away
+        from Israel's northern border.
+      </p>
+
+      <p>
+        Israeli forces advanced north toward Beirut.
+      </p>
+
+      <p>
+        The Palestine Liberation Organization leadership eventually
+        evacuated Lebanon under an internationally negotiated arrangement.
+      </p>
+
+      <p>
+        The war produced extensive civilian casualties and
+        international controversy.
+      </p>
+
+    </article>
+
+
+    <article class="record">
+
+      <div class="record-date">
+        SEPTEMBER 1982
+      </div>
+
+      <h2 class="record-title">
+        Sabra and Shatila
+      </h2>
+
+      <p>
+        Fighters from the Lebanese Christian Phalange entered the
+        Sabra and Shatila refugee camps in Beirut after the departure
+        of PLO forces.
+      </p>
+
+      <p>
+        Large numbers of civilians were killed.
+      </p>
+
+      <p>
+        An Israeli commission of inquiry, the Kahan Commission,
+        investigated the massacre.
+      </p>
+
+      <p>
+        The commission concluded that the direct perpetrators were
+        Lebanese Phalangists and found indirect responsibility among
+        Israeli officials for failing to take appropriate steps to
+        prevent the massacre.
+      </p>
+
+      <div class="side-note">
+        THE QUESTION WAS NOT WHETHER THE MASSACRE OCCURRED.
+        THE QUESTION WAS WHO KNEW WHAT WHEN.
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Sources
+        </div>
+
+        <a
+          href="https://www.britannica.com/event/Lebanon-War-of-1982"
+          target="_blank"
+          rel="noopener"
+        >
+          Encyclopaedia Britannica — Lebanon War of 1982
+        </a>
+
+        <a
+          href="https://www.jewishvirtuallibrary.org/the-kahan-commission"
+          target="_blank"
+          rel="noopener"
+        >
+          Kahan Commission material
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     OSLO
+     ======================================================= -->
+
+<section
+  class="section"
+  id="1993"
+>
+
+  <div class="section-title">
+    1993
+    <span>Oslo / PLO / Israel / recognition</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <div class="record-date">
+        SEPTEMBER 1993
+      </div>
+
+      <h2 class="record-title">
+        Oslo
+      </h2>
+
+      <p>
+        Israel and the Palestine Liberation Organization signed
+        the Declaration of Principles on Interim Self-Government
+        Arrangements in September 1993.
+      </p>
+
+      <p>
+        Israeli Prime Minister Yitzhak Rabin and PLO Chairman
+        Yasser Arafat formally recognized each other.
+      </p>
+
+      <p>
+        The agreement created a framework for limited Palestinian
+        self-government and further negotiations.
+      </p>
+
+      <p>
+        The Oslo process did not resolve the questions of borders,
+        Jerusalem, refugees, settlements or permanent sovereignty.
+      </p>
+
+      <p>
+        The process subsequently deteriorated amid violence,
+        political opposition and the assassination of Rabin in 1995.
+      </p>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Source
+        </div>
+
+        <a
+          href="https://history.state.gov/milestones/1993-2000/oslo"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Department of State — Oslo Accords
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     2005
+     ======================================================= -->
+
+<section
+  class="section"
+  id="2005"
+>
+
+  <div class="section-title">
+    2005
+    <span>Gaza disengagement</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <div class="record-date">
+        AUGUST — SEPTEMBER 2005
+      </div>
+
+      <h2 class="record-title">
+        Disengagement
+      </h2>
+
+      <p>
+        Israel removed its settlements and permanent ground forces
+        from the Gaza Strip in 2005.
+      </p>
+
+      <p>
+        Israeli forces continued to control or influence Gaza's
+        external borders airspace and maritime access in varying
+        forms after the withdrawal.
+      </p>
+
+      <p>
+        The meaning of the withdrawal became a major point of
+        disagreement in subsequent legal and political debates
+        concerning the status of Gaza.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     2007
+     ======================================================= -->
+
+<section
+  class="section"
+  id="2007"
+>
+
+  <div class="section-title">
+    2006–2007
+    <span>Hamas / elections / Fatah / Gaza</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <p>
+        Hamas won a majority in the Palestinian legislative
+        elections held in January 2006.
+      </p>
+
+      <p>
+        Political conflict between Hamas and Fatah escalated
+        into armed fighting.
+      </p>
+
+      <p>
+        Hamas took control of Gaza in June 2007.
+      </p>
+
+      <p>
+        The Palestinian political system subsequently became
+        divided between the Hamas-controlled Gaza Strip and the
+        Palestinian Authority areas of the West Bank.
+      </p>
+
+      <p>
+        Israel and Egypt imposed significant restrictions on
+        movement and goods entering and leaving Gaza.
+      </p>
+
+      <p>
+        The resulting political division became a central feature
+        of Israeli-Palestinian politics.
+      </p>
+
+    </article>
 
   </div>
 
@@ -1011,57 +1685,155 @@ body {
      GAZA
      ======================================================= -->
 
-<section class="section" id="gaza">
+<section
+  class="section"
+  id="gaza"
+>
 
   <div class="section-title">
     GAZA
-    <span>occupation / withdrawal / blockade / war</span>
+    <span>2008 / 2012 / 2014 / 2021 / 2023–</span>
   </div>
 
   <div class="section-body">
 
-    <p>
-      Israel captured Gaza in 1967.
-    </p>
+    <article class="record">
 
-    <p>
-      Israel removed its settlements and permanent ground forces
-      from Gaza in 2005.
-    </p>
+      <h2 class="record-title">
+        Repeated Wars
+      </h2>
 
-    <p>
-      Hamas won Palestinian legislative elections in 2006
-      and took control of Gaza in 2007 after armed conflict
-      with Fatah.
-    </p>
+      <p>
+        Gaza experienced repeated major rounds of armed conflict
+        involving Israel and Hamas and other Palestinian armed groups.
+      </p>
 
-    <p>
-      Israel and Egypt subsequently imposed restrictions on
-      movement into and out of Gaza.
-    </p>
+      <p>
+        Major escalations occurred in 2008–2009
+        2012
+        2014
+        2021
+        and following October 7 2023.
+      </p>
 
-    <p>
-      Gaza has experienced repeated major armed conflicts
-      involving Israel and Hamas.
-    </p>
+      <p>
+        Rocket attacks from Gaza targeted Israeli territory.
+        Israeli military operations struck Gaza using air ground
+        and naval forces.
+      </p>
 
-    <p>
-      The October 7 2023 Hamas-led attack on Israel killed
-      approximately 1,200 people according to Israeli authorities
-      and resulted in the taking of hostages.
-    </p>
+      <p>
+        Civilian casualties and destruction occurred on both sides,
+        with the scale of destruction in Gaza becoming particularly
+        extensive during the war beginning in October 2023.
+      </p>
 
-    <p>
-      Israel subsequently launched a large military campaign
-      in Gaza.
-    </p>
+    </article>
 
-    <p>
-      The war produced extensive Palestinian civilian casualties
-      displacement and destruction and generated international
-      legal proceedings and allegations concerning the conduct
-      of the conflict.
-    </p>
+
+    <article class="record">
+
+      <div class="record-date">
+        OCTOBER 7 2023
+      </div>
+
+      <h2 class="record-title">
+        The Attack
+      </h2>
+
+      <p>
+        Hamas-led Palestinian armed groups attacked communities
+        and military positions in southern Israel.
+      </p>
+
+      <p>
+        Approximately 1,200 people were killed according to
+        Israeli authorities and approximately 250 people were
+        taken hostage.
+      </p>
+
+      <p>
+        Israel subsequently declared war and launched a major
+        military campaign against Hamas in Gaza.
+      </p>
+
+      <p>
+        The campaign produced enormous civilian destruction
+        displacement and casualties.
+      </p>
+
+      <p>
+        The conflict also produced major international legal
+        proceedings.
+      </p>
+
+    </article>
+
+
+    <article class="record">
+
+      <div class="record-date">
+        2024
+      </div>
+
+      <h2 class="record-title">
+        International Court of Justice
+      </h2>
+
+      <p>
+        South Africa brought proceedings against Israel before
+        the International Court of Justice under the Genocide Convention.
+      </p>
+
+      <p>
+        In January 2024 the Court ordered provisional measures
+        requiring Israel to take measures within its power to prevent
+        acts falling within Article II of the Genocide Convention
+        and to preserve evidence relevant to the case.
+      </p>
+
+      <p>
+        The Court later reaffirmed and modified provisional measures
+        during 2024.
+      </p>
+
+      <p>
+        Provisional measures are not a final judgment on the merits.
+      </p>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          International Court of Justice
+        </div>
+
+        <a
+          href="https://www.icj-cij.org/case/192"
+          target="_blank"
+          rel="noopener"
+        >
+          South Africa v. Israel — Case 192
+        </a>
+
+        <a
+          href="https://www.icj-cij.org/node/203453"
+          target="_blank"
+          rel="noopener"
+        >
+          January 26 2024 — Provisional Measures
+        </a>
+
+        <a
+          href="https://www.icj-cij.org/node/204099"
+          target="_blank"
+          rel="noopener"
+        >
+          May 24 2024 — Additional Provisional Measures
+        </a>
+
+      </div>
+
+    </article>
 
   </div>
 
@@ -1072,44 +1844,137 @@ body {
      JERUSALEM
      ======================================================= -->
 
-<section class="section" id="jerusalem">
+<section
+  class="section"
+  id="jerusalem"
+>
 
   <div class="section-title">
     JERUSALEM
-    <span>city / temple / mosque / state / memory</span>
+    <span>temple / wall / mosque / kingdom / city</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <h2 class="record-title">
+        A City With Several Histories
+      </h2>
+
+      <p>
+        Jerusalem has religious significance in Judaism Christianity
+        and Islam.
+      </p>
+
+      <p>
+        Ancient Jewish tradition connects Jerusalem with the
+        Davidic kingdom and Solomon's Temple.
+      </p>
+
+      <p>
+        The First Temple is traditionally associated with Solomon.
+        The Second Temple was rebuilt following the Babylonian exile
+        and later greatly expanded under Herod.
+      </p>
+
+      <p>
+        Roman forces destroyed the Second Temple in 70 CE.
+      </p>
+
+      <p>
+        The Western Wall is a surviving retaining wall associated
+        with the Temple complex and became a major Jewish site
+        of prayer and pilgrimage.
+      </p>
+
+      <p>
+        The Temple Mount is also the site of the Dome of the Rock
+        and Al-Aqsa Mosque.
+      </p>
+
+      <p>
+        Control access archaeology excavation prayer and sovereignty
+        at the site remain politically sensitive.
+      </p>
+
+    </article>
+
+
+    <article class="record">
+
+      <h2 class="record-title">
+        1967
+      </h2>
+
+      <p>
+        Israel captured East Jerusalem from Jordan during the
+        Six Day War.
+      </p>
+
+      <p>
+        Israel subsequently extended its law administration and
+        jurisdiction to East Jerusalem.
+      </p>
+
+      <p>
+        Israel considers Jerusalem its capital.
+        Most states historically maintained embassies elsewhere
+        because of the disputed status of the city.
+      </p>
+
+      <p>
+        The United States recognized Jerusalem as Israel's capital
+        in 2017 and moved its embassy there in 2018.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     SINAI
+     ======================================================= -->
+
+<section
+  class="section"
+  id="sinai"
+>
+
+  <div class="section-title">
+    SINAI
+    <span>1956 / 1967 / 1979 / withdrawal</span>
   </div>
 
   <div class="section-body">
 
     <p>
-      Jerusalem is sacred to Judaism Christianity and Islam.
+      Israel occupied Sinai during the Suez Crisis of 1956.
     </p>
 
     <p>
-      The ancient Jewish Temples stood on the Temple Mount.
-      The Western Wall remains one of the most important Jewish
-      places of prayer.
+      Israel captured Sinai again during the 1967 war.
     </p>
 
     <p>
-      The site is also associated with the Dome of the Rock
-      and Al-Aqsa Mosque.
+      Egypt and Israel signed the Camp David Accords in 1978.
     </p>
 
     <p>
-      Modern sovereignty and access arrangements surrounding
-      Jerusalem remain among the most contested questions
-      in the Israeli-Palestinian conflict.
+      The Egypt-Israel Peace Treaty followed in 1979.
     </p>
 
-    <p class="margin-note">
-      Temple
-      Wall
-      Dome
-      Mosque
-      State
-      Border
-      Memory
+    <p>
+      Israel completed its withdrawal from Sinai in 1982.
+    </p>
+
+    <p class="side-note">
+      Territory captured in 1967.
+      Territory returned through treaty.
+      A different outcome from the West Bank.
     </p>
 
   </div>
@@ -1118,43 +1983,113 @@ body {
 
 
 <!-- =======================================================
-     JEWISH RELIGION
+     WEST BANK
      ======================================================= -->
 
-<section class="section" id="religion">
+<section
+  class="section"
+  id="westbank"
+>
 
   <div class="section-title">
-    JEWISH TEXTS & TRADITIONS
-    <span>Torah / Temple / exile / return</span>
+    WEST BANK
+    <span>1967 / occupation / settlements / Oslo</span>
   </div>
 
   <div class="section-body">
 
     <p>
-      Jewish religious history contains traditions concerning
-      covenant
-      exile
-      return
-      Jerusalem
-      sacrifice
-      repentance
-      and messianic expectation.
+      Israel captured the West Bank from Jordan in 1967.
     </p>
 
     <p>
-      Yom Kippur is the Day of Atonement.
-      Leviticus 16 describes an ancient ritual involving two goats.
-      One was sacrificed while another was sent into the wilderness
-      after the community's sins were symbolically placed upon it.
+      Israeli settlements were subsequently established throughout
+      parts of the territory.
     </p>
 
     <p>
-      The English word scapegoat developed from this tradition.
+      The Oslo process divided the West Bank into Areas A B and C
+      with differing Palestinian and Israeli administrative and
+      security responsibilities.
     </p>
 
     <p>
-      These traditions belong to Jewish religious history.
-      They do not establish modern political claims.
+      Area C remains under Israeli civil and security control.
+    </p>
+
+    <p>
+      The status of settlements is disputed internationally.
+      Israel has disputed interpretations that describe all
+      settlement activity as unlawful.
+    </p>
+
+    <div class="sources">
+
+      <div class="sources-title">
+        Sources
+      </div>
+
+      <a
+        href="https://www.un.org/unispal/history/"
+        target="_blank"
+        rel="noopener"
+      >
+        United Nations — Question of Palestine history
+      </a>
+
+      <a
+        href="https://www.un.org/unispal/"
+        target="_blank"
+        rel="noopener"
+      >
+        United Nations — Question of Palestine
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     LEBANON
+     ======================================================= -->
+
+<section
+  class="section"
+  id="lebanon"
+>
+
+  <div class="section-title">
+    LEBANON
+    <span>1978 / 1982 / 2000 / 2006</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      Israel entered southern Lebanon during Operation Litani
+      in 1978.
+    </p>
+
+    <p>
+      Israel invaded Lebanon in 1982 and maintained a security
+      zone in southern Lebanon for years afterward.
+    </p>
+
+    <p>
+      Israel withdrew from southern Lebanon in 2000.
+    </p>
+
+    <p>
+      Hezbollah and Israel fought a major war in 2006.
+    </p>
+
+    <p>
+      The 2006 conflict involved extensive Israeli air operations
+      and ground fighting and large-scale Hezbollah rocket attacks
+      against northern Israel.
     </p>
 
   </div>
@@ -1163,57 +2098,175 @@ body {
 
 
 <!-- =======================================================
-     GOVERNMENT
+     GOLAN
      ======================================================= -->
 
-<section class="section" id="government">
+<section
+  class="section"
+  id="golan"
+>
 
   <div class="section-title">
-    GOVERNMENT
-    <span>Washington / Jerusalem</span>
+    GOLAN HEIGHTS
+    <span>Syria / Israel / strategic territory</span>
   </div>
 
   <div class="section-body">
 
     <p>
-      The United States and Israel have maintained a close
-      diplomatic and military relationship for decades.
+      Israel captured the Golan Heights from Syria during the
+      June 1967 war.
     </p>
 
     <p>
-      U.S. assistance to Israel has included military financing
-      weapons cooperation
-      missile defense
-      intelligence relationships
-      diplomatic support
-      and joint strategic programs.
+      Israel effectively extended its administration to the area
+      in 1981.
     </p>
 
     <p>
-      The existence of extensive cooperation is documented.
-      Claims that such cooperation constitutes secret control
-      require separate evidence.
+      The United Nations Security Council declared the Israeli
+      action without international legal effect.
     </p>
 
     <p>
-      <a
-        href="https://www.congress.gov/"
-        target="_blank"
-        rel="noopener"
-      >
-        Congressional records
-      </a>
+      The United States recognized Israeli sovereignty over the
+      Golan Heights in 2019.
     </p>
 
     <p>
-      <a
-        href="https://2021-2025.state.gov/u-s-relations-with-israel/"
-        target="_blank"
-        rel="noopener"
-      >
-        U.S. State Department records
-      </a>
+      Most of the international community has not recognized
+      Israeli sovereignty over the territory.
     </p>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     WASHINGTON
+     ======================================================= -->
+
+<section
+  class="section"
+  id="washington"
+>
+
+  <div class="section-title">
+    WASHINGTON
+    <span>military assistance / diplomacy / intelligence / politics</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <h2 class="record-title">
+        The Alliance
+      </h2>
+
+      <p>
+        The United States and Israel have maintained a close
+        strategic relationship for decades.
+      </p>
+
+      <p>
+        The relationship includes military assistance
+        weapons sales
+        missile-defense cooperation
+        intelligence cooperation
+        diplomatic coordination
+        and joint strategic programs.
+      </p>
+
+      <p>
+        U.S. policy has changed across administrations.
+      </p>
+
+      <p>
+        The United States opposed the British French and Israeli
+        military operation during the Suez Crisis in 1956.
+      </p>
+
+      <p>
+        By 1973 the United States was conducting a major military
+        airlift supplying Israel during the Yom Kippur War.
+      </p>
+
+      <p>
+        The relationship therefore cannot be reduced to a single
+        uninterrupted policy beginning in 1948.
+      </p>
+
+      <div class="side-note">
+        1956 — WASHINGTON OPPOSES SUEZ OPERATION
+        <br><br>
+        1973 — WASHINGTON AIRLIFTS WEAPONS TO ISRAEL
+      </div>
+
+    </article>
+
+
+    <article class="record">
+
+      <h2 class="record-title">
+        Political Influence
+      </h2>
+
+      <p>
+        American organizations supporting Israel participate
+        openly in U.S. political life through lobbying
+        campaign contributions
+        public advocacy
+        coalition building
+        and policy research.
+      </p>
+
+      <p>
+        Political influence can be studied through campaign finance
+        records lobbying disclosures congressional votes
+        executive decisions and public statements.
+      </p>
+
+      <p>
+        Those records concern identifiable organizations and people.
+        They do not establish that American Jews as a group control
+        the U.S. government.
+      </p>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Government records
+        </div>
+
+        <a
+          href="https://www.congress.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          Congress.gov
+        </a>
+
+        <a
+          href="https://www.fec.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          Federal Election Commission
+        </a>
+
+        <a
+          href="https://lda.senate.gov/"
+          target="_blank"
+          rel="noopener"
+        >
+          Senate Lobbying Disclosure
+        </a>
+
+      </div>
+
+    </article>
 
   </div>
 
@@ -1224,45 +2277,245 @@ body {
      INTELLIGENCE
      ======================================================= -->
 
-<section class="section" id="intelligence">
+<section
+  class="section"
+  id="intelligence"
+>
 
   <div class="section-title">
     INTELLIGENCE
-    <span>Mossad / CIA / Shin Bet / documents</span>
+    <span>Mossad / Shin Bet / Military Intelligence / covert operations</span>
   </div>
 
   <div class="section-body">
 
-    <p>
-      Israel's intelligence community includes Mossad
-      responsible primarily for intelligence and operations abroad
-      Shin Bet responsible for internal security
-      and the IDF's Military Intelligence Directorate.
-    </p>
+    <article class="record">
 
-    <p>
-      Intelligence services have conducted covert operations
-      throughout modern Israeli history.
-    </p>
+      <h2 class="record-title">
+        Three Systems
+      </h2>
 
-    <p>
-      Intelligence failures have also occurred.
-    </p>
+      <p>
+        Israel maintains several major intelligence organizations.
+      </p>
 
-    <p>
-      The existence of a covert operation establishes that
-      a covert operation occurred.
-      It does not establish every subsequent claim attached to it.
-    </p>
+      <table class="fact-table">
 
-    <p class="red-note">
-      DOCUMENT
-      DATE
-      OPERATION
-      SOURCE
-      CLAIM
-      EVIDENCE
-    </p>
+        <tr>
+          <th>Organization</th>
+          <th>General Function</th>
+        </tr>
+
+        <tr>
+          <td>Mossad</td>
+          <td>
+            Intelligence collection and covert activity primarily
+            outside Israel.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Shin Bet</td>
+          <td>
+            Internal security and counterintelligence.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Military Intelligence</td>
+          <td>
+            Military intelligence collection analysis and warning.
+          </td>
+        </tr>
+
+      </table>
+
+      <p>
+        Intelligence organizations operate in secrecy by design.
+        Public records therefore tend to consist of declassified
+        documents
+        official statements
+        investigative reporting
+        court records
+        memoirs
+        and later disclosures.
+      </p>
+
+    </article>
+
+
+    <article class="record">
+
+      <h2 class="record-title">
+        Intelligence Failure
+      </h2>
+
+      <p>
+        The 1973 war demonstrated that intelligence services can
+        possess substantial information and still misinterpret
+        an adversary's intentions.
+      </p>
+
+      <p>
+        U.S. intelligence assessments before the war also underestimated
+        the likelihood of an Egyptian-Syrian attack.
+      </p>
+
+      <p>
+        Intelligence failure is therefore not synonymous with
+        absence of intelligence.
+      </p>
+
+      <p>
+        The question is what was collected
+        what was believed
+        what was communicated
+        and what decision-makers did with it.
+      </p>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Historical intelligence record
+        </div>
+
+        <a
+          href="https://history.state.gov/milestones/1969-1976/arab-israeli-war-1973"
+          target="_blank"
+          rel="noopener"
+        >
+          Office of the Historian — 1973 War
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     RELIGION
+     ======================================================= -->
+
+<section
+  class="section"
+  id="religion"
+>
+
+  <div class="section-title">
+    JEWISH RELIGION
+    <span>Yom Kippur / atonement / scapegoat / Temple</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <h2 class="record-title">
+        Yom Kippur
+      </h2>
+
+      <p>
+        Yom Kippur is the Jewish Day of Atonement and is the
+        culmination of the High Holy Days.
+      </p>
+
+      <p>
+        The biblical description of the ancient Yom Kippur ritual
+        appears in Leviticus 16.
+      </p>
+
+      <p>
+        Two goats were selected.
+      </p>
+
+      <p>
+        One was designated as an offering.
+        The other became associated with the ritual later known
+        through English as the scapegoat.
+      </p>
+
+      <p>
+        The high priest symbolically placed the sins of the
+        community upon the second goat and sent it into the wilderness.
+      </p>
+
+      <p>
+        The modern English word scapegoat developed through
+        translations of this passage.
+      </p>
+
+      <div class="side-note">
+        TWO GOATS
+        <br>
+        ONE OFFERING
+        <br>
+        ONE SENT AWAY
+        <br>
+        LEVITICUS 16
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Textual sources
+        </div>
+
+        <a
+          href="https://www.sefaria.org/Leviticus.16"
+          target="_blank"
+          rel="noopener"
+        >
+          Sefaria — Leviticus 16
+        </a>
+
+        <a
+          href="https://www.britannica.com/topic/Yom-Kippur"
+          target="_blank"
+          rel="noopener"
+        >
+          Encyclopaedia Britannica — Yom Kippur
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <article class="record">
+
+      <h2 class="record-title">
+        Temple
+      </h2>
+
+      <p>
+        The ancient Jerusalem Temple occupied the center of
+        Jewish sacrificial worship.
+      </p>
+
+      <p>
+        The destruction of the Second Temple by Rome in 70 CE
+        fundamentally changed Jewish religious life.
+      </p>
+
+      <p>
+        Rabbinic Judaism developed without the Temple sacrificial
+        system and placed greater emphasis on prayer
+        Torah study
+        repentance
+        charity
+        and communal religious practice.
+      </p>
+
+      <p>
+        The Temple remains central to Jewish historical memory
+        and to religious traditions concerning Jerusalem.
+      </p>
+
+    </article>
 
   </div>
 
@@ -1273,139 +2526,111 @@ body {
      NAMES
      ======================================================= -->
 
-<section class="section" id="names">
+<section
+  class="section"
+  id="names"
+>
 
   <div class="section-title">
     NAMES
-    <span>people connected to the record</span>
+    <span>people who appear repeatedly in the record</span>
   </div>
 
   <div class="section-body">
 
-    <div class="link-list">
+    <div class="index-grid">
 
-      <div>
-        <a href="#">David Ben-Gurion</a>
-        <div class="link-description">
-          first prime minister of Israel
+      <div class="index-item">
+        <a href="#1948">
+          David Ben-Gurion
+        </a>
+        <div class="index-description">
+          Israeli independence declaration / first prime minister
         </div>
       </div>
 
-      <div>
-        <a href="#">Golda Meir</a>
-        <div class="link-description">
-          prime minister during the 1973 war
+      <div class="index-item">
+        <a href="#1956">
+          Gamal Abdel Nasser
+        </a>
+        <div class="index-description">
+          Egyptian president / Suez Crisis
         </div>
       </div>
 
-      <div>
-        <a href="#">Moshe Dayan</a>
-        <div class="link-description">
-          defense minister during the 1973 war
+      <div class="index-item">
+        <a href="#1973">
+          Golda Meir
+        </a>
+        <div class="index-description">
+          Israeli prime minister during Yom Kippur War
         </div>
       </div>
 
-      <div>
-        <a href="#">Menachem Begin</a>
-        <div class="link-description">
-          prime minister and peace negotiator
+      <div class="index-item">
+        <a href="#1973">
+          Moshe Dayan
+        </a>
+        <div class="index-description">
+          Israeli defense minister
         </div>
       </div>
 
-      <div>
-        <a href="#">Yitzhak Rabin</a>
-        <div class="link-description">
-          prime minister and former chief of staff
+      <div class="index-item">
+        <a href="#1982">
+          Menachem Begin
+        </a>
+        <div class="index-description">
+          Israeli prime minister during Lebanon War
         </div>
       </div>
 
-      <div>
-        <a href="#">Ariel Sharon</a>
-        <div class="link-description">
-          military commander and prime minister
+      <div class="index-item">
+        <a href="#1993">
+          Yitzhak Rabin
+        </a>
+        <div class="index-description">
+          Israeli prime minister / Oslo
         </div>
       </div>
 
-      <div>
-        <a href="#">Benjamin Netanyahu</a>
-        <div class="link-description">
-          Israeli prime minister
+      <div class="index-item">
+        <a href="#1982">
+          Ariel Sharon
+        </a>
+        <div class="index-description">
+          defense minister during Lebanon War
         </div>
       </div>
 
-      <div>
-        <a href="#">Henry Kissinger</a>
-        <div class="link-description">
-          U.S. secretary of state during the 1973 war
+      <div class="index-item">
+        <a href="#washington">
+          Henry Kissinger
+        </a>
+        <div class="index-description">
+          U.S. secretary of state / 1973 diplomacy
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#1973">
+          Anwar Sadat
+        </a>
+        <div class="index-description">
+          Egyptian president / Yom Kippur War / peace treaty
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#gaza">
+          Benjamin Netanyahu
+        </a>
+        <div class="index-description">
+          Israeli prime minister across multiple periods
         </div>
       </div>
 
     </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     CONSPIRACY
-     ======================================================= -->
-
-<section class="section" id="conspiracy">
-
-  <div class="section-title">
-    THEORIES
-    <span>claims / evidence / contradiction</span>
-  </div>
-
-  <div class="section-body">
-
-    <p>
-      Some conspiracy claims concerning Israel and Jews allege
-      secret control of governments
-      banking
-      media
-      wars
-      intelligence agencies
-      or international institutions.
-    </p>
-
-    <p>
-      Similar claims have appeared for centuries in different forms.
-      Some derive from older antisemitic myths such as the fabricated
-      Protocols of the Elders of Zion.
-    </p>
-
-    <p>
-      Other claims concern specific Israeli governments
-      intelligence operations
-      military decisions
-      lobbying organizations
-      or documented political relationships.
-    </p>
-
-    <p>
-      Those categories should not be treated as interchangeable.
-      A specific documented action by an Israeli institution
-      is evidence about that institution.
-      It is not evidence that Jews as a group secretly control events.
-    </p>
-
-    <blockquote>
-      A coincidence is not a connection.
-      A connection is not a conspiracy.
-      A conspiracy requires evidence of an agreement or coordinated action.
-    </blockquote>
-
-    <p>
-      <a
-        href="https://www.adl.org/resources/report/antisemitic-environment-how-social-and-media-exposures-predict-antisemitic-beliefs"
-        target="_blank"
-        rel="noopener"
-      >
-        Research concerning antisemitic conspiracy beliefs
-      </a>
-    </p>
 
   </div>
 
@@ -1416,18 +2641,56 @@ body {
      DOCUMENTS
      ======================================================= -->
 
-<section class="section" id="documents">
+<section
+  class="section"
+  id="documents"
+>
 
   <div class="section-title">
     DOCUMENTS
-    <span>original sources</span>
+    <span>primary records and institutional sources</span>
   </div>
 
   <div class="section-body">
 
-    <div class="link-list">
+    <article class="record">
 
-      <div>
+      <h2 class="record-title">
+        The Document Trail
+      </h2>
+
+      <p>
+        The historical record becomes considerably more useful
+        when the original document can be located.
+      </p>
+
+      <p>
+        Cabinet minutes
+        diplomatic cables
+        congressional records
+        United Nations resolutions
+        intelligence assessments
+        court opinions
+        treaties
+        military reports
+        election records
+        and archival newspapers provide different pieces of the record.
+      </p>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Government and institutional archives
+        </div>
+
+        <a
+          href="https://history.state.gov/historicaldocuments"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Department of State — Historical Documents
+        </a>
+
         <a
           href="https://www.archives.gov/"
           target="_blank"
@@ -1436,26 +2699,14 @@ body {
           U.S. National Archives
         </a>
 
-        <div class="link-description">
-          government records
-        </div>
-      </div>
-
-      <div>
         <a
-          href="https://www.congress.gov/"
+          href="https://www.un.org/en/sections/documents/"
           target="_blank"
           rel="noopener"
         >
-          Congress.gov
+          United Nations — Documents
         </a>
 
-        <div class="link-description">
-          legislation and congressional records
-        </div>
-      </div>
-
-      <div>
         <a
           href="https://www.icj-cij.org/"
           target="_blank"
@@ -1464,298 +2715,366 @@ body {
           International Court of Justice
         </a>
 
-        <div class="link-description">
-          international legal proceedings
-        </div>
-      </div>
-
-      <div>
         <a
-          href="https://www.justice.gov/"
+          href="https://www.fec.gov/data/"
           target="_blank"
           rel="noopener"
         >
-          U.S. Department of Justice
+          Federal Election Commission — Data
         </a>
 
-        <div class="link-description">
-          federal cases and prosecutions
+        <a
+          href="https://lda.senate.gov/system/public/"
+          target="_blank"
+          rel="noopener"
+        >
+          U.S. Senate — Lobbying Disclosure
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     THE PROTOCOLS
+     ======================================================= -->
+
+<section
+  class="section"
+  id="protocols"
+>
+
+  <div class="section-title">
+    1903
+    <span>Protocols of the Elders of Zion</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <div class="record-date">
+        RUSSIAN EMPIRE
+      </div>
+
+      <h2 class="record-title">
+        The Forged Document
+      </h2>
+
+      <p>
+        The Protocols of the Elders of Zion was published in
+        Russia beginning in 1903.
+      </p>
+
+      <p>
+        It purported to record secret meetings of Jewish leaders
+        planning to control governments
+        financial systems
+        media
+        education
+        and international affairs.
+      </p>
+
+      <p>
+        The purported meetings never occurred.
+      </p>
+
+      <p>
+        Investigations established that substantial portions of
+        the text were plagiarized from earlier works of political
+        satire including Maurice Joly's 1864 Dialogue in Hell
+        Between Machiavelli and Montesquieu.
+      </p>
+
+      <p>
+        The document nevertheless became one of the most widely
+        circulated antisemitic texts of the twentieth century.
+      </p>
+
+      <p>
+        Its importance to the historical record is not that the
+        conspiracy described in it occurred.
+      </p>
+
+      <p>
+        Its importance is that a fabricated document was repeatedly
+        treated as evidence of a nonexistent international conspiracy.
+      </p>
+
+      <div class="side-note">
+        A DOCUMENT CAN EXIST WITHOUT THE EVENTS DESCRIBED IN THE DOCUMENT
+        EVER HAVING OCCURRED.
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Historical documentation
+        </div>
+
+        <a
+          href="https://encyclopedia.ushmm.org/content/en/article/protocols-of-the-elders-of-zion"
+          target="_blank"
+          rel="noopener"
+        >
+          United States Holocaust Memorial Museum — The Protocols
+        </a>
+
+        <a
+          href="https://encyclopedia.ushmm.org/content/en/article/protocols-of-the-elders-of-zion-key-dates"
+          target="_blank"
+          rel="noopener"
+        >
+          United States Holocaust Memorial Museum — Key Dates
+        </a>
+
+        <a
+          href="https://encyclopedia.ushmm.org/content/en/gallery/protocols-of-the-elders-of-zion-artifacts"
+          target="_blank"
+          rel="noopener"
+        >
+          United States Holocaust Memorial Museum — Document Artifacts
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     CONSPIRACY RECORD
+     ======================================================= -->
+
+<section
+  class="section"
+  id="conspiracy"
+>
+
+  <div class="section-title">
+    CLAIMS
+    <span>names / documents / operations / conclusions</span>
+  </div>
+
+  <div class="section-body">
+
+    <article class="record">
+
+      <h2 class="record-title">
+        Where the Record Becomes Difficult
+      </h2>
+
+      <p>
+        There are documented Israeli military operations.
+      </p>
+
+      <p>
+        There are documented intelligence operations.
+      </p>
+
+      <p>
+        There are documented covert agreements.
+      </p>
+
+      <p>
+        There are documented political relationships between
+        Israel and the United States.
+      </p>
+
+      <p>
+        There are documented lobbying organizations.
+      </p>
+
+      <p>
+        There are documented cases involving Israeli officials
+        intelligence personnel military personnel and companies.
+      </p>
+
+      <p>
+        There are documented wars and documented civilian deaths.
+      </p>
+
+      <p>
+        There are also claims that extend beyond those records.
+      </p>
+
+      <p>
+        The difference matters.
+      </p>
+
+      <p>
+        The Suez Crisis provides an example of a genuine secret
+        agreement involving Israel Britain and France.
+      </p>
+
+      <p>
+        The existence of that agreement does not establish that
+        every later theory about secret Israeli control of unrelated
+        governments is true.
+      </p>
+
+      <p>
+        The distinction is not about whether governments conduct
+        secret operations.
+      </p>
+
+      <p>
+        They do.
+      </p>
+
+      <p>
+        The distinction is whether the particular claim has
+        evidence behind it.
+      </p>
+
+      <div class="side-note">
+        SÈVRES — DOCUMENTED
+        <br><br>
+        PROTOCOLS OF THE ELDERS OF ZION — FORGERY
+        <br><br>
+        THESE ARE NOT THE SAME KIND OF RECORD.
+      </div>
+
+      <div class="sources">
+
+        <div class="sources-title">
+          Compare the records
+        </div>
+
+        <a
+          href="https://history.state.gov/historicaldocuments/frus1955-57v16/d373"
+          target="_blank"
+          rel="noopener"
+        >
+          FRUS — Sèvres Agreement
+        </a>
+
+        <a
+          href="https://encyclopedia.ushmm.org/content/en/article/protocols-of-the-elders-of-zion"
+          target="_blank"
+          rel="noopener"
+        >
+          USHMM — Protocols
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     INDEX
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="section-title">
+    INDEX
+    <span>follow the links</span>
+  </div>
+
+  <div class="section-body">
+
+    <div class="index-grid">
+
+      <div class="index-item">
+        <a href="#1948">1948</a>
+        <div class="index-description">
+          declaration / war / armistice
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#1956">1956</a>
+        <div class="index-description">
+          Suez / secret agreement
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#1967">1967</a>
+        <div class="index-description">
+          six day war / occupation
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#1973">1973</a>
+        <div class="index-description">
+          Yom Kippur / U.S. airlift
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#1982">1982</a>
+        <div class="index-description">
+          Lebanon / Sabra and Shatila
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#1993">1993</a>
+        <div class="index-description">
+          Oslo
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#gaza">2023</a>
+        <div class="index-description">
+          October 7 / Gaza war
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#washington">Washington</a>
+        <div class="index-description">
+          aid / diplomacy / politics
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#intelligence">Intelligence</a>
+        <div class="index-description">
+          Mossad / Shin Bet / military intelligence
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#religion">Religion</a>
+        <div class="index-description">
+          Yom Kippur / Temple / scapegoat
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#protocols">1903</a>
+        <div class="index-description">
+          Protocols of the Elders of Zion
+        </div>
+      </div>
+
+      <div class="index-item">
+        <a href="#documents">Documents</a>
+        <div class="index-description">
+          primary sources
         </div>
       </div>
 
     </div>
 
-    <blockquote>
-      Read the original document before reading what somebody says
-      the document means.
-    </blockquote>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     LIVING LOG
-     ======================================================= -->
-
-<section class="section">
-
-  <div class="section-title">
-    NOTES
-    <span>names / dates / fragments</span>
-  </div>
-
-  <div class="section-body">
-
-    <div class="log">
-
-
-      <article class="log-entry">
-
-        <h3>
-          01 // THE RELATIONSHIP
-        </h3>
-
-        <p>
-          Jerusalem
-          Washington
-          intelligence
-          military assistance
-          diplomacy
-          elections
-          lobbying
-          weapons
-          money
-          votes
-          sanctions
-          treaties
-        </p>
-
-        <p>
-          Nothing about a relationship makes every event within it
-          part of one plan.
-        </p>
-
-        <p class="margin-note">
-          Find the agreement.
-          Find the date.
-          Find the people who signed it.
-        </p>
-
-      </article>
-
-
-      <article class="log-entry">
-
-        <h3>
-          02 // THE WAR
-        </h3>
-
-        <p>
-          1948
-          1956
-          1967
-          1973
-          1982
-          2006
-          2008
-          2014
-          2021
-          2023
-        </p>
-
-        <p>
-          Different wars.
-          Different governments.
-          Different causes.
-          Different participants.
-        </p>
-
-        <p>
-          The temptation is to compress them into one story.
-          The record is usually less convenient.
-        </p>
-
-      </article>
-
-
-      <article class="log-entry">
-
-        <h3>
-          03 // YOM KIPPUR
-        </h3>
-
-        <p>
-          A day of fasting.
-          A day of prayer.
-          A day of atonement.
-        </p>
-
-        <p>
-          October 6 1973.
-          Egypt attacks.
-          Syria attacks.
-          Israel mobilizes.
-        </p>
-
-        <p class="margin-note">
-          The calendar becomes part of the historical record.
-        </p>
-
-      </article>
-
-
-      <article class="log-entry">
-
-        <h3>
-          04 // JERUSALEM
-        </h3>
-
-        <p>
-          Temple.
-          Wall.
-          Mount.
-          Dome.
-          Mosque.
-          Kingdom.
-          Exile.
-          Return.
-          Mandate.
-          War.
-          State.
-        </p>
-
-        <p>
-          Thousands of years compressed into one city.
-        </p>
-
-      </article>
-
-
-      <article class="log-entry">
-
-        <h3>
-          05 // THE MISSING PAGE
-        </h3>
-
-        <p>
-          A missing page is a missing page.
-        </p>
-
-        <p>
-          It is not automatically proof of censorship.
-        </p>
-
-        <p>
-          But it is still missing.
-        </p>
-
-        <p class="red-note">
-          FIND THE ORIGINAL.
-        </p>
-
-      </article>
-
-
-      <article class="log-entry">
-
-        <h3>
-          06 // THE NAME
-        </h3>
-
-        <p>
-          Israel is a state.
-          Israelis are not a single political opinion.
-          Jews are a worldwide religious and cultural population.
-        </p>
-
-        <p>
-          Governments can be criticized.
-          Military operations can be investigated.
-          Political organizations can be examined.
-          Historical claims can be challenged.
-        </p>
-
-        <p>
-          None of those facts require attributing the actions of
-          particular institutions to Jews as a whole.
-        </p>
-
-      </article>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     FINAL FILE
-     ======================================================= -->
-
-<section class="section">
-
-  <div class="section-title">
-    FINAL ENTRY
-    <span>no conclusion</span>
-  </div>
-
-  <div class="section-body">
-
-    <p>
-      Israel.
-    </p>
-
-    <p>
-      Jerusalem.
-    </p>
-
-    <p>
-      Gaza.
-    </p>
-
-    <p>
-      Washington.
-    </p>
-
-    <p>
-      Sinai.
-    </p>
-
-    <p>
-      Lebanon.
-    </p>
-
-    <p>
-      Iran.
-    </p>
-
-    <p>
-      Mossad.
-    </p>
-
-    <p>
-      Yom Kippur.
-    </p>
-
-    <p>
-      1948.
-      1967.
-      1973.
-      1982.
-      2001.
-      2023.
-    </p>
-
-    <p class="margin-note">
-      The dates are real.
-      The documents are real.
-      The unanswered questions are where the work begins.
-    </p>
-
   </div>
 
 </section>
@@ -1765,7 +3084,7 @@ body {
 
 
 <!-- =======================================================
-     RIGHT
+     RIGHT COLUMN
      ======================================================= -->
 
 <aside class="right-column">
@@ -1774,7 +3093,7 @@ body {
 <div class="box">
 
   <div class="box-title red">
-    RECENT FILES
+    LATEST
   </div>
 
   <div class="box-content">
@@ -1782,47 +3101,71 @@ body {
     <div class="news-item">
 
       <div class="news-date">
-        09/22/2026
-      </div>
-
-      <a href="#conspiracy">
-        Conspiracy Claims
-      </a>
-
-    </div>
-
-    <div class="news-item">
-
-      <div class="news-date">
-        09/22/2026
-      </div>
-
-      <a href="#documents">
-        Government Records
-      </a>
-
-    </div>
-
-    <div class="news-item">
-
-      <div class="news-date">
-        09/21/2026
-      </div>
-
-      <a href="#1973">
-        Yom Kippur War
-      </a>
-
-    </div>
-
-    <div class="news-item">
-
-      <div class="news-date">
-        09/20/2026
+        2024
       </div>
 
       <a href="#gaza">
+        Gaza / ICJ
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        2023
+      </div>
+
+      <a href="#gaza">
+        October 7
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        2007
+      </div>
+
+      <a href="#2007">
         Gaza
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        1993
+      </div>
+
+      <a href="#1993">
+        Oslo
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        1982
+      </div>
+
+      <a href="#1982">
+        Lebanon
+      </a>
+
+    </div>
+
+    <div class="news-item">
+
+      <div class="news-date">
+        1973
+      </div>
+
+      <a href="#1973">
+        Yom Kippur
       </a>
 
     </div>
@@ -1835,99 +3178,54 @@ body {
 <div class="box">
 
   <div class="box-title blue">
-    QUICK READ
+    QUICK INDEX
   </div>
 
   <div class="box-content">
 
     <a href="#1948">
-      1948
+      Independence
+    </a>
+
+    <a href="#1956">
+      Suez
     </a>
 
     <a href="#1967">
-      1967
+      Six Day War
     </a>
 
     <a href="#1973">
-      1973
+      Yom Kippur
     </a>
 
     <a href="#1982">
-      1982
-    </a>
-
-    <a href="#gaza">
-      Gaza
+      Lebanon
     </a>
 
     <a href="#jerusalem">
       Jerusalem
     </a>
 
+    <a href="#gaza">
+      Gaza
+    </a>
+
+    <a href="#washington">
+      Washington
+    </a>
+
     <a href="#intelligence">
       Intelligence
     </a>
 
-  </div>
+    <a href="#religion">
+      Religion
+    </a>
 
-</div>
-
-
-<div class="box strange">
-
-  <div class="box-title">
-    FRAGMENTS
-  </div>
-
-  <div class="box-content">
-
-    <p>
-      1948
-    </p>
-
-    <p>
-      1967
-    </p>
-
-    <p>
-      Yom Kippur
-    </p>
-
-    <p>
-      Jerusalem
-    </p>
-
-    <p>
-      Temple Mount
-    </p>
-
-    <p>
-      Gaza
-    </p>
-
-    <p>
-      Lebanon
-    </p>
-
-    <p>
-      Washington
-    </p>
-
-    <p>
-      Mossad
-    </p>
-
-    <p>
-      Sinai
-    </p>
-
-    <p>
-      Golan
-    </p>
-
-    <p>
-      Iran
-    </p>
+    <a href="#protocols">
+      Protocols
+    </a>
 
   </div>
 
@@ -1937,6 +3235,120 @@ body {
 <div class="box">
 
   <div class="box-title gold">
+    FRAGMENTS
+  </div>
+
+  <div class="box-content">
+
+    <p>
+      181
+    </p>
+
+    <p>
+      1948
+    </p>
+
+    <p>
+      SÈVRES
+    </p>
+
+    <p>
+      1967
+    </p>
+
+    <p>
+      242
+    </p>
+
+    <p>
+      YOM KIPPUR
+    </p>
+
+    <p>
+      1973
+    </p>
+
+    <p>
+      LEBANON
+    </p>
+
+    <p>
+      OSLO
+    </p>
+
+    <p>
+      GAZA
+    </p>
+
+    <p>
+      JERUSALEM
+    </p>
+
+    <p>
+      MOSSAD
+    </p>
+
+  </div>
+
+</div>
+
+
+<div class="box">
+
+  <div class="box-title">
+    DATES
+  </div>
+
+  <div class="box-content">
+
+    <div class="news-item">
+      1947 — Resolution 181
+    </div>
+
+    <div class="news-item">
+      1948 — Israel declared
+    </div>
+
+    <div class="news-item">
+      1956 — Suez
+    </div>
+
+    <div class="news-item">
+      1967 — Six Day War
+    </div>
+
+    <div class="news-item">
+      1973 — Yom Kippur
+    </div>
+
+    <div class="news-item">
+      1982 — Lebanon
+    </div>
+
+    <div class="news-item">
+      1993 — Oslo
+    </div>
+
+    <div class="news-item">
+      2005 — Gaza withdrawal
+    </div>
+
+    <div class="news-item">
+      2007 — Hamas control of Gaza
+    </div>
+
+    <div class="news-item">
+      2023 — October 7
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="box">
+
+  <div class="box-title red">
     ONE QUESTION
   </div>
 
@@ -1947,15 +3359,23 @@ body {
     </p>
 
     <p>
-      Who said it happened?
+      When?
     </p>
 
     <p>
-      When did they say it?
+      Who said it?
     </p>
 
     <p>
-      What document proves it?
+      Where is the document?
+    </p>
+
+    <p>
+      Who had access?
+    </p>
+
+    <p>
+      What happened next?
     </p>
 
   </div>
@@ -1969,6 +3389,10 @@ body {
 </main>
 
 
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+
 <footer class="footer">
 
   <div>
@@ -1978,15 +3402,19 @@ body {
   <br>
 
   <div>
-    <a href="#israel">Israel</a>
+    <a href="#1948">1948</a>
     |
-    <a href="#wars">Wars</a>
+    <a href="#1967">1967</a>
     |
-    <a href="#gaza">Gaza</a>
+    <a href="#1973">1973</a>
     |
-    <a href="#jerusalem">Jerusalem</a>
+    <a href="#1982">1982</a>
     |
-    <a href="#documents">Documents</a>
+    <a href="#gaza">GAZA</a>
+    |
+    <a href="#jerusalem">JERUSALEM</a>
+    |
+    <a href="#documents">DOCUMENTS</a>
   </div>
 
 </footer>
@@ -2057,13 +3485,12 @@ searchInput.addEventListener(
 
 
 /* =========================================================
-   HIDDEN KEYWORD
+   KEYWORD
    ========================================================= */
 
 let keyBuffer = "";
 
-const hiddenKeyword =
-  "node04";
+const secretWord = "node04";
 
 
 document.addEventListener(
@@ -2087,18 +3514,18 @@ document.addEventListener(
 
     if (
       keyBuffer.length >
-      hiddenKeyword.length
+      secretWord.length
     ) {
 
       keyBuffer =
         keyBuffer.slice(
-          -hiddenKeyword.length
+          -secretWord.length
         );
 
     }
 
     if (
-      keyBuffer === hiddenKeyword
+      keyBuffer === secretWord
     ) {
 
       const panel =
@@ -2110,7 +3537,7 @@ document.addEventListener(
       panel.style.transform =
         "translate(-50%, -50%)";
       panel.style.width =
-        "min(500px, 90vw)";
+        "min(520px, 90vw)";
       panel.style.background =
         "#ffffcc";
       panel.style.border =
@@ -2118,27 +3545,38 @@ document.addEventListener(
       panel.style.padding =
         "15px";
       panel.style.zIndex =
-        "10000";
+        "99999";
       panel.style.fontFamily =
         "Arial, Helvetica, sans-serif";
       panel.style.fontSize =
         "12px";
       panel.style.color =
         "#222";
+      panel.style.boxShadow =
+        "0 5px 25px rgba(0,0,0,.35)";
 
       panel.innerHTML =
-        "<strong>04</strong>" +
+
+        "<strong>FILE 04</strong>" +
+
         "<br><br>" +
+
         "1948" +
+        "<br>" +
+        "1956" +
         "<br>" +
         "1967" +
         "<br>" +
         "1973" +
         "<br>" +
         "1982" +
+
         "<br><br>" +
-        "THE DATES REMAIN." +
+
+        "SÈVRES" +
+
         "<br><br>" +
+
         "<a href='#' id='closePanel'>close</a>";
 
       document.body.appendChild(
