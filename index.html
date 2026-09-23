@@ -495,6 +495,113 @@ a:hover {
   color: #174ea6;
 }
 
+
+/* =========================================================
+   VIDEO ARCHIVE / LAZY LOADING
+   ========================================================= */
+
+.video-archive {
+  margin: 9px 0;
+  border: 1px solid #aaa;
+  background: #fff;
+}
+
+.video-archive summary {
+  padding: 7px 9px;
+  background: linear-gradient(to right, #4b0082, #174ea6 50%, #b00000);
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.video-archive summary::-webkit-details-marker {
+  display: none;
+}
+
+.video-archive summary::after {
+  content: " ▼";
+  float: right;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+.video-archive[open] summary::after {
+  content: " ▲";
+}
+
+.video-archive-body {
+  padding: 9px;
+}
+
+.video-record {
+  margin: 0 0 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px dotted #999;
+}
+
+.video-record:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.video-record-title {
+  margin: 2px 0 6px;
+  color: #4b0082;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+}
+
+.video-record-meta {
+  color: #b00000;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 10px;
+  background: #111;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  padding: 20px;
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #555;
+  text-align: center;
+}
+
+.video-note {
+  margin-top: 8px;
+  padding: 7px;
+  border: 1px solid #c4aa00;
+  background: #ffffcc;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .video-frame {
+    aspect-ratio: 16 / 10;
+  }
+}
+
 /* =========================================================
    MOBILE
    ========================================================= */
@@ -2523,6 +2630,320 @@ a:hover {
 
 
 <!-- =======================================================
+     VIDEO RECORDS
+     ======================================================= -->
+
+<section
+  class="section"
+  id="video-records"
+>
+
+  <div class="section-title">
+    VIDEO RECORDS
+    <span>religious practices / pilgrimage / disputed claims</span>
+  </div>
+
+  <div class="section-body">
+
+    <p>
+      The videos below are preserved as individual records. The
+      descriptions identify what each video is about without treating
+      the claims or practices shown in a video as representative of
+      Jews as a whole. Some practices are associated with particular
+      Orthodox or Hasidic communities rather than Judaism generally.
+    </p>
+
+    <details class="video-archive">
+
+      <summary>OPEN VIDEO ARCHIVE</summary>
+
+      <div class="video-archive-body">
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            SEPTEMBER 2026 • DOCUMENTARY / INVESTIGATION
+          </div>
+
+          <h2 class="video-record-title">
+            I Exposed a Jewish Fraud Ring Stealing From Poor Kids
+          </h2>
+
+          <p>
+            Tyler Oliveira's documentary concerning allegations and
+            public-record material involving Hasidic Jewish communities
+            in New York and New Jersey. The title states a conclusion;
+            the underlying video includes records and interviews.
+            Claims should be evaluated against the documents and responses
+            presented in the video rather than generalized to Jewish people
+            as a group.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-placeholder">
+              Video loads when this archive is opened.
+            </div>
+          </div>
+
+          <div
+            class="video-frame-source"
+            data-video-src="https://www.youtube-nocookie.com/embed/05FZam5JTTs?rel=0"
+            hidden
+          ></div>
+
+        </article>
+
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            KAPPAROT • YOM KIPPUR
+          </div>
+
+          <h2 class="video-record-title">
+            Kapparot
+          </h2>
+
+          <p>
+            A video documenting the kapparot custom, in which a live
+            chicken may be waved over a person's head before Yom Kippur
+            and then slaughtered and donated. Kapparot is practiced by
+            some Jews and is not a universal Jewish practice.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-placeholder">
+              Video loads when this archive is opened.
+            </div>
+          </div>
+
+          <div
+            class="video-frame-source"
+            data-video-src="https://www.youtube-nocookie.com/embed/jofvvb438Ug?rel=0"
+            hidden
+          ></div>
+
+          <div class="video-note">
+            The custom has also been performed with money instead of
+            animals. Jewish authorities and communities have differed
+            over the practice for centuries.
+          </div>
+
+        </article>
+
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            KAPPAROT • NEW YORK • 2024
+          </div>
+
+          <h2 class="video-record-title">
+            Kapparot in Brooklyn, New York
+          </h2>
+
+          <p>
+            Footage documenting kapparot in Crown Heights and Williamsburg
+            in Brooklyn. The video presents the live-chicken form of the
+            custom and also discusses the alternative use of money.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-placeholder">
+              Video loads when this archive is opened.
+            </div>
+          </div>
+
+          <div
+            class="video-frame-source"
+            data-video-src="https://www.youtube-nocookie.com/embed/XE6ovtgc8mo?rel=0"
+            hidden
+          ></div>
+
+        </article>
+
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            ROSH HASHANAH • UMAN • HASIDIC PILGRIMAGE
+          </div>
+
+          <h2 class="video-record-title">
+            Thousands of Jews Celebrate Rosh Hashanah in Uman, Ukraine
+          </h2>
+
+          <p>
+            Footage of the annual Rosh Hashanah pilgrimage to Uman, Ukraine,
+            where Breslov Hasidim gather at the grave of Rabbi Nachman of
+            Breslov. The pilgrimage is associated with a particular Hasidic
+            movement and should not be treated as a practice of Judaism as a whole.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-placeholder">
+              Video loads when this archive is opened.
+            </div>
+          </div>
+
+          <div
+            class="video-frame-source"
+            data-video-src="https://www.youtube-nocookie.com/embed/QsM_DGiICjE?rel=0"
+            hidden
+          ></div>
+
+        </article>
+
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            ROSH HASHANAH • UMAN • 2019
+          </div>
+
+          <h2 class="video-record-title">
+            Tens of Thousands of Chasidic Pilgrims Celebrate Rosh Hashanah in Uman
+          </h2>
+
+          <p>
+            Additional footage of the Uman pilgrimage, showing the scale of
+            the gathering and religious activity around the annual visit to
+            Rabbi Nachman's gravesite.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-placeholder">
+              Video loads when this archive is opened.
+            </div>
+          </div>
+
+          <div
+            class="video-frame-source"
+            data-video-src="https://www.youtube-nocookie.com/embed/5B9YrNF2Hdc?rel=0"
+            hidden
+          ></div>
+
+        </article>
+
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            TORAH / AMALEK • RABBI DANIEL ROWE • 2019
+          </div>
+
+          <h2 class="video-record-title">
+            Understanding Torah's Command to Wipe Out Amalek
+          </h2>
+
+          <p>
+            An interview with Rabbi Daniel Rowe about the biblical command
+            concerning Amalek. The video is useful for documenting how a
+            contemporary rabbi explains the difficult passages and how he
+            distinguishes the ancient Amalekites from people living today.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-placeholder">
+              Video loads when this archive is opened.
+            </div>
+          </div>
+
+          <div
+            class="video-frame-source"
+            data-video-src="https://www.youtube-nocookie.com/embed/XeycQX4H2V8?rel=0"
+            hidden
+          ></div>
+
+          <div class="video-note">
+            The biblical passages discussed concern the ancient Amalekite
+            nation. They should not be presented as evidence that Jews as a
+            whole advocate violence against contemporary populations.
+          </div>
+
+        </article>
+
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            ISRAEL / AMALEK • BENJAMIN NETANYAHU • OCTOBER 28 2023
+          </div>
+
+          <h2 class="video-record-title">
+            Israeli Prime Minister Invokes Amalek in a Wartime Address
+          </h2>
+
+          <p>
+            Archival footage of Benjamin Netanyahu's October 28, 2023 address,
+            in which he quoted the biblical phrase “Remember what Amalek did
+            to you.” The record is included because the reference became a
+            subject of public and legal controversy during the Gaza war. The
+            quotation itself should be distinguished from claims about what
+            Netanyahu intended it to mean.
+          </p>
+
+          <div class="video-frame">
+            <div class="video-placeholder">
+              Video loads when this archive is opened.
+            </div>
+          </div>
+
+          <div
+            class="video-frame-source"
+            data-video-src="https://www.youtube-nocookie.com/embed/pMVs7akyMh0?rel=0"
+            hidden
+          ></div>
+
+          <div class="video-note">
+            Contemporary reporting notes that Netanyahu quoted Deuteronomy
+            25:17 rather than the separate 1 Samuel 15:3 passage describing
+            the destruction of Amalek.
+          </div>
+
+        </article>
+
+
+        <article class="video-record">
+
+          <div class="video-record-meta">
+            SEARCH RECORD • STATEMENTS / TORAH / AMALEK
+          </div>
+
+          <h2 class="video-record-title">
+            Statements Concerning Amalek, War and Biblical Commands
+          </h2>
+
+          <p>
+            No specific video is embedded here without a verifiable source
+            for the exact statement being attributed to a particular rabbi
+            or speaker. Use the search record below to locate videos, then
+            check the speaker, date, full quotation and context before treating
+            a clipped statement as evidence of a broader religious teaching.
+          </p>
+
+          <p>
+            <a
+              href="https://www.youtube.com/results?search_query=rabbi+Amalek+children+Torah+statement"
+              target="_blank"
+              rel="noopener"
+            >
+              YouTube search — rabbi / Amalek / children / Torah statements
+            </a>
+          </p>
+
+        </article>
+
+      </div>
+
+    </details>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
      NAMES
      ======================================================= -->
 
@@ -3451,8 +3872,17 @@ function performSearch() {
     return;
   }
 
-  window.location.href =
-    "https://www.reuters.com/world/middle-east/gazas-wasteland-seen-via-bicycle-after-six-months-war-2024-04-04/";
+  queryDisplay.textContent =
+    query;
+
+  searchResults.classList.add(
+    "visible"
+  );
+
+  searchResults.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
 
 }
 
@@ -3473,6 +3903,59 @@ searchInput.addEventListener(
 
   }
 );
+
+
+/* =========================================================
+   LAZY-LOADED VIDEO ARCHIVE
+   ========================================================= */
+
+const videoArchive =
+  document.querySelector(".video-archive");
+
+if (videoArchive) {
+
+  videoArchive.addEventListener("toggle", function() {
+
+    if (!videoArchive.open) {
+      return;
+    }
+
+    const sources =
+      videoArchive.querySelectorAll(".video-frame-source");
+
+    sources.forEach(function(source) {
+
+      if (source.dataset.loaded === "true") {
+        return;
+      }
+
+      const frame =
+        source.previousElementSibling;
+
+      if (!frame) {
+        return;
+      }
+
+      const iframe =
+        document.createElement("iframe");
+
+      iframe.src = source.dataset.videoSrc;
+      iframe.title = "YouTube video";
+      iframe.loading = "lazy";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+
+      frame.innerHTML = "";
+      frame.appendChild(iframe);
+
+      source.dataset.loaded = "true";
+
+    });
+
+  });
+
+}
 
 
 /* =========================================================
