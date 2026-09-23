@@ -1,0 +1,701 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NODE_04</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: #000;
+      color: #4cff78;
+      font-family: "Courier New", Courier, monospace;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    /* Subtle CRT scanlines */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.018) 0px,
+          rgba(255, 255, 255, 0.018) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+
+      opacity: 0.35;
+    }
+
+    /* Very subtle green screen glow */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9;
+
+      box-shadow:
+        inset 0 0 100px rgba(0, 255, 80, 0.025);
+
+      opacity: 0.8;
+    }
+
+    .terminal {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 28px;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .terminal-content {
+      width: 100%;
+      max-width: 760px;
+
+      font-size: 14px;
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+
+    .line {
+      min-height: 24px;
+      white-space: pre-wrap;
+    }
+
+    .dim {
+      color: #285f38;
+    }
+
+    .faint {
+      color: #183a24;
+    }
+
+    .warning {
+      color: #6cff8d;
+    }
+
+    .cursor {
+      display: inline-block;
+
+      width: 8px;
+      height: 16px;
+
+      margin-left: 3px;
+
+      vertical-align: -3px;
+
+      background: #4cff78;
+
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Hidden keyboard input used for the secret command */
+    .hidden-input {
+      position: fixed;
+
+      left: -9999px;
+      top: -9999px;
+
+      opacity: 0;
+    }
+
+    /* Secret area */
+    .secret {
+      display: none;
+      margin-top: 32px;
+      color: #4cff78;
+    }
+
+    .secret.visible {
+      display: block;
+    }
+
+    .secret a {
+      color: #4cff78;
+
+      text-decoration: none;
+
+      border-bottom: 1px solid #285f38;
+
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .secret a:hover {
+      color: #a7ffba;
+      border-color: #4cff78;
+    }
+
+    /*
+      FBI DATABASE SEARCH
+    */
+
+    .database {
+      display: none;
+
+      margin-top: 45px;
+
+      max-width: 620px;
+    }
+
+    .database.visible {
+      display: block;
+    }
+
+    .database-title {
+      margin-bottom: 18px;
+    }
+
+    .database-input-row {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+    }
+
+    .database-prompt {
+      white-space: nowrap;
+    }
+
+    #personSearch {
+      flex: 1;
+
+      min-width: 0;
+
+      background: transparent;
+
+      border: none;
+      border-bottom: 1px solid #285f38;
+
+      outline: none;
+
+      color: #4cff78;
+
+      font-family: "Courier New", Courier, monospace;
+
+      font-size: 14px;
+
+      padding: 5px 4px;
+    }
+
+    #personSearch:focus {
+      border-bottom-color: #4cff78;
+    }
+
+    #personSearch::placeholder {
+      color: #183a24;
+    }
+
+    .search-button {
+      background: transparent;
+
+      border: 1px solid #285f38;
+
+      color: #4cff78;
+
+      font-family: "Courier New", Courier, monospace;
+
+      font-size: 13px;
+
+      padding: 7px 12px;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .search-button:hover {
+      background: #4cff78;
+      color: #000;
+      border-color: #4cff78;
+    }
+
+    .search-status {
+      margin-top: 22px;
+
+      min-height: 72px;
+
+      color: #285f38;
+    }
+
+    .search-status .active {
+      color: #4cff78;
+    }
+
+    /*
+      Subtle random screen noise
+    */
+
+    .noise {
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      z-index: 8;
+
+      opacity: 0.025;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    @media (max-width: 600px) {
+
+      .terminal {
+        padding: 20px;
+      }
+
+      .terminal-content {
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .cursor {
+        width: 7px;
+        height: 14px;
+      }
+
+      .database-input-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .database-prompt {
+        white-space: normal;
+      }
+
+      #personSearch {
+        width: 100%;
+      }
+
+      .search-button {
+        align-self: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="noise"></div>
+
+  <main class="terminal">
+
+    <div class="terminal-content">
+
+      <!-- INITIAL TERMINAL -->
+
+      <div class="line" id="line1"></div>
+      <div class="line" id="line2"></div>
+      <div class="line" id="line3"></div>
+      <div class="line" id="line4"></div>
+      <div class="line" id="line5"></div>
+      <div class="line" id="line6"></div>
+
+
+      <!-- SECRET CONTINUE AREA -->
+
+      <div class="secret" id="secret">
+
+        <div class="line">
+          > ACCESS LEVEL: UNKNOWN
+        </div>
+
+        <div class="line">
+          > RECORD INDEX: <span class="dim">[REDACTED]</span>
+        </div>
+
+        <br>
+
+        <div class="line">
+          > THERE IS SOMETHING HERE.
+        </div>
+
+        <div class="line">
+          > YOU JUST HAVE TO FIND IT.
+        </div>
+
+        <br>
+
+        <div class="line">
+          > <a href="#" id="enterDatabase">[SEARCH DATABASE]</a>
+        </div>
+
+      </div>
+
+
+      <!-- FBI DATABASE SEARCH -->
+
+      <div class="database" id="database">
+
+        <div class="database-title">
+          > EXTERNAL DATABASE QUERY
+        </div>
+
+        <div class="line dim">
+          > SOURCE: FEDERAL BUREAU OF INVESTIGATION
+        </div>
+
+        <br>
+
+        <div class="database-input-row">
+
+          <span class="database-prompt">
+            > ENTER NAME:
+          </span>
+
+          <input
+            type="text"
+            id="personSearch"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder=""
+          >
+
+          <button
+            class="search-button"
+            id="searchButton"
+            type="button"
+          >
+            [ SEARCH ]
+          </button>
+
+        </div>
+
+        <div
+          class="search-status"
+          id="searchStatus"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- Hidden command input -->
+
+  <input
+    type="text"
+    id="hiddenInput"
+    class="hidden-input"
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
+  >
+
+
+  <script>
+
+    /*
+      INITIAL TERMINAL SEQUENCE
+    */
+
+    const lines = [
+      "> INITIALIZING...",
+      "> CONNECTION ESTABLISHED.",
+      "> NODE: 04",
+      "> STATUS: UNKNOWN",
+      "",
+      "> _"
+    ];
+
+    const elements = [
+      document.getElementById("line1"),
+      document.getElementById("line2"),
+      document.getElementById("line3"),
+      document.getElementById("line4"),
+      document.getElementById("line5"),
+      document.getElementById("line6")
+    ];
+
+    const input = document.getElementById("hiddenInput");
+
+    const secret = document.getElementById("secret");
+
+    const database = document.getElementById("database");
+
+    const enterDatabase =
+      document.getElementById("enterDatabase");
+
+    const personSearch =
+      document.getElementById("personSearch");
+
+    const searchButton =
+      document.getElementById("searchButton");
+
+    const searchStatus =
+      document.getElementById("searchStatus");
+
+
+    let currentLine = 0;
+
+    let currentCharacter = 0;
+
+
+    /*
+      TYPE INITIAL MESSAGE
+    */
+
+    function typeLine() {
+
+      if (currentLine >= lines.length) {
+
+        enableInput();
+
+        return;
+      }
+
+      const text = lines[currentLine];
+
+      if (currentCharacter < text.length) {
+
+        elements[currentLine].textContent +=
+          text[currentCharacter];
+
+        currentCharacter++;
+
+        setTimeout(typeLine, 25);
+
+      } else {
+
+        currentLine++;
+
+        currentCharacter = 0;
+
+        setTimeout(typeLine, 350);
+      }
+    }
+
+
+    /*
+      ENABLE SECRET COMMAND
+    */
+
+    function enableInput() {
+
+      elements[5].innerHTML =
+        "> <span class='cursor'></span>";
+
+      input.focus();
+    }
+
+
+    /*
+      KEEP TERMINAL FOCUSED
+    */
+
+    document.addEventListener("click", () => {
+
+      input.focus();
+
+    });
+
+
+    /*
+      SECRET COMMAND
+      TYPE: continue
+    */
+
+    input.addEventListener("input", () => {
+
+      const command =
+        input.value
+          .trim()
+          .toLowerCase();
+
+
+      if (command === "continue") {
+
+        secret.classList.add("visible");
+
+        elements[5].innerHTML =
+          "> ACCESS GRANTED <span class='cursor'></span>";
+
+        input.value = "";
+      }
+
+    });
+
+
+    /*
+      OPEN DATABASE
+    */
+
+    enterDatabase.addEventListener("click", (event) => {
+
+      event.preventDefault();
+
+      database.classList.add("visible");
+
+      personSearch.focus();
+
+    });
+
+
+    /*
+      FBI DATABASE SEARCH
+    */
+
+    function searchFBI() {
+
+      const name =
+        personSearch.value.trim();
+
+
+      if (!name) {
+
+        searchStatus.innerHTML =
+          "> ERROR: QUERY EMPTY.";
+
+        searchStatus.className =
+          "search-status active";
+
+        return;
+      }
+
+
+      /*
+        Disable controls while the
+        terminal sequence plays.
+      */
+
+      personSearch.disabled = true;
+
+      searchButton.disabled = true;
+
+
+      searchStatus.className =
+        "search-status";
+
+
+      searchStatus.innerHTML =
+        "> QUERY RECEIVED.";
+
+
+      setTimeout(() => {
+
+        searchStatus.innerHTML =
+          "> SEARCHING EXTERNAL DATABASE...";
+
+      }, 900);
+
+
+      setTimeout(() => {
+
+        searchStatus.innerHTML =
+          "> CONNECTING TO FBI DATABASE...";
+
+      }, 1800);
+
+
+      setTimeout(() => {
+
+        searchStatus.innerHTML =
+          "> REDIRECTING...";
+
+      }, 2700);
+
+
+      /*
+        Redirect to the FBI's
+        public missing-persons page.
+      */
+
+      setTimeout(() => {
+
+        window.location.href =
+          "https://www.fbi.gov/wanted/kidnap";
+
+      }, 3600);
+
+    }
+
+
+    /*
+      SEARCH BUTTON
+    */
+
+    searchButton.addEventListener(
+      "click",
+      searchFBI
+    );
+
+
+    /*
+      ENTER KEY
+    */
+
+    personSearch.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (event.key === "Enter") {
+
+          searchFBI();
+
+        }
+
+      }
+    );
+
+
+    /*
+      START
+    */
+
+    typeLine();
+
+  </script>
+
+</body>
+</html>
+```
+
